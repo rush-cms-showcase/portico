@@ -1,1 +1,39 @@
 @import "tailwindcss";
+
+@theme {
+  --color-portico-blue: #2563a8;
+  --color-portico-blue-50: #ebf3fc;
+  --color-portico-blue-100: #d6e7f9;
+  --color-portico-blue-200: #adcff3;
+  --color-portico-blue-300: #85b7ed;
+  --color-portico-blue-400: #5c9fe7;
+  --color-portico-blue-500: #2563a8;
+  --color-portico-blue-600: #1e4f86;
+  --color-portico-blue-700: #173b64;
+  --color-portico-blue-800: #0f2742;
+  --color-portico-blue-900: #081320;
+
+  --color-portico-orange: #ffa500;
+  --color-portico-orange-50: #fff4e0;
+  --color-portico-orange-100: #ffe9c2;
+  --color-portico-orange-200: #ffd285;
+  --color-portico-orange-300: #ffbc47;
+  --color-portico-orange-400: #ffa500;
+  --color-portico-orange-500: #e69500;
+  --color-portico-orange-600: #b37400;
+  --color-portico-orange-700: #805300;
+  --color-portico-orange-800: #4d3200;
+  --color-portico-orange-900: #1a1100;
+
+  --color-portico-gray: #4a5568;
+  --color-portico-gray-50: #f7f8f9;
+  --color-portico-gray-100: #edf0f2;
+  --color-portico-gray-200: #d9dfe5;
+  --color-portico-gray-300: #c5ced8;
+  --color-portico-gray-400: #b1bdcb;
+  --color-portico-gray-500: #4a5568;
+  --color-portico-gray-600: #3c4553;
+  --color-portico-gray-700: #2e343e;
+  --color-portico-gray-800: #1f2329;
+  --color-portico-gray-900: #111214;
+}
