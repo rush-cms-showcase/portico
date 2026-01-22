@@ -1,0 +1,49 @@
+---
+title: "Home Page - Method 4P Section"
+created: 2026-01-22T19:24:00-03:00
+last_updated: 2026-01-22T19:24:00-03:00
+priority: P1-M
+estimated_hours: 4
+actual_hours: 0
+status: backlog
+blockers: []
+tags: [home, method, ui, cards]
+---
+
+# Home Page - Method 4P Section
+
+## Description
+Create the signature Portico 4P Method section with 4 cards explaining the process.
+
+## Acceptance Criteria
+- [ ] Create `src/components/method-4p-section.astro`
+- [ ] Title: "Intelligence Applied to Construction"
+- [ ] Subtitle: "Portico 4P Method"
+- [ ] 4 cards with icons, titles, descriptions
+  - [ ] 1. Surgical Planning
+  - [ ] 2. Total Predictability
+  - [ ] 3. Contractual Protection
+  - [ ] 4. Progress Reports
+- [ ] Responsive grid (4 cols desktop, 1 col mobile)
+- [ ] Hover effects on cards
+
+## Design Specs
+- **Grid:** 4 columns on desktop (>= 1024px), 1 column mobile
+- **Cards:** White background, subtle shadow, hover elevation
+- **Icons:** Blue (#2563A8), consider using SVG or emoji fallback
+- **Numbers:** Large, bold, blue
+
+## Implementation Notes
+- Use CSS Grid for responsive layout
+- Card hover: `transform: translateY(-4px)` + shadow increase
+- Icons can be simple SVG or Unicode symbols initially
+
+## Dependencies
+- T001 (Base layout)
+
+## Definition of Done
+- [ ] All 4 cards present with correct content
+- [ ] Grid responsive (4-2-1 cols depending on breakpoint)
+- [ ] Hover animation smooth
+- [ ] Icons visible and styled
+- [ ] Matches wireframe design
