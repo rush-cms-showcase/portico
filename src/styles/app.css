@@ -36,4 +36,7 @@
   --color-portico-gray-700: #2e343e;
   --color-portico-gray-800: #1f2329;
   --color-portico-gray-900: #111214;
+
+  --font-family-heading: 'Lexend Deca', system-ui, -apple-system, sans-serif;
+  --font-family-body: 'Nunito Sans', system-ui, -apple-system, sans-serif;
 }

@@ -196,8 +196,18 @@ These promises are the foundation of trust and appear in ALL communications:
 - **Background (White #FFFFFF):** Main backgrounds, cards, spacers
 
 ### Typography
-- **Headings:** Strong, assertive (e.g., Montserrat Bold)
-- **Body:** Readable, human (e.g., Open Sans Regular)
+- **Logo/Brand:** Lexend Deca SemiBold (600) - "PÓRTICO"
+- **Logo Subtitle:** Nunito Sans Bold (700) - "CONSTRUÇÃO REFORMAS"
+- **Headings (H1, H2):** Lexend Deca SemiBold (600)
+- **Subheadings (H3, H4):** Nunito Sans SemiBold (600)
+- **Body Text:** Nunito Sans Regular (400)
+- **Emphasis:** Nunito Sans Bold (700)
+
+**Font Strategy:**
+- Lexend Deca: Designed for readability (dyslexia-friendly), perfect for impact
+- Nunito Sans: Humanist sans-serif, warm and approachable
+- Google Fonts with `display=swap` for performance
+- Total weight: ~60-80KB compressed
 
 ### Photography
 - **Priority:** Real images from Pórtico projects

@@ -1,17 +1,20 @@
 ---
-import '../styles/global.css'
+import BaseLayout from '../layouts/base-layout.astro'
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Pórtico Reformas</title>
-	</head>
-	<body>
-		<h1>Em breve!</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Pórtico Reformas - Home"
+  description="A sua reforma em Porto Alegre com prazo e orçamento garantidos em contrato"
+>
+  <h1 class="font-heading text-4xl font-semibold text-portico-blue">
+    Antes de reformar, a gente entende como você vive
+  </h1>
+
+  <p class="font-body text-lg text-portico-gray">
+    A sua reforma em Porto Alegre com prazo e orçamento garantidos em contrato.
+  </p>
+
+  <button class="bg-portico-blue hover:bg-portico-orange font-body font-bold text-white px-6 py-3 rounded">
+    Falar com um Especialista Agora
+  </button>
+</BaseLayout>
