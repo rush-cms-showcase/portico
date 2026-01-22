@@ -109,19 +109,19 @@ Action: Smooth scroll to contact form
 
 ```
 ┌─────────────────────────────────────┐
-│  WHY DO MOST RENOVATIONS           │
-│  GO WRONG?                         │
+│  WHY DO MOST RENOVATIONS            │
+│  GO WRONG?                          │
 │                                     │
 │  Most companies start with the      │
-│  wall. We start with your life.    │
+│  wall. We start with your life.     │
 │  If the renovation doesn't improve  │
-│  your routine, it's just a waste   │
-│  of time and money.                │
+│  your routine, it's just a waste    │
+│  of time and money.                 │
 │                                     │
 │  ┌─────────────────────────────┐    │
-│  │ "We don't renovate spaces.   │    │
-│  │  We reorganize the life      │    │
-│  │  within them"                │    │
+│  │ "We don't renovate spaces.  │    │
+│  │  We reorganize the life     │    │
+│  │  within them"               │    │
 │  └─────────────────────────────┘    │
 └─────────────────────────────────────┘
 ```
@@ -284,22 +284,22 @@ Pórtico 4P™ Method
 
 ```
 ┌──────────────────────────────────────────┐
-│  4 PEACE OF MIND GUARANTEES             │
+│  4 PEACE OF MIND GUARANTEES              │
 │                                          │
-│   Deadline Guarantee                   │
-│    We deliver on the agreed date or     │
-│    pay a penalty                        │
+│   Deadline Guarantee                     │
+│    We deliver on the agreed date or      │
+│    pay a penalty                         │
 │                                          │
-│   Budget Guarantee                     │
-│    Contract price is final price.       │
-│    No surprises                         │
+│   Budget Guarantee                       │
+│    Contract price is final price.        │
+│    No surprises                          │
 │                                          │
-│   Cleanup Guarantee                    │
-│    Organized project and respect for    │
-│    neighbors                            │
+│   Cleanup Guarantee                      │
+│    Organized project and respect for     │
+│    neighbors                             │
 │                                          │
-│   Structural Guarantee                 │
-│    2-year post-project support         │
+│   Structural Guarantee                   │
+│    2-year post-project support           │
 └──────────────────────────────────────────┘
 ```
 
@@ -341,21 +341,21 @@ Pórtico 4P™ Method
 #### Layout
 
 ```
-┌──────────────────────────────────────────┐
+┌─────────────────────────────────────────┐
 │  OUR SERVICES                           │
-│                                          │
-│  ┌────────────┐  ┌────────────┐        │
-│  │  Before →  │  │  Before →  │        │
-│  │  After     │  │  After     │        │
-│  │            │  │            │        │
-│  │ [Title]    │  │ [Title]    │        │
-│  │ [Details]  │  │ [Details]  │        │
-│  │            │  │            │        │
-│  │ [Learn More]│ │ [Learn More]│       │
-│  └────────────┘  └────────────┘        │
-│                                          │
+│                                         │
+│  ┌────────────┐  ┌────────────┐         │
+│  │  Before →  │  │  Before →  │         │
+│  │  After     │  │  After     │         │
+│  │            │  │            │         │
+│  │ [Title]    │  │ [Title]    │         │
+│  │ [Details]  │  │ [Details]  │         │
+│  │            │  │            │         │
+│  │ [Learn More]│ │ [Learn More]│        │
+│  └────────────┘  └────────────┘         │
+│                                         │
 │  [See All Services] ─────────────────►  │
-└──────────────────────────────────────────┘
+└─────────────────────────────────────────┘
 ```
 
 #### Content
@@ -390,11 +390,11 @@ Our Services
 #### Layout
 
 ```
-┌──────────────────────────────────────────────┐
-│  ARE WE THE RIGHT CHOICE FOR YOU?           │
-│                                              │
+┌────────────────────────────────────────────┐
+│  ARE WE THE RIGHT CHOICE FOR YOU?          │
+│                                            │
 │  ┌─────────────────┐  ┌──────────────────┐ │
-│  │   YES, if you  │  │   NO, if you    │ │
+│  │   YES, if you   │  │   NO, if you     │ │
 │  │  seek:          │  │  seek:           │ │
 │  │                 │  │                  │ │
 │  │ • Security and  │  │ • Just the       │ │
@@ -404,7 +404,7 @@ Our Services
 │  │ • Peace of      │  │ • Hate           │ │
 │  │   mind          │  │   processes      │ │
 │  └─────────────────┘  └──────────────────┘ │
-└──────────────────────────────────────────────┘
+└────────────────────────────────────────────┘
 ```
 
 #### Content
@@ -452,17 +452,17 @@ over the wrong client.
 
 ```
 ┌──────────────────────────────────────┐
-│  FREQUENTLY ASKED QUESTIONS         │
+│  FREQUENTLY ASKED QUESTIONS          │
 │                                      │
-│   How can I trust Pórtico?         │
+│   How can I trust Pórtico?           │
 │  ─────────────────────────────       │
-│    [Expanded answer]                │
+│    [Expanded answer]                 │
 │                                      │
-│   What if material prices rise?    │
+│   What if material prices rise?      │
 │                                      │
-│   How will I know the progress?    │
+│   How will I know the progress?      │
 │                                      │
-│   Why does planning take longer?   │
+│   Why does planning take longer?     │
 └──────────────────────────────────────┘
 ```
 
@@ -519,21 +519,21 @@ us to confirm if your location is in our coverage area.
 
 ```
 ┌──────────────────────────────────────────────┐
-│  DON'T START A PROJECT WITHOUT A            │
-│  FUNCTIONAL DIAGNOSIS WITH PÓRTICO          │
+│  DON'T START A PROJECT WITHOUT A             │
+│  FUNCTIONAL DIAGNOSIS WITH PÓRTICO           │
 │                                              │
-│  [Request Free Diagnosis] ───────────────►  │
+│  [Request Free Diagnosis] ───────────────►   │
 │                                              │
 │  ──────────────────────────────────────────  │
 │                                              │
-│  Pórtico Reformas                           │
-│  CNPJ: XX.XXX.XXX/XXXX-XX                   │
-│  Porto Alegre, RS                           │
+│  Pórtico Reformas                            │
+│  CNPJ: XX.XXX.XXX/XXXX-XX                    │
+│  Porto Alegre, RS                            │
 │                                              │
-│  [Instagram] [Facebook] [WhatsApp]          │
+│  [Instagram] [Facebook] [WhatsApp]           │
 │                                              │
-│  © 2026 Pórtico Reformas. All rights        │
-│  reserved.                                  │
+│  © 2026 Pórtico Reformas. All rights         │
+│  reserved.                                   │
 └──────────────────────────────────────────────┘
 ```
 

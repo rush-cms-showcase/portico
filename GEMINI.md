@@ -4,6 +4,8 @@
 
 {{SLOT:guidelines}}
 
+Do not use emojis, emotes and special symples **ANYWHERE**.
+
 # Astro / TypeScript Guidelines
 
 ## Core Principles
