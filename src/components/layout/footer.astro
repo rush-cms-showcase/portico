@@ -1,0 +1,109 @@
+---
+const currentYear = new Date().getFullYear()
+
+const footerLinks = {
+  company: [
+    { label: 'Sobre Nós', href: '/sobre' },
+    { label: 'Método 4P', href: '/metodo' },
+    { label: 'Depoimentos', href: '/#depoimentos' },
+  ],
+  services: [
+    { label: 'Reforma Residencial', href: '/servicos' },
+    { label: 'Ampliação', href: '/servicos' },
+    { label: 'Acabamento Premium', href: '/servicos' },
+    { label: 'Consultoria', href: '/servicos' },
+  ],
+  contact: [
+    { icon: 'mdi:phone', label: '(51) 99999-9999', href: 'tel:+5551999999999' },
+    { icon: 'mdi:email', label: 'contato@porticoreformas.com.br', href: 'mailto:contato@porticoreformas.com.br' },
+    { icon: 'mdi:map-marker', label: 'Porto Alegre, RS', href: '#' },
+  ],
+  social: [
+    { icon: 'mdi:instagram', label: 'Instagram', href: 'https://instagram.com/porticoreformas' },
+    { icon: 'mdi:facebook', label: 'Facebook', href: 'https://facebook.com/porticoreformas' },
+    { icon: 'mdi:whatsapp', label: 'WhatsApp', href: 'https://wa.me/5551999999999' },
+  ],
+}
+---
+
+<footer class="bg-portico-gray-900 text-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <img src="/logo.svg" alt="Pórtico Reformas" class="h-12 w-auto mb-4 brightness-0 invert" />
+        <p class="font-body text-portico-gray-300 text-sm leading-relaxed">
+          Transformando espaços com inteligência e planejamento há mais de 20 anos em Porto Alegre.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-heading text-lg font-semibold mb-4">Empresa</h3>
+        <ul class="space-y-2">
+          {footerLinks.company.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="font-body text-portico-gray-300 hover:text-portico-orange transition-colors duration-200 text-sm"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-heading text-lg font-semibold mb-4">Serviços</h3>
+        <ul class="space-y-2">
+          {footerLinks.services.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="font-body text-portico-gray-300 hover:text-portico-orange transition-colors duration-200 text-sm"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-heading text-lg font-semibold mb-4">Contato</h3>
+        <ul class="space-y-3">
+          {footerLinks.contact.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="font-body text-portico-gray-300 hover:text-portico-orange transition-colors duration-200 text-sm flex items-start"
+              >
+                <iconify-icon icon={item.icon} class="text-xl mr-2 flex-shrink-0 mt-0.5"></iconify-icon>
+                <span>{item.label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div class="flex space-x-4 mt-6">
+          {footerLinks.social.map((social) => (
+            <a
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 bg-portico-gray-800 hover:bg-portico-orange rounded-full flex items-center justify-center transition-colors duration-200"
+              aria-label={social.label}
+            >
+              <iconify-icon icon={social.icon} class="text-xl"></iconify-icon>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-portico-gray-700 mt-8 pt-8 text-center">
+      <p class="font-body text-portico-gray-400 text-sm">
+        © {currentYear} Pórtico Reformas. Todos os direitos reservados.
+      </p>
+    </div>
+  </div>
+</footer>

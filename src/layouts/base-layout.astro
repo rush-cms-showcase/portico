@@ -1,13 +1,15 @@
 ---
 import { ViewTransitions } from 'astro:transitions'
 import '@/styles/app.css'
+import Header from '@/components/layout/header.astro'
+import Footer from '@/components/layout/footer.astro'
 
 interface Props {
   title: string
   description: string
 }
 
-const { title, description } = Astro.props
+const { title, description} = Astro.props
 ---
 
 <!doctype html>
@@ -28,6 +30,10 @@ const { title, description } = Astro.props
     <ViewTransitions />
   </head>
   <body class="font-body text-portico-gray antialiased">
-    <slot />
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>

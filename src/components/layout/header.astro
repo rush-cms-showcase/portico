@@ -1,0 +1,86 @@
+---
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Serviços', href: '/servicos' },
+  { label: 'Sobre', href: '/sobre' },
+  { label: 'Método', href: '/metodo' },
+  { label: 'Contato', href: '#contato' },
+]
+---
+
+<header class="sticky top-0 z-50 bg-white shadow-md">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <div class="flex-shrink-0">
+        <a href="/" class="flex items-center">
+          <img src="/logo.svg" alt="Pórtico Reformas" class="h-12 w-auto" />
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center space-x-8">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="font-body text-portico-gray hover:text-portico-blue transition-colors duration-200 font-medium"
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <div class="hidden md:flex items-center">
+        <a
+          href="#contato"
+          class="bg-portico-orange hover:bg-portico-blue transition-colors duration-300 text-white font-body font-bold px-6 py-3 rounded-lg shadow-md hover:shadow-lg"
+        >
+          Solicitar Orçamento
+        </a>
+      </div>
+
+      <button
+        id="mobile-menu-button"
+        class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-portico-gray hover:text-portico-blue hover:bg-portico-gray-50 focus:outline-none"
+        aria-label="Menu"
+      >
+        <iconify-icon icon="mdi:menu" class="text-3xl"></iconify-icon>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-portico-gray-200">
+    <div class="px-4 pt-2 pb-4 space-y-2">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="block font-body text-portico-gray hover:text-portico-blue hover:bg-portico-gray-50 px-3 py-2 rounded-md font-medium"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="#contato"
+        class="block bg-portico-orange hover:bg-portico-blue transition-colors duration-300 text-white font-body font-bold px-6 py-3 rounded-lg text-center mt-4"
+      >
+        Solicitar Orçamento
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const menuButton = document.getElementById('mobile-menu-button')
+  const mobileMenu = document.getElementById('mobile-menu')
+
+  menuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden')
+  })
+
+  document.addEventListener('click', (e) => {
+    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+      const target = e.target as HTMLElement
+      if (!menuButton?.contains(target) && !mobileMenu.contains(target)) {
+        mobileMenu.classList.add('hidden')
+      }
+    }
+  })
+</script>
