@@ -1,0 +1,59 @@
+---
+interface Props {
+  title?: string
+}
+
+const {
+  title = 'Por que escolher a Pórtico?',
+} = Astro.props
+
+const reasons = [
+  {
+    icon: 'mdi:shield-check',
+    title: 'Sem Caos',
+    description: 'Projeto organizado com cronograma realista. Sua casa não vira uma zona de guerra.',
+  },
+  {
+    icon: 'mdi:cash-lock',
+    title: 'Orçamento Garantido',
+    description: 'Preço do contrato é o preço final. Nada de surpresas ou custos extras escondidos.',
+  },
+  {
+    icon: 'mdi:calendar-check',
+    title: 'Prazo Garantido',
+    description: 'Entregamos na data combinada ou pagamos multa. Nada de promessas vazias.',
+  },
+]
+---
+
+<section id="razoes" class="py-20 bg-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-portico-blue text-center mb-12">
+      {title}
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {reasons.map((reason) => (
+        <div class="bg-white border border-portico-gray-200 rounded-lg p-8 hover:shadow-xl transition-shadow duration-300">
+          <div class="flex justify-center mb-6">
+            <div class="w-16 h-16 bg-portico-orange/10 rounded-full flex items-center justify-center">
+              <iconify-icon icon={reason.icon} class="text-4xl text-portico-orange"></iconify-icon>
+            </div>
+          </div>
+          
+          <h3 class="font-heading text-xl font-semibold text-portico-blue text-center mb-4">
+            {reason.title}
+          </h3>
+          
+          <p class="font-body text-portico-gray text-center leading-relaxed">
+            {reason.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import 'iconify-icon'
+</script>
