@@ -1,10 +1,14 @@
 ---
+import { useTranslations } from '@/lib/i18n'
+
+const t = useTranslations('pt_BR')
+
 const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Serviços', href: '/servicos' },
-  { label: 'Sobre', href: '/sobre' },
-  { label: 'Método', href: '/metodo' },
-  { label: 'Contato', href: '#contato' },
+  { label: t.nav.home, href: '/' },
+  { label: t.nav.services, href: '/servicos' },
+  { label: t.nav.about, href: '/sobre' },
+  { label: t.nav.method, href: '/metodo' },
+  { label: t.nav.contact, href: '#contato' },
 ]
 ---
 
@@ -33,7 +37,7 @@ const navLinks = [
           href="#contato"
           class="bg-portico-orange hover:bg-portico-blue transition-colors duration-300 text-white font-body font-bold px-6 py-3 rounded-lg shadow-md hover:shadow-lg"
         >
-          Solicitar Orçamento
+          {t.buttons.requestQuote}
         </a>
       </div>
 
@@ -61,7 +65,7 @@ const navLinks = [
         href="#contato"
         class="block bg-portico-orange hover:bg-portico-blue transition-colors duration-300 text-white font-body font-bold px-6 py-3 rounded-lg text-center mt-4"
       >
-        Solicitar Orçamento
+        {t.buttons.requestQuote}
       </a>
     </div>
   </div>
