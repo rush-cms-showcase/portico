@@ -1,0 +1,73 @@
+---
+interface Props {
+  title?: string
+}
+
+const {
+  title = 'A Pórtico É Perfeita Para Você Se Busca:',
+} = Astro.props
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-portico-blue text-center mb-12">
+      {title}
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <div class="space-y-4">
+        <h3 class="font-heading text-2xl font-semibold text-green-600 mb-6 flex items-center">
+          <iconify-icon icon="mdi:check-circle" class="text-3xl mr-3"></iconify-icon>
+          Somos PERFEITOS para você
+        </h3>
+        
+        <ul class="space-y-4">
+          <li class="flex items-start">
+            <iconify-icon icon="mdi:check" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-1"></iconify-icon>
+            <span class="font-body text-portico-gray">Segurança e planejamento detalhado</span>
+          </li>
+          <li class="flex items-start">
+            <iconify-icon icon="mdi:check" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-1"></iconify-icon>
+            <span class="font-body text-portico-gray">Valorização do imóvel a longo prazo</span>
+          </li>
+          <li class="flex items-start">
+            <iconify-icon icon="mdi:check" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-1"></iconify-icon>
+            <span class="font-body text-portico-gray">Paz de espírito e processos organizados</span>
+          </li>
+          <li class="flex items-start">
+            <iconify-icon icon="mdi:check" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-1"></iconify-icon>
+            <span class="font-body text-portico-gray">Transparência e prestação de contas</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="font-heading text-2xl font-semibold text-red-600 mb-6 flex items-center">
+          <iconify-icon icon="mdi:close-circle" class="text-3xl mr-3"></iconify-icon>
+          NÃO somos para você
+        </h3>
+        
+        <ul class="space-y-4">
+          <li class="flex items-start">
+            <iconify-icon icon="mdi:close" class="text-2xl text-red-600 mr-3 flex-shrink-0 mt-1"></iconify-icon>
+            <span class="font-body text-portico-gray">Apenas o menor preço (sem critério técnico)</span>
+          </li>
+          <li class="flex items-start">
+            <iconify-icon icon="mdi:close" class="text-2xl text-red-600 mr-3 flex-shrink-0 mt-1"></iconify-icon>
+            <span class="font-body text-portico-gray">Rapidez sem planejamento</span>
+          </li>
+          <li class="flex items-start">
+            <iconify-icon icon="mdi:close" class="text-2xl text-red-600 mr-3 flex-shrink-0 mt-1"></iconify-icon>
+            <span class="font-body text-portico-gray">Odeia processos e prefere "ir fazendo"</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-portico-gray-50 border-l-4 border-portico-blue p-6 rounded-r-lg text-center">
+      <p class="font-body text-lg text-portico-gray italic">
+        "E está tudo bem se não for para você. Preferimos o cliente certo ao cliente errado."
+      </p>
+    </div>
+  </div>
+</section>

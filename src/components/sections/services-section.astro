@@ -1,0 +1,74 @@
+---
+interface Props {
+  title?: string
+}
+
+const {
+  title = 'Nossos Serviços',
+} = Astro.props
+
+const services = [
+  {
+    icon: 'mdi:home-city',
+    title: 'Reforma Residencial Completa',
+    description: 'Transformação total do seu imóvel com planejamento funcional e entrega garantida.',
+  },
+  {
+    icon: 'mdi:floor-plan',
+    title: 'Ampliação e Redistribuição',
+    description: 'Otimização de espaços e criação de novos ambientes pensados para sua rotina.',
+  },
+  {
+    icon: 'mdi:palette',
+    title: 'Acabamento Premium',
+    description: 'Revestimentos, pisos e acabamentos de alta qualidade com execução impecável.',
+  },
+  {
+    icon: 'mdi:lightbulb-on',
+    title: 'Consultoria de Projeto',
+    description: 'Diagnóstico funcional e planejamento inteligente antes de qualquer obra.',
+  },
+]
+---
+
+<section class="py-20 bg-portico-gray-50">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-portico-blue mb-4">
+        {title}
+      </h2>
+      <p class="font-body text-lg text-portico-gray max-w-3xl mx-auto">
+        Soluções completas para transformar seu imóvel em Porto Alegre
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+      {services.map((service) => (
+        <div class="group bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div class="w-16 h-16 bg-portico-orange/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-portico-orange/20 transition-colors">
+            <iconify-icon icon={service.icon} class="text-4xl text-portico-orange"></iconify-icon>
+          </div>
+          
+          <h3 class="font-heading text-lg font-semibold text-portico-blue mb-3">
+            {service.title}
+          </h3>
+          
+          <p class="font-body text-portico-gray text-sm leading-relaxed">
+            {service.description}
+          </p>
+
+          <a href="/servicos" class="inline-flex items-center font-body text-sm text-portico-orange hover:text-portico-blue mt-4 transition-colors">
+            Saiba mais
+            <iconify-icon icon="mdi:arrow-right" class="ml-2"></iconify-icon>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="/servicos" class="inline-block bg-portico-blue hover:bg-portico-orange transition-colors duration-300 text-white font-body font-bold text-lg px-8 py-4 rounded-lg shadow-lg">
+        Ver Todos os Serviços
+      </a>
+    </div>
+  </div>
+</section>

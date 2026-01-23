@@ -1,0 +1,75 @@
+---
+interface Props {
+  title?: string
+}
+
+const {
+  title = 'Perguntas Frequentes',
+} = Astro.props
+
+const faqs = [
+  {
+    question: 'Quanto tempo demora uma reforma completa?',
+    answer: 'Depende do tamanho e complexidade, mas em média uma reforma residencial completa leva de 3 a 6 meses. O importante: definimos um prazo realista NO CONTRATO e garantimos com multa por atraso.',
+  },
+  {
+    question: 'Como funciona o orçamento travado?',
+    answer: 'Fazemos um planejamento detalhado antes de fechar o orçamento. O preço do contrato é final - se houver imprevisto ou aumento de material, o custo adicional é nosso, não seu.',
+  },
+  {
+    question: 'Vocês atendem em toda Porto Alegre?',
+    answer: 'Sim! Atendemos Porto Alegre e região metropolitana. Em algumas áreas mais afastadas pode haver taxa de deslocamento, mas isso é sempre informado no orçamento.',
+  },
+  {
+    question: 'Preciso sair de casa durante a obra?',
+    answer: 'Não necessariamente. Dependendo do tipo de reforma, é possível morar no imóvel durante a obra. Fazemos um planejamento específico para minimizar transtornos e manter áreas habitáveis.',
+  },
+  {
+    question: 'Como funciona a garantia de 2 anos?',
+    answer: 'Garantimos estrutura, hidráulica, elétrica e acabamentos por 2 anos após entrega. Se aparecer algum problema relacionado à nossa execução, voltamos e corrigimos sem custo adicional.',
+  },
+  {
+    question: 'Qual a diferença do Júlio para outros arquitetos/engenheiros?',
+    answer: 'Júlio não é só o "cara que desenha bonito". Ele faz diagnóstico funcional da sua ROTINA antes mesmo de pensar em estética. A pergunta dele não é "o que você quer?", mas sim "como você vive?".',
+  },
+]
+---
+
+<section class="py-20 bg-portico-gray-50">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+    <div class="text-center mb-12">
+      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-portico-blue mb-4">
+        {title}
+      </h2>
+      <p class="font-body text-lg text-portico-gray">
+        As dúvidas mais comuns dos nossos clientes
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <details class="group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+          <summary class="flex items-center justify-between cursor-pointer p-6 font-heading text-lg font-semibold text-portico-blue">
+            <span class="flex items-start">
+              <span class="flex-shrink-0 w-8 h-8 bg-portico-orange text-white rounded-full flex items-center justify-center text-sm mr-4">
+                {index + 1}
+              </span>
+              <spspan>{faq.question}</span>
+            </span>
+            <iconify-icon icon="mdi:chevron-down" class="text-2xl text-portico-orange group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></iconify-icon>
+          </summary>
+          <div class="px-6 pb-6 pl-18 font-body text-portico-gray leading-relaxed">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <p class="font-body text-portico-gray mb-4">Ainda tem dúvidas?</p>
+      <a href="#contato" class="inline-block bg-portico-blue hover:bg-portico-orange transition-colors duration-300 text-white font-body font-bold text-lg px-8 py-4 rounded-lg shadow-lg">
+        Fale com um Especialista
+      </a>
+    </div>
+  </div>
+</section>

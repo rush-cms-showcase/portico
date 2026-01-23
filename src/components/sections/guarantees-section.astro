@@ -1,0 +1,76 @@
+---
+interface Props {
+  title?: string
+}
+
+const {
+  title = 'Garantias Institucionais',
+} = Astro.props
+
+const guarantees = [
+  {
+    icon: 'mdi:calendar-check',
+    title: 'Prazo Garantido',
+    description: 'Entregamos na data combinada ou pagamos multa contratual. Sem desculpas, sem "imprevistos".',
+    badge: 'Multa por atraso',
+  },
+  {
+    icon: 'mdi:lock',
+    title: 'Orçamento Travado',
+    description: 'Preço do contrato é o preço final. Sem surpresas. Aumento de material? Problema nosso, não seu.',
+    badge: 'Preço fixo',
+  },
+  {
+    icon: 'mdi:home-heart',
+    title: 'Projeto Organizado',
+    description: 'Respeito à sua casa e vizinhos. Limpeza diária obrigatória. Horários respeitados. Aviso prévio de barulho.',
+    badge: 'Respeito total',
+  },
+  {
+    icon: 'mdi:shield',
+    title: 'Suporte Pós-Obra',
+    description: 'Garantia estrutural de 2 anos. Não sumimos após entregar. Suporte técnico incluído no contrato.',
+    badge: '2 anos',
+  },
+]
+---
+
+<section class="py-20 bg-portico-blue text-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold mb-4">
+        {title}
+      </h2>
+      <p class="font-body text-lg text-white/90 max-w-3xl mx-auto">
+        Promessas não negociáveis que aparecem em TODAS as comunicações
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+      {guarantees.map((guarantee) => (
+        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 hover:bg-white/20 transition-all duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <iconify-icon icon={guarantee.icon} class="text-5xl text-portico-orange"></iconify-icon>
+            <span class="bg-portico-orange text-white text-xs font-bold px-3 py-1 rounded-full">
+              {guarantee.badge}
+            </span>
+          </div>
+          
+          <h3 class="font-heading text-xl font-semibold mb-3">
+            {guarantee.title}
+          </h3>
+          
+          <p class="font-body text-white/80 text-sm leading-relaxed">
+            {guarantee.description}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <p class="font-body text-lg italic text-white/90">
+        Essas garantias são a base da nossa confiança
+      </p>
+    </div>
+  </div>
+</section>
