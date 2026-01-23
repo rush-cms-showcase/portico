@@ -1,0 +1,169 @@
+---
+import BaseLayout from '@/layouts/base-layout.astro'
+import { useTranslations } from '@/lib/i18n'
+
+const t = useTranslations('pt_BR')
+---
+
+<BaseLayout
+  title={`Método Pórtico 4P - ${t.site.title}`}
+  description="Conheça o Método Pórtico 4P: Planejamento Cirúrgico, Previsibilidade Total, Proteção Contratual e Prestação de Contas. Inteligência aplicada à construção."
+>
+  <article class="py-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+      <div class="text-center mb-16">
+        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-semibold text-portico-blue mb-6">
+          Método Pórtico 4P™
+        </h1>
+        <p class="font-body text-xl text-portico-gray max-w-3xl mx-auto">
+          Inteligência Aplicada à Construção
+        </p>
+      </div>
+
+      <div class="space-y-16">
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+          <div class="md:w-1/4 flex-shrink-0">
+            <div class="w-20 h-20 bg-portico-orange text-white rounded-full flex items-center justify-center font-heading text-3xl font-bold shadow-lg">
+              1
+            </div>
+          </div>
+          <div class="md:w-3/4">
+            <h2 class="font-heading text-3xl font-semibold text-portico-blue mb-4">
+              Planejamento Cirúrgico
+            </h2>
+            <p class="font-body text-lg text-portico-gray leading-relaxed mb-4">
+              Diagnóstico funcional da sua rotina ANTES de fazer o orçamento.
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-start">
+                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
+                <span class="font-body text-portico-gray">Entrevista detalhada: como você usa cada cômodo?</span>
+              </li>
+              <li class="flex items-start">
+                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
+                <span class="font-body text-portico-gray">Mapeamento de fluxos (ex: rotina matinal, preparo de refeições)</span>
+              </li>
+              <li class="flex items-start">
+                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
+                <span class="font-body text-portico-gray">Design baseado em comportamento, não só estética</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+          <div class="md:w-1/4 flex-shrink-0">
+            <div class="w-20 h-20 bg-portico-orange text-white rounded-full flex items-center justify-center font-heading text-3xl font-bold shadow-lg">
+              2
+            </div>
+          </div>
+          <div class="md:w-3/4">
+            <h2 class="font-heading text-3xl font-semibold text-portico-blue mb-4">
+              Previsibilidade Total
+            </h2>
+            <p class="font-body text-lg text-portico-gray leading-relaxed mb-4">
+              Cronograma realista com datas fixas de entrega.
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-start">
+                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
+                <span class="font-body text-portico-gray">Planejamento reverso: do fim para o começo</span>
+              </li>
+              <li class="flex items-start">
+                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
+                <span class="font-body text-portico-gray">Margem de segurança, não otimismo ingênuo</span>
+              </li>
+              <li class="flex items-start">
+                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
+                <span class="font-body text-portico-gray">Atualizações semanais de status</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+          <div class="md:w-1/4 flex-shrink-0">
+            <div class="w-20 h-20 bg-portico-orange text-white rounded-full flex items-center justify-center font-heading text-3xl font-bold shadow-lg">
+              3
+            </div>
+          </div>
+          <div class="md:w-3/4">
+            <h2 class="font-heading text-3xl font-semibold text-portico-blue mb-4">
+              Proteção Contratual
+            </h2>
+            <p class="font-body text-lg text-portico-gray leading-relaxed mb-4">
+              Orçamento travado e multa por atraso — o risco é nosso.
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-start">
+                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
+                <span class="font-body text-portico-gray">Contrato detalhado com todas as etapas</span>
+              </li>
+              <li class="flex items-start">
+                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
+                <span class="font-body text-portico-gray">Cláusula de penalidade por não-cumprimento</span>
+              </li>
+              <li class="flex items-start">
+                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
+                <span class="font-body text-portico-gray">Seguro do projeto incluído</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+          <div class="md:w-1/4 flex-shrink-0">
+            <div class="w-20 h-20 bg-portico-orange text-white rounded-full flex items-center justify-center font-heading text-3xl font-bold shadow-lg">
+              4
+            </div>
+          </div>
+          <div class="md:w-3/4">
+            <h2 class="font-heading text-3xl font-semibold text-portico-blue mb-4">
+              Prestação de Contas
+            </h2>
+            <p class="font-body text-lg text-portico-gray leading-relaxed mb-4">
+              Relatórios semanais detalhados no seu WhatsApp.
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-start">
+                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
+                <span class="font-body text-portico-gray">Fotos de progresso toda sexta-feira</span>
+              </li>
+              <li class="flex items-start">
+                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
+                <span class="font-body text-portico-gray">Checklist de etapas concluídas</span>
+              </li>
+              <li class="flex items-start">
+                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
+                <span class="font-body text-portico-gray">Próximos passos da semana seguinte</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 bg-portico-gray-50 p-8 rounded-lg text-center">
+        <p class="font-body text-xl text-portico-gray italic">
+          "Não fazemos reforma. Fazemos transformação inteligente de espaços."
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-20 bg-portico-blue text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-heading text-3xl font-semibold mb-6">
+        Pronto para aplicar o Método 4P no seu projeto?
+      </h2>
+      <p class="font-body text-lg mb-8 max-w-2xl mx-auto text-white/90">
+        Vamos começar com um diagnóstico funcional gratuito
+      </p>
+      <a
+        href="#contato"
+        class="inline-block bg-portico-orange hover:bg-white hover:text-portico-blue transition-colors duration-300 text-white font-body font-bold text-lg px-8 py-4 rounded-lg shadow-lg"
+      >
+        {t.buttons.requestQuote}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

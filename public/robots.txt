@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://porticoreformas.com.br/sitemap.xml

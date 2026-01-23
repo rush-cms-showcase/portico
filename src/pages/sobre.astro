@@ -1,0 +1,93 @@
+---
+import BaseLayout from '@/layouts/base-layout.astro'
+import { useTranslations } from '@/lib/i18n'
+
+const t = useTranslations('pt_BR')
+---
+
+<BaseLayout
+  title={`Sobre Nós - ${t.site.title}`}
+  description="Conheça a história da Pórtico Reformas, nossa missão de transformar espaços com inteligência e planejamento em Porto Alegre há mais de 20 anos."
+>
+  <article class="py-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-semibold text-portico-blue mb-8 text-center">
+        Sobre a Pórtico Reformas
+      </h1>
+
+      <div class="prose prose-lg max-w-none">
+        <p class="font-body text-xl text-portico-gray leading-relaxed mb-8">
+          Na Pórtico, não fazemos "só mais uma reforma". Fazemos transformação inteligente de espaços baseada em como você realmente vive.
+        </p>
+
+        <h2 class="font-heading text-3xl font-semibold text-portico-blue mt-12 mb-6">
+          Nossa História
+        </h2>
+        
+        <p class="font-body text-lg text-portico-gray leading-relaxed mb-6">
+          Fundada há mais de 20 anos por Júlio, a Pórtico nasceu de uma frustração: ver reformas que começavam com entusiasmo e terminavam em caos, estresse e orçamentos estourados.
+        </p>
+
+        <p class="font-body text-lg text-portico-gray leading-relaxed mb-6">
+          Júlio percebeu que o problema não estava na execução, mas na abordagem. A maioria das reformas começa pela construção, não pelas pessoas. Nós invertemos isso.
+        </p>
+
+        <div class="bg-portico-blue text-white p-8 rounded-lg my-12">
+          <p class="font-body text-lg italic mb-4">
+            "A melhor reforma não é a mais bonita. É a que melhora sua rotina todos os dias."
+          </p>
+          <p class="font-body font-semibold">— Júlio, Fundador</p>
+        </div>
+
+        <h2 class="font-heading text-3xl font-semibold text-portico-blue mt-12 mb-6">
+          Nossa Missão
+        </h2>
+
+        <p class="font-body text-lg text-portico-gray leading-relaxed mb-6">
+          Transformar espaços através de planejamento inteligente que respeita sua rotina, seu orçamento e seu tempo. Sem surpresas, sem desculpas, sem estresse.
+        </p>
+
+        <h2 class="font-heading text-3xl font-semibold text-portico-blue mt-12 mb-6">
+          Nossos Valores
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
+          <div class="bg-portico-gray-50 p-6 rounded-lg">
+            <iconify-icon icon="mdi:shield-check" class="text-4xl text-portico-orange mb-4"></iconify-icon>
+            <h3 class="font-heading text-xl font-semibold text-portico-blue mb-2">Transparência</h3>
+            <p class="font-body text-portico-gray">Total honestidade sobre prazos, custos e processos</p>
+          </div>
+
+          <div class="bg-portico-gray-50 p-6 rounded-lg">
+            <iconify-icon icon="mdi:account-heart" class="text-4xl text-portico-orange mb-4"></iconify-icon>
+            <h3 class="font-heading text-xl font-semibold text-portico-blue mb-2">Respeito</h3>
+            <p class="font-body text-portico-gray">Sua casa, seu tempo e seu dinheiro são sagrados</p>
+          </div>
+
+          <div class="bg-portico-gray-50 p-6 rounded-lg">
+            <iconify-icon icon="mdi:brain" class="text-4xl text-portico-orange mb-4"></iconify-icon>
+            <h3 class="font-heading text-xl font-semibold text-portico-blue mb-2">Inteligência</h3>
+            <p class="font-body text-portico-gray">Planejamento funcional antes de qualquer martelo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-20 bg-portico-blue text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-heading text-3xl font-semibold mb-6">
+        Quer fazer parte da nossa história?
+      </h2>
+      <p class="font-body text-lg mb-8 max-w-2xl mx-auto text-white/90">
+        Entre em contato e vamos começar a transformação do seu espaço
+      </p>
+      <a
+        href="#contato"
+        class="inline-block bg-portico-orange hover:bg-white hover:text-portico-blue transition-colors duration-300 text-white font-body font-bold text-lg px-8 py-4 rounded-lg shadow-lg"
+      >
+        {t.buttons.requestQuote}
+      </a>
+    </div>
+  </section>
+</BaseLayout>
