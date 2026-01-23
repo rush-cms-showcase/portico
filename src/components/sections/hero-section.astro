@@ -1,0 +1,65 @@
+---
+interface Props {
+  headline?: string
+  subheadline?: string
+}
+
+const {
+  headline = 'Antes de reformar, a gente entende como você vive',
+  subheadline = 'A sua reforma em Porto Alegre com prazo e orçamento garantidos em contrato',
+} = Astro.props
+
+const handleCTAClick = () => {
+  document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })
+}
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/images/hero-bg.webp"
+      alt="Reforma moderna e profissional"
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-portico-blue/90 to-portico-blue/70"></div>
+  </div>
+
+  <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-semibold text-white mb-6 leading-tight max-w-4xl mx-auto">
+      {headline}
+    </h1>
+
+    <p class="font-body text-lg sm:text-xl lg:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
+      {subheadline}
+    </p>
+
+    <a
+      href="#contato"
+      class="inline-block bg-portico-blue hover:bg-portico-orange transition-colors duration-300 text-white font-body font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+    >
+      Falar com um Especialista Agora
+    </a>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+    <a href="#razoes" class="block text-white/70 hover:text-white transition-colors">
+      <svg class="w-8 h-8 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault()
+      const targetId = anchor.getAttribute('href')?.substring(1)
+      if (targetId) {
+        const target = document.getElementById(targetId)
+        target?.scrollIntoView({ behavior: 'smooth' })
+      }
+    })
+  })
+</script>

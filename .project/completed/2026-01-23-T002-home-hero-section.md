@@ -1,11 +1,11 @@
 ---
 title: "Home Page - Hero Section"
 created: 2026-01-22T19:24:00-03:00
-last_updated: 2026-01-22T19:24:00-03:00
+last_updated: 2026-01-23T12:10:00-03:00
 priority: P1-S
 estimated_hours: 3
-actual_hours: 0
-status: backlog
+actual_hours: 0.5
+status: completed
 blockers: []
 tags: [home, hero, ui]
 ---
@@ -16,13 +16,13 @@ tags: [home, hero, ui]
 Implement hero section with headline, subheadline, CTA button, and background image.
 
 ## Acceptance Criteria
-- [ ] Create `src/components/hero-section.astro`
-- [ ] Implement headline: "Before renovating, we understand how you live"
-- [ ] Add subheadline with geo-targeting placeholder
-- [ ] CTA button "Talk to a Specialist Now" (smooth scroll to contact)
-- [ ] Responsive layout (mobile/desktop)
-- [ ] Background image optimized (WebP, lazy load)
-- [ ] Proper TypeScript types for props
+- [x] Create `src/components/hero-section.astro`
+- [x] Implement headline: "Before renovating, we understand how you live"
+- [x] Add subheadline with geo-targeting placeholder
+- [x] CTA button "Talk to a Specialist Now" (smooth scroll to contact)
+- [x] Responsive layout (mobile/desktop)
+- [x] Background image optimized (WebP, lazy load)
+- [x] Proper TypeScript types for props
 
 ## Design Specs
 - **Colors:** Blue #2563A8 for CTA, white text on dark overlay
@@ -38,8 +38,8 @@ Implement hero section with headline, subheadline, CTA button, and background im
 - T001 (Base layout must exist)
 
 ## Definition of Done
-- [ ] Desktop layout matches wireframe
-- [ ] Mobile responsive
-- [ ] CTA smooth scroll works
-- [ ] Image optimized (< 200KB)
-- [ ] No TypeScript errors
+- [x] Desktop layout matches wireframe
+- [x] Mobile responsive
+- [x] CTA smooth scroll works
+- [x] Image optimized (< 200KB)
+- [x] No TypeScript errors

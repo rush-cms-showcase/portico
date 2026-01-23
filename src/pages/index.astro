@@ -1,20 +1,24 @@
 ---
 import BaseLayout from '@/layouts/base-layout.astro'
+import HeroSection from '@/components/sections/hero-section.astro'
 ---
 
 <BaseLayout
-  title="Pórtico Reformas - Home"
-  description="A sua reforma em Porto Alegre com prazo e orçamento garantidos em contrato"
+  title="Pórtico Reformas - Sua reforma em Porto Alegre com prazo e orçamento garantidos"
+  description="Antes de reformar, a gente entende como você vive. Reforma residencial em Porto Alegre com planejamento inteligente, prazo garantido e orçamento fixo em contrato."
 >
-  <h1 class="font-heading text-4xl font-semibold text-portico-blue">
-    Antes de reformar, a gente entende como você vive
-  </h1>
+  <HeroSection />
 
-  <p class="font-body text-lg text-portico-gray">
-    A sua reforma em Porto Alegre com prazo e orçamento garantidos em contrato.
-  </p>
+  <section id="razoes" class="py-20">
+    <div class="container mx-auto px-4">
+      <p class="text-center text-portico-gray">Próxima seção aqui (Razões para escolher a Pórtico)</p>
+    </div>
+  </section>
 
-  <button class="bg-portico-blue hover:bg-portico-orange font-body font-bold text-white px-6 py-3 rounded">
-    Falar com um Especialista Agora
-  </button>
+  <section id="contato" class="py-20 bg-portico-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="font-heading text-3xl font-semibold text-portico-blue text-center mb-8">Entre em Contato</h2>
+      <p class="text-center text-portico-gray">Formulário de contato será implementado em T014</p>
+    </div>
+  </section>
 </BaseLayout>
