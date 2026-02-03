@@ -1,11 +1,11 @@
 ---
 title: "Project Showcase Component"
 created: 2026-02-03T19:44:00-03:00
-last_updated: 2026-02-03T19:44:00-03:00
+last_updated: 2026-02-03T20:28:00-03:00
 priority: P1-M
 estimated_hours: 6
-actual_hours: 0
-status: backlog
+actual_hours: 2.5
+status: in-progress
 blockers: []
 tags: [component, ui, premium, portfolio]
 depends_on: [T020, T021]
@@ -42,17 +42,16 @@ Create premium project showcase section to display 3-4 high-end renovation case 
 ## Implementation
 
 ### Phase 1: Component Structure (2h)
-- [ ] Create `src/components/sections/project-showcase-section.astro`
-- [ ] Create `src/components/ui/project-card.astro`
-- [ ] Create `src/components/ui/image-comparison.astro`
-- [ ] Define TypeScript interface for Project type:
+- [x] Create `src/components/sections/project-showcase-section.astro`
+- [x] Create `src/components/ui/project-card.astro`
+- [x] Create `src/components/ui/image-comparison.astro`
+- [x] Define TypeScript interface for Project type:
   ```typescript
   interface Project {
     title: string
     location: string
-    before: ImageMetadata
-    after: ImageMetadata
-    gallery: ImageMetadata[]
+    before: string
+    after: string
     metadata: {
       area: string
       duration: string
@@ -64,8 +63,8 @@ Create premium project showcase section to display 3-4 high-end renovation case 
     }
   }
   ```
-- [ ] Setup grid layout (1 col mobile, 2 col tablet, 3 col desktop)
-- [ ] Implement card hover states (subtle lift + shadow)
+- [x] Setup grid layout (1 col mobile, 2 col tablet, 2 col desktop)
+- [x] Implement card hover states (subtle lift + shadow)
 
 ### Phase 2: Image Functionality (2h)
 - [ ] Install PhotoSwipe: `pnpm add photoswipe`
@@ -77,16 +76,16 @@ Create premium project showcase section to display 3-4 high-end renovation case 
 - [ ] Implement intersection observer for scroll animations
 
 ### Phase 3: Content & Polish (2h)
-- [ ] Generate 4 premium project images (AI):
+- [x] Generate 4 premium project images (AI):
   - Project 1: Modern apartment renovation (before/after)
   - Project 2: Kitchen transformation (before/after)
   - Project 3: Bathroom luxury upgrade (before/after)
   - Project 4: Living room redesign (before/after)
-- [ ] Write compelling project descriptions
-- [ ] Add metadata (100m², 45 days, R$ 180-250k range)
-- [ ] Create client testimonial text (authentic tone)
+- [x] Write compelling project descriptions
+- [x] Add metadata (120m², 60 days, R$ 180-220k range)
+- [x] Create client testimonial text (authentic tone)
 - [ ] Add scroll-triggered fade-in animations
-- [ ] Implement "Ver Portfolio Completo" CTA button
+- [x] Implement CTA button ("Solicitar Orçamento Personalizado")
 - [ ] Test lightbox on mobile (swipe gestures)
 
 ## Definition of Done
