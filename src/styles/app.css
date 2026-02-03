@@ -61,8 +61,8 @@
   --color-stone-800: #9B9186;
   --color-stone-900: #7E7264;
 
-  --font-family-heading: 'Lexend Deca', system-ui, -apple-system, sans-serif;
-  --font-family-body: 'Nunito Sans', system-ui, -apple-system, sans-serif;
+  --font-family-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-family-body: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 @layer utilities {
