@@ -1,11 +1,11 @@
 ---
 title: "Atomic Design Component Refactor"
 created: 2026-02-03T19:44:00-03:00
-last_updated: 2026-02-03T19:44:00-03:00
+last_updated: 2026-02-03T20:50:00-03:00
 priority: P2-M
 estimated_hours: 5
-actual_hours: 0
-status: backlog
+actual_hours: 2
+status: in-progress
 blockers: []
 tags: [refactor, components, architecture]
 depends_on: [T020, T021]
@@ -44,28 +44,28 @@ Restructure monolithic section components into Atomic Design pattern (atoms/mole
 ## Implementation
 
 ### Phase 1: Atoms (2h)
-- [ ] Create `src/components/atoms/` directory
-- [ ] Create `icon.astro` (iconify wrapper with size/color props)
-- [ ] Create `button.astro` with variants:
+- [x] Create `src/components/atoms/` directory
+- [x] Create `icon.astro` (iconify wrapper with size/color props)
+- [x] Create `button.astro` with variants:
   ```typescript
   variant: 'primary' | 'secondary' | 'ghost' | 'outline'
   size: 'sm' | 'md' | 'lg'
   ```
 - [ ] Create `badge.astro` (colored pills like "Multa por atraso")
-- [ ] Create `heading.astro` with level/size props
+- [x] Create `heading.astro` with level/size props
 - [ ] Create `image.astro` (Astro Image wrapper with lazy loading)
-- [ ] Update all sections to use new atoms
+- [x] Update sections to use new atoms (hero, reason, showcase)
 
 ### Phase 2: Molecules (2h)
-- [ ] Create `src/components/molecules/` directory
-- [ ] Create `card.astro` base component:
+- [x] Create `src/components/molecules/` directory
+- [x] Create `card.astro` base component:
   ```typescript
   interface CardProps {
     variant: 'default' | 'glass' | 'elevated'
     padding: 'sm' | 'md' | 'lg'
     hover: 'lift' | 'glow' | 'none'
     icon?: string
-    badge?: { text: string; color: string }
+    title?: string
   }
   ```
 - [ ] Create `service-card.astro` (extends Card with specific props)
@@ -74,7 +74,7 @@ Restructure monolithic section components into Atomic Design pattern (atoms/mole
 - [ ] Create `nav-link.astro` (header navigation item)
 
 ### Phase 3: Migration (1h)
-- [ ] Refactor `reason-section.astro` to use ReasonCard
+- [x] Refactor `reason-section.astro` to use Card
 - [ ] Refactor `services-section.astro` to use ServiceCard
 - [ ] Refactor `guarantees-section.astro` to use GuaranteeCard
 - [ ] Delete duplicated card markup (save ~120 lines total)
