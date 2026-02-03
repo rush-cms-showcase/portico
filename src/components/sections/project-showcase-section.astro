@@ -1,0 +1,110 @@
+---
+import ProjectCard from '../ui/project-card.astro'
+
+interface Project {
+  title: string
+  location: string
+  before: { src: string }
+  after: { src: string }
+  metadata: {
+    area: string
+    duration: string
+    investment: string
+  }
+  testimonial?: {
+    text: string
+    author: string
+  }
+}
+
+const projects: Project[] = [
+  {
+    title: 'Apartamento Moderno',
+    location: 'Moinhos de Vento, Porto Alegre',
+    before: { src: '/images/projects/apt-before.png' },
+    after: { src: '/images/projects/apt-after.png' },
+    metadata: {
+      area: '120m²',
+      duration: '60 dias',
+      investment: 'R$ 180-220k',
+    },
+    testimonial: {
+      text: 'Transformaram completamente nosso apartamento. A atenção aos detalhes e o acabamento premium superaram nossas expectativas.',
+      author: 'Renata M.',
+    },
+  },
+  {
+    title: 'Cozinha Gourmet',
+    location: 'Bela Vista, Porto Alegre',
+    before: { src: '/images/projects/kitchen-before.png' },
+    after: { src: '/images/projects/kitchen-after.png' },
+    metadata: {
+      area: '28m²',
+      duration: '45 dias',
+      investment: 'R$ 95-140k',
+    },
+    testimonial: {
+      text: 'Nossa cozinha se tornou o coração da casa. Design impecável e praticidade máxima.',
+      author: 'Eduardo P.',
+    },
+  },
+  {
+    title: 'Banheiro Spa',
+    location: 'Auxiliadora, Porto Alegre',
+    before: { src: '/images/projects/bathroom-before.png' },
+    after: { src: '/images/projects/bathroom-after.png' },
+    metadata: {
+      area: '15m²',
+      duration: '30 dias',
+      investment: 'R$ 60-85k',
+    },
+    testimonial: {
+      text: 'Sensação de spa cinco estrelas todos os dias. Valeu cada investimento.',
+      author: 'Mariana S.',
+    },
+  },
+  {
+    title: 'Sala de Estar Premium',
+    location: 'Petrópolis, Porto Alegre',
+    before: { src: '/images/projects/living-before.png' },
+    after: { src: '/images/projects/living-after.png' },
+    metadata: {
+      area: '45m²',
+      duration: '40 dias',
+      investment: 'R$ 110-165k',
+    },
+    testimonial: {
+      text: 'Elegância e sofisticação em cada detalhe. Recebemos elogios de todos que visitam.',
+      author: 'Carlos R.',
+    },
+  },
+]
+---
+
+<section id="projetos" class="py-24 bg-stone-100">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 max-w-3xl mx-auto">
+      <h2 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-navy-900 mb-6">
+        Portfolio de Transformações
+      </h2>
+      <p class="font-body text-lg sm:text-xl text-charcoal-700 leading-relaxed">
+        Cada projeto reflete nosso compromisso com a excelência. Conheça algumas das residências que transformamos em verdadeiras obras de arte.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
+      {projects.map((project) => (
+        <ProjectCard {...project} />
+      ))}
+    </div>
+
+    <div class="text-center">
+      <a
+        href="#contato"
+        class="inline-block bg-navy-900 hover:bg-gold-600 text-white font-body font-bold text-lg px-10 py-5 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+      >
+        Solicitar Orçamento Personalizado
+      </a>
+    </div>
+  </div>
+</section>

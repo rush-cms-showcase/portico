@@ -1,153 +1,156 @@
 ---
-title: "Copy & Messaging Premium Refactor"
+title: "Project Showcase Component"
 created: 2026-02-03T19:44:00-03:00
 last_updated: 2026-02-03T19:44:00-03:00
-priority: P3
-estimated_hours: 3
+priority: P1-M
+estimated_hours: 6
 actual_hours: 0
-status: in-progress
+status: backlog
 blockers: []
-tags: [content, copywriting, premium]
-depends_on: []
+tags: [component, ui, premium, portfolio]
+depends_on: [T020, T021]
 blocks: []
-dependency_type: none
-related_files: [src/components/sections/**]
+dependency_type: soft
+related_files: []
 ---
 
-# Task: Copy & Messaging Premium Refactor
+# Task: Project Showcase Component
 
 ## Objective
 
-Rewrite all site copy from informal tone ("a gente", commodity messaging) to premium formal voice. Replace feature-focused copy with transformation storytelling. Add power words: bespoke, curated, signature, heritage, legacy.
+Create premium project showcase section to display 3-4 high-end renovation case studies above the fold. Include before/after imagery with lightbox, project details, and client testimonials. This is CRITICAL for luxury positioning - clients need to see proof of high-end work immediately.
 
 **Success:**
-- [ ] All copy uses formal third person ("nós compreendemos")
-- [ ] Hero headline emphasizes transformation over guarantees
-- [ ] Section copy focuses on lifestyle outcomes, not features
-- [ ] Power words integrated naturally (not forced)
-- [ ] Social proof elements added (awards, credentials, press)
+- [ ] Showcase section displays 3-4 featured projects
+- [ ] Before/after image comparison (slider or side-by-side)
+- [ ] Lightbox gallery (PhotoSwipe or similar)
+- [ ] Project metadata (location, size, duration, investment range)
+- [ ] Integrated above fold (after hero, before reasons)
+- [ ] Mobile-optimized grid layout
 
 ## Context
 
-**Why:** Current copy signals commodity ("prazo garantido", "a gente") inappropriate for wealthy clientele who value exclusivity and transformation over contractual terms.
+**Why:** Currently lacks ANY portfolio/proof of work above the fold. Luxury clients make decisions based on visual evidence of premium craftsmanship. This is the #1 missing element identified in audit.
 
 **Audit Findings:**
-- "a gente entende" - tom excessivamente informal"
-- "Prazo e orçamento garantidos - messaging de commoditização"
-- "Falta power words: bespoke, curated, signature, heritage"
-- "Ausência de social proof premium: prêmios, certificações"
+- "AUSÊNCIA #1: Case studies detalhados"
+- "Falta galeria de projetos com antes/depois cinematográfico"
+- "Premium clients need to see transformation immediately"
 
-**Tone Reference:** Carolina Herrera, Bottega Veneta - sophisticated, understated luxury
+**Reference Sites:** Bottega Veneta showcases, Architectural Digest portfolio layouts
 
 ## Implementation
 
-### Phase 1: Core Messaging (1h)
-- [ ] Rewrite hero headline:
+### Phase 1: Component Structure (2h)
+- [ ] Create `src/components/sections/project-showcase-section.astro`
+- [ ] Create `src/components/ui/project-card.astro`
+- [ ] Create `src/components/ui/image-comparison.astro`
+- [ ] Define TypeScript interface for Project type:
+  ```typescript
+  interface Project {
+    title: string
+    location: string
+    before: ImageMetadata
+    after: ImageMetadata
+    gallery: ImageMetadata[]
+    metadata: {
+      area: string
+      duration: string
+      investment: string
+    }
+    testimonial?: {
+      text: string
+      author: string
+    }
+  }
   ```
-  BEFORE: "Antes de reformar, a gente entende como você vive"
-  AFTER: "Transformamos espaços. Criamos legados."
-  OU: "Sua residência reimaginada com maestria arquitetônica"
-  ```
-- [ ] Rewrite hero subheadline:
-  ```
-  BEFORE: "A sua reforma em POA com prazo e orçamento garantidos"
-  AFTER: "Reformas residenciais de alto padrão em Porto Alegre"
-  OU: "Design autoral e execução impecável para residências exclusivas"
-  ```
-- [ ] Update "Por que Pórtico?" to "Nossa Filosofia"
-- [ ] Reframe features as benefits:
-  ```
-  BEFORE: "Orçamento Garantido"
-  AFTER: "Investimento Transparente e Previsível"
-  
-  BEFORE: "Prazo Garantido"  
-  AFTER: "Compromisso com Excelência no Prazo"
-  ```
+- [ ] Setup grid layout (1 col mobile, 2 col tablet, 3 col desktop)
+- [ ] Implement card hover states (subtle lift + shadow)
 
-### Phase 2: Section Copy (1h)
-- [ ] Rewrite Reason cards:
-  - Sem Caos → "Planejamento Meticuloso"
-  - Copy: "Cada projeto é orquestrado com precisão militar..."
-- [ ] Rewrite Service descriptions (transformation language):
-  ```
-  BEFORE: "Reforma Residencial Completa"
-  AFTER: "Transformação Integral de Residências"
-  Copy: "Reimaginamos seu espaço do conceito à conclusão..."
-  ```
-- [ ] Rewrite Guarantees section:
-  - Title: "Garantias Institucionais" → "Nossos Compromissos"
-  - Soften commodity language, emphasize partnership
-- [ ] Add lifestyle outcomes:
-  - "Sua manhã começa em um banheiro que inspira..."
-  - "Receba convidados em ambientes que impressionam..."
+### Phase 2: Image Functionality (2h)
+- [ ] Install PhotoSwipe: `pnpm add photoswipe`
+- [ ] Create before/after slider component (drag handle)
+- [ ] Implement lightbox gallery on card click
+- [ ] Add lazy loading with blur-up placeholders
+- [ ] Optimize images with Astro Image component
+- [ ] Add `srcset` for Retina displays (1x, 2x, 3x)
+- [ ] Implement intersection observer for scroll animations
 
-### Phase 3: Social Proof (1h)
-- [ ] Add "Reconhecimento" section:
-  - "Visto em Casa Vogue" (placeholder)
-  - "Prêmio X de Arquitetura 2025" (placeholder)
-  - "Certificação CAU Gold" (placeholder)
-- [ ] Add credentials to team section:
-  - "Arquitetos registrados CAU/BR"
-  - "15+ anos de experiência em alto padrão"
-- [ ] Rewrite testimonials (if exist) with specific outcomes:
-  ```
-  BEFORE: "Excelente trabalho, recomendo!"
-  AFTER: "A Pórtico transformou nosso apartamento de 180m² em 
-  uma residência digna de revista. O cuidado com cada detalhe 
-  reflete verdadeira maestria."
-  — Carolina S., Moinhos de Vento
-  ```
+### Phase 3: Content & Polish (2h)
+- [ ] Generate 4 premium project images (AI):
+  - Project 1: Modern apartment renovation (before/after)
+  - Project 2: Kitchen transformation (before/after)
+  - Project 3: Bathroom luxury upgrade (before/after)
+  - Project 4: Living room redesign (before/after)
+- [ ] Write compelling project descriptions
+- [ ] Add metadata (100m², 45 days, R$ 180-250k range)
+- [ ] Create client testimonial text (authentic tone)
+- [ ] Add scroll-triggered fade-in animations
+- [ ] Implement "Ver Portfolio Completo" CTA button
+- [ ] Test lightbox on mobile (swipe gestures)
 
 ## Definition of Done
 
 ### Functionality
-- [ ] All copy updated across 4 pages
-- [ ] No informal language ("a gente", "super", "muito")
-- [ ] Power words used naturally (not excessive)
-- [ ] Social proof section integrated
-- [ ] CTAs rewritten ("Agendar Consultoria Exclusiva")
+- [ ] All 4 projects display correctly
+- [ ] Before/after slider smooth on desktop/mobile
+- [ ] Lightbox opens on click with gallery navigation
+- [ ] Images load progressively (blur-up)
+- [ ] Responsive grid adapts to screen sizes
+- [ ] Touch gestures work on mobile lightbox
 
 ### Testing
-- [ ] Manual: Read entire site for tone consistency
-- [ ] Peer review: Have colleague assess formality level
-- [ ] A/B test (optional): Track conversion before/after
-- [ ] Grammar check: No typos or errors
+- [ ] Manual: Click each project card
+- [ ] Manual: Test lightbox navigation (arrows, swipe, ESC)
+- [ ] Manual: Test image slider drag on all devices
+- [ ] Performance: LCP <1.2s (check largest image)
+- [ ] Accessibility: Alt texts descriptive, keyboard navigation works
 
 ### Performance
-- [ ] N/A (text changes, no performance impact)
+- [ ] Images optimized (WebP format, <200KB each)
+- [ ] Lazy loading below fold
+- [ ] Preload above-fold images
+- [ ] No CLS during image load (aspect-ratio preserved)
+- [ ] Total section load <2s on 3G
 
 ### Security
-- [ ] N/A
+- [ ] N/A (client-side only)
 
 ### Code Quality
-- [ ] Copy in i18n files (not hardcoded)
-- [ ] Consistent capitalization (Title Case for headlines)
-- [ ] No Lorem Ipsum placeholders
+- [ ] Components follow Atomic Design (atoms/molecules)
+- [ ] TypeScript interfaces defined
+- [ ] No hardcoded image paths (use imports)
+- [ ] Reusable ProjectCard component
 
 ### Documentation
 - [ ] Time logged
-- [ ] Tone guide documented (formal vs informal)
-- [ ] Power words glossary
+- [ ] Component usage documented in README
+- [ ] Image optimization guidelines
 
 ### Git
 - [ ] Atomic commits:
-  - `content: refactor hero messaging to premium tone`
-  - `content: rewrite section copy with lifestyle focus`
-  - `content: add social proof and credentials`
+  - `feat(showcase): create project showcase section`
+  - `feat(showcase): add photoswipe lightbox`
+  - `feat(showcase): generate project images`
 
 ## Testing
 
 ### Manual
-- [ ] Read homepage entirely (does it sound luxury?)
-- [ ] Check for informal words: "a gente", "muito", "super"
-- [ ] Verify power words integrated: bespoke, curated, signature
-- [ ] Verify CTAs elevated: "Solicitar Orçamento" → "Agendar Consultoria"
+- [ ] Desktop: Hover cards show lift effect
+- [ ] Desktop: Click opens lightbox, arrow keys navigate
+- [ ] Mobile: Swipe lightbox images
+- [ ] Mobile: Pinch to zoom in lightbox
+- [ ] All: Before/after slider drag smooth
+- [ ] All: ESC closes lightbox
 
-**Tone Checklist:**
-- [ ] No contractions ("não é" not "nao é")
-- [ ] Third person formal ("nós", not "a gente")
-- [ ] Emphasis on transformation, not transactions
-- [ ] Specifics over generalizations ("180m²" not "grande")
+**Performance Check:**
+```bash
+# Run Lighthouse audit
+pnpm build
+pnpm preview
+# Chrome DevTools > Lighthouse > Run audit
+# Target: Performance >90, LCP <1.2s
+```
 
 ## Blockers & Risks
 
@@ -155,12 +158,13 @@ Rewrite all site copy from informal tone ("a gente", commodity messaging) to pre
 - [ ] None
 
 **Potential:**
-1. Risk: Copy too formal/cold - Mitigation: Maintain warmth with specific details
-2. Risk: Power words sound forced - Mitigation: Use sparingly, contextually
-3. Risk: Stakeholder prefers informal - Mitigation: Present A/B comparison
+1. Risk: PhotoSwipe bundle size too large - Mitigation: Use dynamic import, load on click
+2. Risk: Image generation quality inconsistent - Mitigation: Manual curation, use high-quality prompts
+3. Risk: Before/after slider UX confusing - Mitigation: Add visual indicators (arrows, labels)
 
 ## References
 
-- Luxury Copywriting: https://www.copyblogger.com/luxury-copywriting/
-- Power Words List: https://smartblogger.com/power-words/
-- Audit: Section 1 "Problemas Críticos de Posicionamento (Marketing)"
+- PhotoSwipe: https://photoswipe.com/
+- Before/After Slider: https://github.com/sneas/img-comparison-slider
+- Astro Image: https://docs.astro.build/en/guides/images/
+- Audit: Section 4 "Ausências Gritantes" - #1 Case Studies

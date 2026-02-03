@@ -1,0 +1,74 @@
+---
+import type { ImageMetadata } from 'astro'
+
+interface Props {
+  title: string
+  location: string
+  before: ImageMetadata
+  after: ImageMetadata
+  metadata: {
+    area: string
+    duration: string
+    investment: string
+  }
+  testimonial?: {
+    text: string
+    author: string
+  }
+}
+
+const { title, location, before, after, metadata, testimonial } = Astro.props
+---
+
+<article class="group relative bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
+  <div class="relative aspect-[16/10] overflow-hidden">
+    <img
+      src={after.src}
+      alt={`${title} - Depois da reforma`}
+      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-transparent to-transparent"></div>
+    
+    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+      <h3 class="font-heading text-2xl font-bold mb-2">{title}</h3>
+      <p class="font-body text-sm text-navy-100 flex items-center gap-2">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+        </svg>
+        {location}
+      </p>
+    </div>
+  </div>
+
+  <div class="p-6 space-y-4">
+    <div class="grid grid-cols-3 gap-4 text-center">
+      <div>
+        <p class="font-body text-xs text-gray-500 uppercase tracking-wider mb-1">Área</p>
+        <p class="font-heading text-lg font-semibold text-navy-900">{metadata.area}</p>
+      </div>
+      <div>
+        <p class="font-body text-xs text-gray-500 uppercase tracking-wider mb-1">Prazo</p>
+        <p class="font-heading text-lg font-semibold text-navy-900">{metadata.duration}</p>
+      </div>
+      <div>
+        <p class="font-body text-xs text-gray-500 uppercase tracking-wider mb-1">Investimento</p>
+        <p class="font-heading text-lg font-semibold text-gold-600">{metadata.investment}</p>
+      </div>
+    </div>
+
+    {testimonial && (
+      <div class="pt-4 border-t border-gray-200">
+        <p class="font-body text-sm text-gray-700 italic mb-2">"{testimonial.text}"</p>
+        <p class="font-body text-xs text-gray-500 text-right">- {testimonial.author}</p>
+      </div>
+    )}
+
+    <button 
+      class="w-full bg-navy-900 hover:bg-gold-600 text-white font-body font-semibold py-3 rounded-lg transition-colors duration-300"
+      data-project-title={title}
+    >
+      Explorar Projeto
+    </button>
+  </div>
+</article>
