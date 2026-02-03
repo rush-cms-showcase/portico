@@ -1,11 +1,11 @@
 ---
 title: "Performance Optimization (Core Web Vitals)"
 created: 2026-02-03T19:44:00-03:00
-last_updated: 2026-02-03T19:44:00-03:00
+last_updated: 2026-02-03T21:15:00-03:00
 priority: P3
 estimated_hours: 4
-actual_hours: 0
-status: backlog
+actual_hours: 1
+status: in-progress
 blockers: []
 tags: [performance, optimization, web-vitals]
 depends_on: [T022, T026]
@@ -51,7 +51,7 @@ Optimize site performance to hit luxury benchmarks: LCP <1.2s, CLS <0.05, FID <5
     densities={[1, 2, 3]}
   />
   ```
-- [ ] Preload LCP image:
+- [x] Preload LCP image:
   ```html
   <link rel="preload" as="image" 
     href="/images/hero-bg.webp"
@@ -71,13 +71,13 @@ Optimize site performance to hit luxury benchmarks: LCP <1.2s, CLS <0.05, FID <5
   - Use Astro Image service
 
 ### Phase 2: Font Optimization (1h)
-- [ ] Preload critical fonts:
+- [x] Preload critical fonts:
   ```html
   <link rel="preload" as="font" 
     href="/fonts/inter-var.woff2" 
     type="font/woff2" crossorigin>
   ```
-- [ ] Use font-display: swap
+- [x] Use font-display: swap (via Google Fonts URL parameter)
 - [ ] Subset fonts (Latin only, remove unused glyphs)
 - [ ] Self-host fonts (no Google Fonts CDN latency)
 - [ ] Implement FOUT mitigation:
@@ -102,7 +102,7 @@ Optimize site performance to hit luxury benchmarks: LCP <1.2s, CLS <0.05, FID <5
   ```
 - [ ] Remove unused CSS (PurgeCSS)
 - [ ] Minify and compress assets (Brotli)
-- [ ] Set aspect-ratio on all images/videos (prevent CLS)
+- [x] Set aspect-ratio on all images/videos (prevent CLS)
 
 ## Definition of Done
 
