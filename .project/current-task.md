@@ -1,118 +1,153 @@
 ---
-title: "Premium Spacing & Whitespace System"
+title: "Copy & Messaging Premium Refactor"
 created: 2026-02-03T19:44:00-03:00
 last_updated: 2026-02-03T19:44:00-03:00
-priority: P2-S
-estimated_hours: 2
+priority: P3
+estimated_hours: 3
 actual_hours: 0
 status: in-progress
 blockers: []
-tags: [design-system, layout, spacing]
-depends_on: [T020]
+tags: [content, copywriting, premium]
+depends_on: []
 blocks: []
-dependency_type: soft
+dependency_type: none
 related_files: [src/components/sections/**]
 ---
 
-# Task: Premium Spacing & Whitespace System
+# Task: Copy & Messaging Premium Refactor
 
 ## Objective
 
-Implement 8px baseline grid system and increase whitespace ratio from current 35% to luxury target of 50-60%. Apply golden ratio progression to section padding (60px → 100px → 80px → 120px) instead of uniform 80px.
+Rewrite all site copy from informal tone ("a gente", commodity messaging) to premium formal voice. Replace feature-focused copy with transformation storytelling. Add power words: bespoke, curated, signature, heritage, legacy.
 
 **Success:**
-- [ ] All spacing uses 8px multiples (gap-4, gap-8, gap-12, gap-16)
-- [ ] Section padding varies rhythmically (not uniform)
-- [ ] Card padding increased from p-8 (32px) to p-12 (48px)
-- [ ] Whitespace ratio increased to 50%+
-- [ ] Visual breathing improved
+- [ ] All copy uses formal third person ("nós compreendemos")
+- [ ] Hero headline emphasizes transformation over guarantees
+- [ ] Section copy focuses on lifestyle outcomes, not features
+- [ ] Power words integrated naturally (not forced)
+- [ ] Social proof elements added (awards, credentials, press)
 
 ## Context
 
-**Why:** Current layout is too dense (65% content, 35% whitespace). All sections have same 80px padding creating monotonous rhythm. Luxury brands use abundant whitespace (Bottega Veneta ~60% whitespace).
+**Why:** Current copy signals commodity ("prazo garantido", "a gente") inappropriate for wealthy clientele who value exclusivity and transformation over contractual terms.
 
 **Audit Findings:**
-- "Content Density: 65% - MUITO DENSO (target: 40-50%)"
-- "All sections py-20 (80px) - sem ritmo visual"
-- "Falta whitespace abundante para respirar"
+- "a gente entende" - tom excessivamente informal"
+- "Prazo e orçamento garantidos - messaging de commoditização"
+- "Falta power words: bespoke, curated, signature, heritage"
+- "Ausência de social proof premium: prêmios, certificações"
 
-**Mathematical Basis:** 8px baseline grid (Material Design standard)
+**Tone Reference:** Carolina Herrera, Bottega Veneta - sophisticated, understated luxury
 
 ## Implementation
 
-### Phase 1: Baseline Grid (1h)
-- [x] Update Tailwind config with 8px-based spacing scale
-- [x] Document spacing usage guidelines:
-  - Component internal: gap-4 (16px), gap-6 (24px)
-  - Component padding: p-8 (32px), p-12 (48px)
-  - Section spacing: py-16 (64px), py-20 (80px), py-24 (96px), py-32 (128px)
-- [x] Audit all components for non-8px spacing
-- [x] Replace arbitrary values with scale:
-  - `mb-10` (40px) → `mb-12` (48px)
-  - `gap-6` (24px) → keep (aligned)
-  - Custom values → nearest 8px multiple
-
-### Phase 2: Section Rhythm (1h)  
-- [x] Apply golden ratio progression to sections:
-  ```astro
-  <HeroSection class="py-20" />        <!-- 80px -->
-  <ReasonSection class="py-24" />      <!-- 96px -->
-  <JulioSection class="py-16" />       <!-- 64px -->
-  <MethodSection class="py-32" />      <!-- 128px -->
-  <GuaranteesSection class="py-20" />  <!-- 80px -->
-  <ServicesSection class="py-28" />    <!-- 112px -->
+### Phase 1: Core Messaging (1h)
+- [ ] Rewrite hero headline:
   ```
-- [x] Increase card padding:
-  - Reason cards: `p-8` → `p-12`
-  - Service cards: `p-8` → `p-12`
-  - Guarantee cards: `p-6` → `p-10`
-- [x] Add generous margins between card grids:
-  - `gap-8` (32px) → `gap-12` (48px)
-- [ ] Test visual breathing (compare before/after screenshots)
+  BEFORE: "Antes de reformar, a gente entende como você vive"
+  AFTER: "Transformamos espaços. Criamos legados."
+  OU: "Sua residência reimaginada com maestria arquitetônica"
+  ```
+- [ ] Rewrite hero subheadline:
+  ```
+  BEFORE: "A sua reforma em POA com prazo e orçamento garantidos"
+  AFTER: "Reformas residenciais de alto padrão em Porto Alegre"
+  OU: "Design autoral e execução impecável para residências exclusivas"
+  ```
+- [ ] Update "Por que Pórtico?" to "Nossa Filosofia"
+- [ ] Reframe features as benefits:
+  ```
+  BEFORE: "Orçamento Garantido"
+  AFTER: "Investimento Transparente e Previsível"
+  
+  BEFORE: "Prazo Garantido"  
+  AFTER: "Compromisso com Excelência no Prazo"
+  ```
+
+### Phase 2: Section Copy (1h)
+- [ ] Rewrite Reason cards:
+  - Sem Caos → "Planejamento Meticuloso"
+  - Copy: "Cada projeto é orquestrado com precisão militar..."
+- [ ] Rewrite Service descriptions (transformation language):
+  ```
+  BEFORE: "Reforma Residencial Completa"
+  AFTER: "Transformação Integral de Residências"
+  Copy: "Reimaginamos seu espaço do conceito à conclusão..."
+  ```
+- [ ] Rewrite Guarantees section:
+  - Title: "Garantias Institucionais" → "Nossos Compromissos"
+  - Soften commodity language, emphasize partnership
+- [ ] Add lifestyle outcomes:
+  - "Sua manhã começa em um banheiro que inspira..."
+  - "Receba convidados em ambientes que impressionam..."
+
+### Phase 3: Social Proof (1h)
+- [ ] Add "Reconhecimento" section:
+  - "Visto em Casa Vogue" (placeholder)
+  - "Prêmio X de Arquitetura 2025" (placeholder)
+  - "Certificação CAU Gold" (placeholder)
+- [ ] Add credentials to team section:
+  - "Arquitetos registrados CAU/BR"
+  - "15+ anos de experiência em alto padrão"
+- [ ] Rewrite testimonials (if exist) with specific outcomes:
+  ```
+  BEFORE: "Excelente trabalho, recomendo!"
+  AFTER: "A Pórtico transformou nosso apartamento de 180m² em 
+  uma residência digna de revista. O cuidado com cada detalhe 
+  reflete verdadeira maestria."
+  — Carolina S., Moinhos de Vento
+  ```
 
 ## Definition of Done
 
 ### Functionality
-- [ ] All spacing values divisible by 8
-- [ ] Section heights vary (not uniform)
-- [ ] Cards have room to breathe
-- [ ] Content doesn't feel cramped
-- [ ] Mobile spacing scales down proportionally
+- [ ] All copy updated across 4 pages
+- [ ] No informal language ("a gente", "super", "muito")
+- [ ] Power words used naturally (not excessive)
+- [ ] Social proof section integrated
+- [ ] CTAs rewritten ("Agendar Consultoria Exclusiva")
 
 ### Testing
-- [ ] Visual: Screenshot comparison (before/after)
-- [ ] Manual: Scroll page, verify rhythm variation
-- [ ] Measure: Calculate whitespace ratio (target >50%)
-- [ ] Responsive: Verify mobile doesn't have excessive spacing
+- [ ] Manual: Read entire site for tone consistency
+- [ ] Peer review: Have colleague assess formality level
+- [ ] A/B test (optional): Track conversion before/after
+- [ ] Grammar check: No typos or errors
 
 ### Performance
-- [ ] N/A (CSS only, no performance impact)
+- [ ] N/A (text changes, no performance impact)
+
+### Security
+- [ ] N/A
 
 ### Code Quality
-- [ ] No arbitrary spacing values (`p-[37px]`)
-- [ ] All spacing from Tailwind scale
-- [ ] Comments explain rhythm choices
+- [ ] Copy in i18n files (not hardcoded)
+- [ ] Consistent capitalization (Title Case for headlines)
+- [ ] No Lorem Ipsum placeholders
 
 ### Documentation
 - [ ] Time logged
-- [ ] Spacing system guide in README
+- [ ] Tone guide documented (formal vs informal)
+- [ ] Power words glossary
 
 ### Git
-- [ ] Atomic commit: `refactor(spacing): implement 8px baseline grid`
+- [ ] Atomic commits:
+  - `content: refactor hero messaging to premium tone`
+  - `content: rewrite section copy with lifestyle focus`
+  - `content: add social proof and credentials`
 
 ## Testing
 
 ### Manual
-- [ ] Desktop: Sections feel varied (not monotonous)
-- [ ] Desktop: Cards have generous padding
-- [ ] Mobile: Spacing reduces appropriately (no overflow)
-- [ ] Whitespace calculation:
-  ```
-  Total viewport height: 5000px
-  Content height: ~2200px
-  Whitespace: ~2800px
-  Ratio: 56% ✓ (target: >50%)
-  ```
+- [ ] Read homepage entirely (does it sound luxury?)
+- [ ] Check for informal words: "a gente", "muito", "super"
+- [ ] Verify power words integrated: bespoke, curated, signature
+- [ ] Verify CTAs elevated: "Solicitar Orçamento" → "Agendar Consultoria"
+
+**Tone Checklist:**
+- [ ] No contractions ("não é" not "nao é")
+- [ ] Third person formal ("nós", not "a gente")
+- [ ] Emphasis on transformation, not transactions
+- [ ] Specifics over generalizations ("180m²" not "grande")
 
 ## Blockers & Risks
 
@@ -120,9 +155,12 @@ Implement 8px baseline grid system and increase whitespace ratio from current 35
 - [ ] None
 
 **Potential:**
-1. Risk: Too much whitespace on mobile - Mitigation: Reduce padding on small screens (py-20 → py-12 on mobile)
+1. Risk: Copy too formal/cold - Mitigation: Maintain warmth with specific details
+2. Risk: Power words sound forced - Mitigation: Use sparingly, contextually
+3. Risk: Stakeholder prefers informal - Mitigation: Present A/B comparison
 
 ## References
 
-- Material Design 8dp Grid: https://material.io/design/layout/spacing-methods.html
-- Audit: Section 7 "Spatial Design & White Space"
+- Luxury Copywriting: https://www.copyblogger.com/luxury-copywriting/
+- Power Words List: https://smartblogger.com/power-words/
+- Audit: Section 1 "Problemas Críticos de Posicionamento (Marketing)"
