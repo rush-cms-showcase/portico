@@ -1,4 +1,7 @@
 ---
+import Heading from '../atoms/heading.astro'
+import Card from '../molecules/card.astro'
+
 interface Props {
   title?: string
 }
@@ -28,32 +31,19 @@ const reasons = [
 
 <section id="razoes" class="py-20 bg-white">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-navy text-center mb-12">
+    <Heading level={2} class="text-navy text-center mb-12">
       {title}
-    </h2>
+    </Heading>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
       {reasons.map((reason) => (
-        <div class="bg-white border border-charcoal-200 rounded-lg p-12 hover:shadow-xl transition-shadow duration-300">
-          <div class="flex justify-center mb-6">
-            <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center">
-              <iconify-icon icon={reason.icon} class="text-4xl text-gold"></iconify-icon>
-            </div>
-          </div>
-          
-          <h3 class="font-heading text-xl font-semibold text-navy text-center mb-4">
-            {reason.title}
-          </h3>
-          
-          <p class="font-body text-charcoal text-center leading-relaxed">
+        <Card icon={reason.icon} title={reason.title} padding="lg">
+          <p class="font-body text-center leading-relaxed">
             {reason.description}
           </p>
-        </div>
+        </Card>
       ))}
     </div>
   </div>
 </section>
 
-<script>
-  import 'iconify-icon'
-</script>

@@ -1,154 +1,143 @@
 ---
-title: "Project Showcase Component"
+title: "Atomic Design Component Refactor"
 created: 2026-02-03T19:44:00-03:00
-last_updated: 2026-02-03T20:28:00-03:00
-priority: P1-M
-estimated_hours: 6
-actual_hours: 2.5
-status: in-progress
+last_updated: 2026-02-03T19:44:00-03:00
+priority: P2-M
+estimated_hours: 5
+actual_hours: 0
+status: backlog
 blockers: []
-tags: [component, ui, premium, portfolio]
+tags: [refactor, components, architecture]
 depends_on: [T020, T021]
 blocks: []
 dependency_type: soft
-related_files: []
+related_files: [src/components/**]
 ---
 
-# Task: Project Showcase Component
+# Task: Atomic Design Component Refactor
 
 ## Objective
 
-Create premium project showcase section to display 3-4 high-end renovation case studies above the fold. Include before/after imagery with lightbox, project details, and client testimonials. This is CRITICAL for luxury positioning - clients need to see proof of high-end work immediately.
+Restructure monolithic section components into Atomic Design pattern (atoms/molecules/organisms). Create reusable base Card component that all card variants extend. Reduce code duplication from 3 separate card implementations to 1 flexible component.
 
 **Success:**
-- [ ] Showcase section displays 3-4 featured projects
-- [ ] Before/after image comparison (slider or side-by-side)
-- [ ] Lightbox gallery (PhotoSwipe or similar)
-- [ ] Project metadata (location, size, duration, investment range)
-- [ ] Integrated above fold (after hero, before reasons)
-- [ ] Mobile-optimized grid layout
+- [ ] Directory structure: atoms/, molecules/, organisms/
+- [ ] Base Card.astro component with variant props
+- [ ] Icon, Button, Badge, Heading atoms created
+- [ ] All sections refactored to use atomic components
+- [ ] Code duplication eliminated (DRY)
 
 ## Context
 
-**Why:** Currently lacks ANY portfolio/proof of work above the fold. Luxury clients make decisions based on visual evidence of premium craftsmanship. This is the #1 missing element identified in audit.
+**Why:** Current components are monolithic (68-81 lines each) with duplicated card markup. Reason, Service, and Guarantee cards share 80% of code but are separate files. Atomic Design enables consistency and rapid iteration.
 
 **Audit Findings:**
-- "AUSÊNCIA #1: Case studies detalhados"
-- "Falta galeria de projetos com antes/depois cinematográfico"
-- "Premium clients need to see transformation immediately"
+- "Componentes monolíticos (68+ linhas)"
+- "3 card implementations - deveria reutilizar base"
+- "Props design fraco (apenas title)"
 
-**Reference Sites:** Bottega Veneta showcases, Architectural Digest portfolio layouts
+**Benefits:**
+- Change card shadow globally in 1 file
+- Add new card variant in 10 lines vs 80
+- Consistent hover/focus states
 
 ## Implementation
 
-### Phase 1: Component Structure (2h)
-- [x] Create `src/components/sections/project-showcase-section.astro`
-- [x] Create `src/components/ui/project-card.astro`
-- [x] Create `src/components/ui/image-comparison.astro`
-- [x] Define TypeScript interface for Project type:
+### Phase 1: Atoms (2h)
+- [ ] Create `src/components/atoms/` directory
+- [ ] Create `icon.astro` (iconify wrapper with size/color props)
+- [ ] Create `button.astro` with variants:
   ```typescript
-  interface Project {
-    title: string
-    location: string
-    before: string
-    after: string
-    metadata: {
-      area: string
-      duration: string
-      investment: string
-    }
-    testimonial?: {
-      text: string
-      author: string
-    }
+  variant: 'primary' | 'secondary' | 'ghost' | 'outline'
+  size: 'sm' | 'md' | 'lg'
+  ```
+- [ ] Create `badge.astro` (colored pills like "Multa por atraso")
+- [ ] Create `heading.astro` with level/size props
+- [ ] Create `image.astro` (Astro Image wrapper with lazy loading)
+- [ ] Update all sections to use new atoms
+
+### Phase 2: Molecules (2h)
+- [ ] Create `src/components/molecules/` directory
+- [ ] Create `card.astro` base component:
+  ```typescript
+  interface CardProps {
+    variant: 'default' | 'glass' | 'elevated'
+    padding: 'sm' | 'md' | 'lg'
+    hover: 'lift' | 'glow' | 'none'
+    icon?: string
+    badge?: { text: string; color: string }
   }
   ```
-- [x] Setup grid layout (1 col mobile, 2 col tablet, 2 col desktop)
-- [x] Implement card hover states (subtle lift + shadow)
+- [ ] Create `service-card.astro` (extends Card with specific props)
+- [ ] Create `guarantee-card.astro` (extends Card)
+- [ ] Create `reason-card.astro` (extends Card)
+- [ ] Create `nav-link.astro` (header navigation item)
 
-### Phase 2: Image Functionality (2h)
-- [ ] Install PhotoSwipe: `pnpm add photoswipe`
-- [ ] Create before/after slider component (drag handle)
-- [ ] Implement lightbox gallery on card click
-- [ ] Add lazy loading with blur-up placeholders
-- [ ] Optimize images with Astro Image component
-- [ ] Add `srcset` for Retina displays (1x, 2x, 3x)
-- [ ] Implement intersection observer for scroll animations
-
-### Phase 3: Content & Polish (2h)
-- [x] Generate 4 premium project images (AI):
-  - Project 1: Modern apartment renovation (before/after)
-  - Project 2: Kitchen transformation (before/after)
-  - Project 3: Bathroom luxury upgrade (before/after)
-  - Project 4: Living room redesign (before/after)
-- [x] Write compelling project descriptions
-- [x] Add metadata (120m², 60 days, R$ 180-220k range)
-- [x] Create client testimonial text (authentic tone)
-- [ ] Add scroll-triggered fade-in animations
-- [x] Implement CTA button ("Solicitar Orçamento Personalizado")
-- [ ] Test lightbox on mobile (swipe gestures)
+### Phase 3: Migration (1h)
+- [ ] Refactor `reason-section.astro` to use ReasonCard
+- [ ] Refactor `services-section.astro` to use ServiceCard
+- [ ] Refactor `guarantees-section.astro` to use GuaranteeCard
+- [ ] Delete duplicated card markup (save ~120 lines total)
+- [ ] Test all sections render identically
+- [ ] Update `header.astro` to use NavLink + Button atoms
+- [ ] Verify no visual regressions
 
 ## Definition of Done
 
 ### Functionality
-- [ ] All 4 projects display correctly
-- [ ] Before/after slider smooth on desktop/mobile
-- [ ] Lightbox opens on click with gallery navigation
-- [ ] Images load progressively (blur-up)
-- [ ] Responsive grid adapts to screen sizes
-- [ ] Touch gestures work on mobile lightbox
+- [ ] All sections render identically to before refactor
+- [ ] Card hover states work consistently
+- [ ] Icons display correctly with new Icon atom
+- [ ] Buttons maintain all variants (primary, ghost, etc.)
+- [ ] No prop drilling issues (proper TypeScript types)
 
 ### Testing
-- [ ] Manual: Click each project card
-- [ ] Manual: Test lightbox navigation (arrows, swipe, ESC)
-- [ ] Manual: Test image slider drag on all devices
-- [ ] Performance: LCP <1.2s (check largest image)
-- [ ] Accessibility: Alt texts descriptive, keyboard navigation works
+- [ ] Manual: Visit all 4 pages, verify no changes
+- [ ] Visual regression: Screenshot comparison before/after
+- [ ] TypeScript: `astro check` passes with no errors
+- [ ] Unit: N/A (Astro components)
 
 ### Performance
-- [ ] Images optimized (WebP format, <200KB each)
-- [ ] Lazy loading below fold
-- [ ] Preload above-fold images
-- [ ] No CLS during image load (aspect-ratio preserved)
-- [ ] Total section load <2s on 3G
-
-### Security
-- [ ] N/A (client-side only)
+- [ ] Bundle size decreased (less duplication)
+- [ ] No runtime performance change
+- [ ] Tree-shaking works (unused variants removed)
 
 ### Code Quality
-- [ ] Components follow Atomic Design (atoms/molecules)
-- [ ] TypeScript interfaces defined
-- [ ] No hardcoded image paths (use imports)
-- [ ] Reusable ProjectCard component
+- [ ] All components <50 lines
+- [ ] Props have TypeScript interfaces
+- [ ] Default props documented
+- [ ] Component README with usage examples
 
 ### Documentation
 - [ ] Time logged
-- [ ] Component usage documented in README
-- [ ] Image optimization guidelines
+- [ ] ADR for Atomic Design decision
+- [ ] Component library README with examples
 
 ### Git
 - [ ] Atomic commits:
-  - `feat(showcase): create project showcase section`
-  - `feat(showcase): add photoswipe lightbox`
-  - `feat(showcase): generate project images`
+  - `refactor(components): create atomic atoms layer`
+  - `refactor(components): create molecule components`
+  - `refactor(sections): migrate to atomic design`
 
 ## Testing
 
 ### Manual
-- [ ] Desktop: Hover cards show lift effect
-- [ ] Desktop: Click opens lightbox, arrow keys navigate
-- [ ] Mobile: Swipe lightbox images
-- [ ] Mobile: Pinch to zoom in lightbox
-- [ ] All: Before/after slider drag smooth
-- [ ] All: ESC closes lightbox
+- [ ] Home page: All sections render correctly
+- [ ] Servicos page: Cards use new components
+- [ ] Sobre page: Verify layouts unchanged
+- [ ] Metodo page: Verify content intact
 
-**Performance Check:**
+**TypeScript Verification:**
 ```bash
-# Run Lighthouse audit
-pnpm build
-pnpm preview
-# Chrome DevTools > Lighthouse > Run audit
-# Target: Performance >90, LCP <1.2s
+pnpm astro check
+# Should pass with 0 errors
+```
+
+**Visual Regression:**
+```bash
+# Before refactor: Screenshot all pages
+# After refactor: Screenshot all pages
+# Compare pixel-by-pixel (use tool like Percy or manual)
 ```
 
 ## Blockers & Risks
@@ -157,13 +146,12 @@ pnpm preview
 - [ ] None
 
 **Potential:**
-1. Risk: PhotoSwipe bundle size too large - Mitigation: Use dynamic import, load on click
-2. Risk: Image generation quality inconsistent - Mitigation: Manual curation, use high-quality prompts
-3. Risk: Before/after slider UX confusing - Mitigation: Add visual indicators (arrows, labels)
+1. Risk: Breaking changes to existing sections - Mitigation: Migrate one section at a time, test immediately
+2. Risk: Prop complexity explosion - Mitigation: Keep props simple, use composition over configuration
+3. Risk: TypeScript errors during migration - Mitigation: Run `astro check` after each component
 
 ## References
 
-- PhotoSwipe: https://photoswipe.com/
-- Before/After Slider: https://github.com/sneas/img-comparison-slider
-- Astro Image: https://docs.astro.build/en/guides/images/
-- Audit: Section 4 "Ausências Gritantes" - #1 Case Studies
+- Atomic Design: https://bradfrost.com/blog/post/atomic-web-design/
+- Astro Components: https://docs.astro.build/en/core-concepts/astro-components/
+- Audit: Section 11 "Component System Architecture"
