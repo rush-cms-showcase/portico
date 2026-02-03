@@ -1,11 +1,9 @@
 ---
-import type { ImageMetadata } from 'astro'
-
 interface Props {
   title: string
   location: string
-  before: ImageMetadata
-  after: ImageMetadata
+  before: string
+  after: string
   metadata: {
     area: string
     duration: string
@@ -21,14 +19,14 @@ const { title, location, before, after, metadata, testimonial } = Astro.props
 ---
 
 <article class="group relative bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
-  <div class="relative aspect-[16/10] overflow-hidden">
+  <div class="relative aspect-16/10 overflow-hidden">
     <img
-      src={after.src}
+      src={after}
       alt={`${title} - Depois da reforma`}
       class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
       loading="lazy"
     />
-    <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-transparent to-transparent"></div>
+    <div class="absolute inset-0 bg-linear-to-t from-navy-900/80 via-transparent to-transparent"></div>
     
     <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
       <h3 class="font-heading text-2xl font-bold mb-2">{title}</h3>

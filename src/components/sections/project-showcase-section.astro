@@ -4,8 +4,8 @@ import ProjectCard from '../ui/project-card.astro'
 interface Project {
   title: string
   location: string
-  before: { src: string }
-  after: { src: string }
+  before: string
+  after: string
   metadata: {
     area: string
     duration: string
@@ -21,8 +21,8 @@ const projects: Project[] = [
   {
     title: 'Apartamento Moderno',
     location: 'Moinhos de Vento, Porto Alegre',
-    before: { src: '/images/projects/apt-before.png' },
-    after: { src: '/images/projects/apt-after.png' },
+    before: '/images/projects/apt-before.png',
+    after: '/images/projects/apt-after.png',
     metadata: {
       area: '120m²',
       duration: '60 dias',
@@ -36,8 +36,8 @@ const projects: Project[] = [
   {
     title: 'Cozinha Gourmet',
     location: 'Bela Vista, Porto Alegre',
-    before: { src: '/images/projects/kitchen-before.png' },
-    after: { src: '/images/projects/kitchen-after.png' },
+    before: '/images/projects/kitchen-before.png',
+    after: '/images/projects/kitchen-after.png',
     metadata: {
       area: '28m²',
       duration: '45 dias',
@@ -51,8 +51,8 @@ const projects: Project[] = [
   {
     title: 'Banheiro Spa',
     location: 'Auxiliadora, Porto Alegre',
-    before: { src: '/images/projects/bathroom-before.png' },
-    after: { src: '/images/projects/bathroom-after.png' },
+    before: '/images/projects/bathroom-before.png',
+    after: '/images/projects/bathroom-after.png',
     metadata: {
       area: '15m²',
       duration: '30 dias',
@@ -66,8 +66,8 @@ const projects: Project[] = [
   {
     title: 'Sala de Estar Premium',
     location: 'Petrópolis, Porto Alegre',
-    before: { src: '/images/projects/living-before.png' },
-    after: { src: '/images/projects/living-after.png' },
+    before: '/images/projects/living-before.png',
+    after: '/images/projects/living-after.png',
     metadata: {
       area: '45m²',
       duration: '40 dias',

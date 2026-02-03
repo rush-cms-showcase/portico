@@ -1,25 +1,23 @@
 ---
-import type { ImageMetadata } from 'astro'
-
 interface Props {
-  before: ImageMetadata
-  after: ImageMetadata
+  before: string
+  after: string
   title: string
 }
 
 const { before, after, title } = Astro.props
 ---
 
-<div class="image-comparison relative w-full aspect-[16/9] overflow-hidden rounded-lg">
+<div class="image-comparison relative w-full aspect-video overflow-hidden rounded-lg">
   <img
-    src={before.src}
+    src={before}
     alt={`${title} - Antes da reforma`}
     class="absolute inset-0 w-full h-full object-cover"
   />
   
   <div class="comparison-overlay absolute inset-0" style="clip-path: inset(0 50% 0 0)">
     <img
-      src={after.src}
+      src={after}
       alt={`${title} - Depois da reforma`}
       class="w-full h-full object-cover"
     />
