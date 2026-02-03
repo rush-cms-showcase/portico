@@ -35,13 +35,13 @@ const faqs = [
 ]
 ---
 
-<section class="py-20 bg-portico-gray-50">
+<section class="py-20 bg-stone-50">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
     <div class="text-center mb-12">
-      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-portico-blue mb-4">
+      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-navy mb-4">
         {title}
       </h2>
-      <p class="font-body text-lg text-portico-gray">
+      <p class="font-body text-lg text-charcoal">
         As dúvidas mais comuns dos nossos clientes
       </p>
     </div>
@@ -49,16 +49,16 @@ const faqs = [
     <div class="space-y-4">
       {faqs.map((faq, index) => (
         <details class="group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-          <summary class="flex items-center justify-between cursor-pointer p-6 font-heading text-lg font-semibold text-portico-blue">
+          <summary class="flex items-center justify-between cursor-pointer p-6 font-heading text-lg font-semibold text-navy">
             <span class="flex items-start">
-              <span class="flex-shrink-0 w-8 h-8 bg-portico-orange text-white rounded-full flex items-center justify-center text-sm mr-4">
+              <span class="flex-shrink-0 w-8 h-8 bg-gold text-white rounded-full flex items-center justify-center text-sm mr-4">
                 {index + 1}
               </span>
               <spspan>{faq.question}</span>
             </span>
-            <iconify-icon icon="mdi:chevron-down" class="text-2xl text-portico-orange group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></iconify-icon>
+            <iconify-icon icon="mdi:chevron-down" class="text-2xl text-gold group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></iconify-icon>
           </summary>
-          <div class="px-6 pb-6 pl-18 font-body text-portico-gray leading-relaxed">
+          <div class="px-6 pb-6 pl-18 font-body text-charcoal leading-relaxed">
             {faq.answer}
           </div>
         </details>
@@ -66,8 +66,8 @@ const faqs = [
     </div>
 
     <div class="text-center mt-12">
-      <p class="font-body text-portico-gray mb-4">Ainda tem dúvidas?</p>
-      <a href="#contato" class="inline-block bg-portico-blue hover:bg-portico-orange transition-colors duration-300 text-white font-body font-bold text-lg px-8 py-4 rounded-lg shadow-lg">
+      <p class="font-body text-charcoal mb-4">Ainda tem dúvidas?</p>
+      <a href="#contato" class="inline-block bg-navy hover:bg-gold transition-colors duration-300 text-white font-body font-bold text-lg px-8 py-4 rounded-lg shadow-lg">
         Fale com um Especialista
       </a>
     </div>

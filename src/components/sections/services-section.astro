@@ -31,42 +31,48 @@ const services = [
 ]
 ---
 
-<section class="py-20 bg-portico-gray-50">
+<section class="py-20 bg-stone-50">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-portico-blue mb-4">
+      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-navy mb-4">
         {title}
       </h2>
-      <p class="font-body text-lg text-portico-gray max-w-3xl mx-auto">
+      <p class="font-body text-lg text-charcoal max-w-3xl mx-auto">
         Soluções completas para transformar seu imóvel em Porto Alegre
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-      {services.map((service) => (
-        <div class="group bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-          <div class="w-16 h-16 bg-portico-orange/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-portico-orange/20 transition-colors">
-            <iconify-icon icon={service.icon} class="text-4xl text-portico-orange"></iconify-icon>
+      {services.map((service, index) => (
+        <div class={`group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-stone-100 hover:border-navy-200 relative overflow-hidden animate-fade-in-up delay-${index * 100}`}>
+          <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+            <iconify-icon icon={service.icon} class="text-9xl text-navy"></iconify-icon>
           </div>
           
-          <h3 class="font-heading text-lg font-semibold text-portico-blue mb-3">
-            {service.title}
-          </h3>
-          
-          <p class="font-body text-portico-gray text-sm leading-relaxed">
-            {service.description}
-          </p>
-
-          <a href="/servicos" class="inline-flex items-center font-body text-sm text-portico-orange hover:text-portico-blue mt-4 transition-colors">
-            Saiba mais
-            <iconify-icon icon="mdi:arrow-right" class="ml-2"></iconify-icon>
-          </a>
+          <div class="relative z-10">
+            <div class="w-16 h-16 bg-navy-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-navy group-hover:rotate-6 transition-all duration-500">
+              <iconify-icon icon={service.icon} class="text-4xl text-navy group-hover:text-white transition-colors duration-500"></iconify-icon>
+            </div>
+            
+            <h3 class="font-heading text-xl font-bold text-navy-900 mb-4 group-hover:text-navy transition-colors duration-300">
+              {service.title}
+            </h3>
+            
+            <p class="font-body text-charcoal text-base leading-relaxed mb-6">
+              {service.description}
+            </p>
+  
+            <a href="/servicos" class="inline-flex items-center font-heading font-semibold text-sm text-navy hover:text-gold transition-colors group/link">
+              Saiba mais
+              <iconify-icon icon="mdi:arrow-right" class="ml-2 transform group-hover/link:translate-x-1 transition-transform"></iconify-icon>
+            </a>
+          </div>
         </div>
       ))}
     </div>
 
     <div class="text-center mt-12">
-      <a href="/servicos" class="inline-block bg-portico-blue hover:bg-portico-orange transition-colors duration-300 text-white font-body font-bold text-lg px-8 py-4 rounded-lg shadow-lg">
+      <a href="/servicos" class="inline-block bg-navy hover:bg-navy-700 transition-all duration-300 text-white font-heading font-bold text-lg px-10 py-4 rounded-full shadow-xl hover:shadow-2xl hover:-translate-y-1">
         Ver Todos os Serviços
       </a>
     </div>

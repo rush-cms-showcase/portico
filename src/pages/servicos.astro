@@ -35,26 +35,26 @@ const services = [
   <section class="py-20 bg-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-semibold text-portico-blue mb-6">
+        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-semibold text-navy mb-6">
           {t.services.title}
         </h1>
-        <p class="font-body text-lg text-portico-gray max-w-3xl mx-auto">
+        <p class="font-body text-lg text-charcoal max-w-3xl mx-auto">
           {t.services.description}
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
         {services.map((service) => (
-          <div class="group bg-white border border-portico-gray-200 rounded-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div class="w-16 h-16 bg-portico-orange/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-portico-orange/20 transition-colors">
-              <iconify-icon icon={service.icon} class="text-4xl text-portico-orange"></iconify-icon>
+          <div class="group bg-white border border-charcoal-200 rounded-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
+              <iconify-icon icon={service.icon} class="text-4xl text-gold"></iconify-icon>
             </div>
             
-            <h2 class="font-heading text-xl font-semibold text-portico-blue mb-3">
+            <h2 class="font-heading text-xl font-semibold text-navy mb-3">
               {service.title}
             </h2>
             
-            <p class="font-body text-portico-gray leading-relaxed">
+            <p class="font-body text-charcoal leading-relaxed">
               {service.description}
             </p>
           </div>
@@ -63,17 +63,17 @@ const services = [
     </div>
   </section>
 
-  <section class="py-20 bg-portico-gray-50">
+  <section class="py-20 bg-stone-50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="font-heading text-3xl font-semibold text-portico-blue mb-6">
+      <h2 class="font-heading text-3xl font-semibold text-navy mb-6">
         {t.services.ctaTitle}
       </h2>
-      <p class="font-body text-lg text-portico-gray mb-8 max-w-2xl mx-auto">
+      <p class="font-body text-lg text-charcoal mb-8 max-w-2xl mx-auto">
         {t.services.ctaDescription}
       </p>
       <a
         href="#contato"
-        class="inline-block bg-portico-orange hover:bg-portico-blue transition-colors duration-300 text-white font-body font-bold text-lg px-8 py-4 rounded-lg shadow-lg"
+        class="inline-block bg-gold hover:bg-navy transition-colors duration-300 text-white font-body font-bold text-lg px-8 py-4 rounded-lg shadow-lg"
       >
         {t.buttons.requestQuote}
       </a>

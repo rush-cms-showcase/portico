@@ -12,10 +12,10 @@ const navLinks = [
 ]
 ---
 
-<header class="sticky top-0 z-50 bg-white shadow-md">
+<header class="fixed top-0 left-0 w-full z-50 bg-white/60 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/20 transition-all duration-300 rounded-b-2xl shadow-lg supports-backdrop-filter:bg-white/40">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
-      <div class="flex-shrink-0">
+      <div class="shrink-0">
         <a href="/" class="flex items-center">
           <img src="/logo.svg" alt="Pórtico Reformas" class="h-12 w-auto" />
         </a>
@@ -25,7 +25,7 @@ const navLinks = [
         {navLinks.map((link) => (
           <a
             href={link.href}
-            class="font-body text-portico-gray hover:text-portico-blue transition-colors duration-200 font-medium"
+            class="font-body text-charcoal hover:text-navy transition-colors duration-200 font-medium"
           >
             {link.label}
           </a>
@@ -35,7 +35,7 @@ const navLinks = [
       <div class="hidden md:flex items-center">
         <a
           href="#contato"
-          class="bg-portico-orange hover:bg-portico-blue transition-colors duration-300 text-white font-body font-bold px-6 py-3 rounded-lg shadow-md hover:shadow-lg"
+          class="bg-gold hover:bg-navy transition-colors duration-300 text-white font-body font-bold px-6 py-3 rounded-lg shadow-md hover:shadow-lg"
         >
           {t.buttons.requestQuote}
         </a>
@@ -43,7 +43,7 @@ const navLinks = [
 
       <button
         id="mobile-menu-button"
-        class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-portico-gray hover:text-portico-blue hover:bg-portico-gray-50 focus:outline-none"
+        class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-charcoal hover:text-navy hover:bg-stone-50 focus:outline-none"
         aria-label="Menu"
       >
         <iconify-icon icon="mdi:menu" class="text-3xl"></iconify-icon>
@@ -51,19 +51,19 @@ const navLinks = [
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-portico-gray-200">
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-charcoal-200">
     <div class="px-4 pt-2 pb-4 space-y-2">
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="block font-body text-portico-gray hover:text-portico-blue hover:bg-portico-gray-50 px-3 py-2 rounded-md font-medium"
+          class="block font-body text-charcoal hover:text-navy hover:bg-stone-50 px-3 py-2 rounded-md font-medium"
         >
           {link.label}
         </a>
       ))}
       <a
         href="#contato"
-        class="block bg-portico-orange hover:bg-portico-blue transition-colors duration-300 text-white font-body font-bold px-6 py-3 rounded-lg text-center mt-4"
+        class="block bg-gold hover:bg-navy transition-colors duration-300 text-white font-body font-bold px-6 py-3 rounded-lg text-center mt-4"
       >
         {t.buttons.requestQuote}
       </a>

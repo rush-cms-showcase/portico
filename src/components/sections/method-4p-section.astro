@@ -38,32 +38,32 @@ const methods = [
 <section class="py-20 bg-white">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-portico-blue mb-4">
+      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-navy mb-4">
         {title}
       </h2>
-      <p class="font-body text-lg text-portico-gray max-w-3xl mx-auto">
+      <p class="font-body text-lg text-charcoal max-w-3xl mx-auto">
         Inteligência aplicada à construção. Nossa metodologia exclusiva que garante paz de espírito do início ao fim.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
       {methods.map((method) => (
-        <div class="relative bg-portico-gray-50 border-l-4 border-portico-orange rounded-r-lg p-8 hover:shadow-lg transition-shadow duration-300">
-          <div class="absolute -left-6 top-8 w-12 h-12 bg-portico-orange text-white rounded-full flex items-center justify-center font-heading text-2xl font-bold shadow-lg">
+        <div class="relative bg-stone-50 border-l-4 border-gold rounded-r-lg p-8 hover:shadow-lg transition-shadow duration-300">
+          <div class="absolute -left-6 top-8 w-12 h-12 bg-gold text-white rounded-full flex items-center justify-center font-heading text-2xl font-bold shadow-lg">
             {method.number}
           </div>
           
           <div class="flex items-start space-x-4 ml-8">
             <div class="flex-shrink-0">
-              <iconify-icon icon={method.icon} class="text-4xl text-portico-blue"></iconify-icon>
+              <iconify-icon icon={method.icon} class="text-4xl text-navy"></iconify-icon>
             </div>
             
             <div>
-              <h3 class="font-heading text-xl font-semibold text-portico-blue mb-3">
+              <h3 class="font-heading text-xl font-semibold text-navy mb-3">
                 {method.title}
               </h3>
               
-              <p class="font-body text-portico-gray leading-relaxed">
+              <p class="font-body text-charcoal leading-relaxed">
                 {method.description}
               </p>
             </div>
@@ -73,7 +73,7 @@ const methods = [
     </div>
 
     <div class="text-center mt-12">
-      <p class="font-body text-lg text-portico-gray italic">
+      <p class="font-body text-lg text-charcoal italic">
         "Não fazemos reforma. Fazemos transformação inteligente de espaços."
       </p>
     </div>
