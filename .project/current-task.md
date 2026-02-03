@@ -1,157 +1,196 @@
 ---
-title: "Atomic Design Component Refactor"
+title: "Performance Optimization (Core Web Vitals)"
 created: 2026-02-03T19:44:00-03:00
-last_updated: 2026-02-03T20:50:00-03:00
-priority: P2-M
-estimated_hours: 5
-actual_hours: 2
-status: in-progress
+last_updated: 2026-02-03T19:44:00-03:00
+priority: P3
+estimated_hours: 4
+actual_hours: 0
+status: backlog
 blockers: []
-tags: [refactor, components, architecture]
-depends_on: [T020, T021]
+tags: [performance, optimization, web-vitals]
+depends_on: [T022, T026]
 blocks: []
 dependency_type: soft
-related_files: [src/components/**]
+related_files: []
 ---
 
-# Task: Atomic Design Component Refactor
+# Task: Performance Optimization (Core Web Vitals)
 
 ## Objective
 
-Restructure monolithic section components into Atomic Design pattern (atoms/molecules/organisms). Create reusable base Card component that all card variants extend. Reduce code duplication from 3 separate card implementations to 1 flexible component.
+Optimize site performance to hit luxury benchmarks: LCP <1.2s, CLS <0.05, FID <50ms, TTI <2.5s. Implement image optimizations, font preloading, critical CSS inlining, and resource hints.
 
 **Success:**
-- [ ] Directory structure: atoms/, molecules/, organisms/
-- [ ] Base Card.astro component with variant props
-- [ ] Icon, Button, Badge, Heading atoms created
-- [ ] All sections refactored to use atomic components
-- [ ] Code duplication eliminated (DRY)
+- [ ] Lighthouse Performance score ≥95
+- [ ] LCP <1.2s (currently ~2.5s estimated)
+- [ ] CLS <0.05 (no layout shifts)
+- [ ] FID <50ms (fast interactions)
+- [ ] Total page weight <1.5MB (excluding video)
 
 ## Context
 
-**Why:** Current components are monolithic (68-81 lines each) with duplicated card markup. Reason, Service, and Guarantee cards share 80% of code but are separate files. Atomic Design enables consistency and rapid iteration.
+**Why:** Premium sites must load instantly. Slow performance signals low quality. Current site likely has LCP ~2.5s due to unoptimized hero image.
 
 **Audit Findings:**
-- "Componentes monolíticos (68+ linhas)"
-- "3 card implementations - deveria reutilizar base"
-- "Props design fraco (apenas title)"
+- "Hero image sem preload - LCP provavelmente ~2.5s"
+- "Falta srcset para Retina displays"
+- "Glassmorphism pode causar CLS"
+- "Performance targets: LCP <1.2s, CLS <0.05"
 
-**Benefits:**
-- Change card shadow globally in 1 file
-- Add new card variant in 10 lines vs 80
-- Consistent hover/focus states
+**Benchmark:** Luxury sites typically score 90+ on Lighthouse
 
 ## Implementation
 
-### Phase 1: Atoms (2h)
-- [x] Create `src/components/atoms/` directory
-- [x] Create `icon.astro` (iconify wrapper with size/color props)
-- [x] Create `button.astro` with variants:
-  ```typescript
-  variant: 'primary' | 'secondary' | 'ghost' | 'outline'
-  size: 'sm' | 'md' | 'lg'
+### Phase 1: Image Optimization (2h)
+- [ ] Implement responsive images with srcset:
+  ```astro
+  <Image
+    src={heroImage}
+    widths={[768, 1024, 1280, 1920, 2560]}
+    sizes="100vw"
+    densities={[1, 2, 3]}
+  />
   ```
-- [ ] Create `badge.astro` (colored pills like "Multa por atraso")
-- [x] Create `heading.astro` with level/size props
-- [ ] Create `image.astro` (Astro Image wrapper with lazy loading)
-- [x] Update sections to use new atoms (hero, reason, showcase)
-
-### Phase 2: Molecules (2h)
-- [x] Create `src/components/molecules/` directory
-- [x] Create `card.astro` base component:
-  ```typescript
-  interface CardProps {
-    variant: 'default' | 'glass' | 'elevated'
-    padding: 'sm' | 'md' | 'lg'
-    hover: 'lift' | 'glow' | 'none'
-    icon?: string
-    title?: string
-  }
+- [ ] Preload LCP image:
+  ```html
+  <link rel="preload" as="image" 
+    href="/images/hero-bg.webp"
+    fetchpriority="high">
   ```
-- [ ] Create `service-card.astro` (extends Card with specific props)
-- [ ] Create `guarantee-card.astro` (extends Card)
-- [ ] Create `reason-card.astro` (extends Card)
-- [ ] Create `nav-link.astro` (header navigation item)
+- [ ] Add blur-up placeholders:
+  - Generate 20px width LQIP (Low Quality Image Placeholder)
+  - Base64 encode, inline in HTML
+  - Progressive reveal on load
+- [ ] Lazy load below-fold images:
+  ```astro
+  <Image loading="lazy" />
+  ```
+- [ ] Optimize all images:
+  - WebP format (80% quality)
+  - Target: <100KB per image
+  - Use Astro Image service
 
-### Phase 3: Migration (1h)
-- [x] Refactor `reason-section.astro` to use Card
-- [ ] Refactor `services-section.astro` to use ServiceCard
-- [ ] Refactor `guarantees-section.astro` to use GuaranteeCard
-- [ ] Delete duplicated card markup (save ~120 lines total)
-- [ ] Test all sections render identically
-- [ ] Update `header.astro` to use NavLink + Button atoms
-- [ ] Verify no visual regressions
+### Phase 2: Font Optimization (1h)
+- [ ] Preload critical fonts:
+  ```html
+  <link rel="preload" as="font" 
+    href="/fonts/inter-var.woff2" 
+    type="font/woff2" crossorigin>
+  ```
+- [ ] Use font-display: swap
+- [ ] Subset fonts (Latin only, remove unused glyphs)
+- [ ] Self-host fonts (no Google Fonts CDN latency)
+- [ ] Implement FOUT mitigation:
+  ```css
+  .font-loaded { font-family: 'Inter', sans-serif; }
+  ```
+
+### Phase 3: Critical CSS & Resources (1h)
+- [ ] Inline critical CSS (<10KB):
+  - Hero styles
+  - Above-fold layout
+  - Font declarations
+- [ ] Defer non-critical CSS:
+  ```html
+  <link rel="stylesheet" href="app.css" media="print" 
+    onload="this.media='all'">
+  ```
+- [ ] Add resource hints:
+  ```html
+  <link rel="dns-prefetch" href="//vimeo.com">
+  <link rel="preconnect" href="//fonts.googleapis.com">
+  ```
+- [ ] Remove unused CSS (PurgeCSS)
+- [ ] Minify and compress assets (Brotli)
+- [ ] Set aspect-ratio on all images/videos (prevent CLS)
 
 ## Definition of Done
 
 ### Functionality
-- [ ] All sections render identically to before refactor
-- [ ] Card hover states work consistently
-- [ ] Icons display correctly with new Icon atom
-- [ ] Buttons maintain all variants (primary, ghost, etc.)
-- [ ] No prop drilling issues (proper TypeScript types)
+- [ ] Site loads and renders correctly
+- [ ] Images display at appropriate resolutions
+- [ ] Fonts load without FOIT/FOUT flash
+- [ ] No visual regressions
 
 ### Testing
-- [ ] Manual: Visit all 4 pages, verify no changes
-- [ ] Visual regression: Screenshot comparison before/after
-- [ ] TypeScript: `astro check` passes with no errors
-- [ ] Unit: N/A (Astro components)
+- [ ] Lighthouse Performance: ≥95 on mobile
+- [ ] Lighthouse Performance: ≥98 on desktop
+- [ ] PageSpeed Insights: All Core Web Vitals green
+- [ ] WebPageTest: First Contentful Paint <0.8s
+- [ ] Real device test: iPhone 12, 4G network
 
 ### Performance
-- [ ] Bundle size decreased (less duplication)
-- [ ] No runtime performance change
-- [ ] Tree-shaking works (unused variants removed)
+- [ ] LCP: <1.2s (target: <1.0s)
+- [ ] FID: <50ms (target: <30ms)
+- [ ] CLS: <0.05 (target: 0)
+- [ ] TTI: <2.5s (target: <2.0s)
+- [ ] Total page weight: <1.5MB (excl video)
+- [ ] First Contentful Paint: <0.8s
+
+### Security
+- [ ] N/A (performance only)
 
 ### Code Quality
-- [ ] All components <50 lines
-- [ ] Props have TypeScript interfaces
-- [ ] Default props documented
-- [ ] Component README with usage examples
+- [ ] Preload links in correct order (priority)
+- [ ] Resource hints appropriate (not excessive)
+- [ ] Aspect ratios set on all media
+- [ ] Comments explain optimization choices
 
 ### Documentation
 - [ ] Time logged
-- [ ] ADR for Atomic Design decision
-- [ ] Component library README with examples
+- [ ] Performance budget documented
+- [ ] Optimization checklist for future images
 
 ### Git
 - [ ] Atomic commits:
-  - `refactor(components): create atomic atoms layer`
-  - `refactor(components): create molecule components`
-  - `refactor(sections): migrate to atomic design`
+  - `perf: implement responsive images with srcset`
+  - `perf: preload critical fonts and LCP image`
+  - `perf: inline critical CSS and add resource hints`
 
 ## Testing
 
-### Manual
-- [ ] Home page: All sections render correctly
-- [ ] Servicos page: Cards use new components
-- [ ] Sobre page: Verify layouts unchanged
-- [ ] Metodo page: Verify content intact
-
-**TypeScript Verification:**
+### Lighthouse Audit
 ```bash
-pnpm astro check
-# Should pass with 0 errors
+pnpm build
+pnpm preview
+
+# Chrome DevTools > Lighthouse
+# Device: Mobile
+# Categories: Performance only
+# Target: Score ≥95
+
+# Check Core Web Vitals:
+# LCP: <1.2s ✓
+# FID: <50ms ✓  
+# CLS: <0.05 ✓
 ```
 
-**Visual Regression:**
-```bash
-# Before refactor: Screenshot all pages
-# After refactor: Screenshot all pages
-# Compare pixel-by-pixel (use tool like Percy or manual)
+### PageSpeed Insights
 ```
+Visit: https://pagespeed.web.dev/
+Enter deployed URL
+Verify: All Core Web Vitals PASS (green)
+```
+
+### Real Device Test
+- [ ] iPhone 12 Pro, Safari, 4G network
+- [ ] Hero loads in <1.5s
+- [ ] No layout shifts during load
+- [ ] Interactions immediate (no lag)
 
 ## Blockers & Risks
 
 **Current:**
-- [ ] None
+- [ ] Blocked by T026 (Video Hero) - video optimization needed
 
 **Potential:**
-1. Risk: Breaking changes to existing sections - Mitigation: Migrate one section at a time, test immediately
-2. Risk: Prop complexity explosion - Mitigation: Keep props simple, use composition over configuration
-3. Risk: TypeScript errors during migration - Mitigation: Run `astro check` after each component
+1. Risk: Aggressive optimization breaks layout - Mitigation: Test after each change
+2. Risk: Font subset missing glyphs - Mitigation: Test with real copy, not Lorem Ipsum
+3. Risk: Preload too many resources - Mitigation: Limit to 3-4 critical resources
 
 ## References
 
-- Atomic Design: https://bradfrost.com/blog/post/atomic-web-design/
-- Astro Components: https://docs.astro.build/en/core-concepts/astro-components/
-- Audit: Section 11 "Component System Architecture"
+- Web Vitals: https://web.dev/vitals/
+- Image Optimization: https://web.dev/fast/#optimize-your-images
+- Font Best Practices: https://web.dev/font-best-practices/
+- Audit: Section 3 "Problemas Técnicos de Desenvolvimento" - Performance
