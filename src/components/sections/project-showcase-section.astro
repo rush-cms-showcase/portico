@@ -1,5 +1,7 @@
 ---
 import ProjectCard from '../ui/project-card.astro'
+import Heading from '../atoms/heading.astro'
+import Button from '../atoms/button.astro'
 
 interface Project {
   title: string
@@ -84,9 +86,9 @@ const projects: Project[] = [
 <section id="projetos" class="py-24 bg-stone-100">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16 max-w-3xl mx-auto">
-      <h2 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-navy-900 mb-6">
+      <Heading level={2} class="text-navy-900 mb-6">
         Portfolio de Transformações
-      </h2>
+      </Heading>
       <p class="font-body text-lg sm:text-xl text-charcoal-700 leading-relaxed">
         Cada projeto reflete nosso compromisso com a excelência. Conheça algumas das residências que transformamos em verdadeiras obras de arte.
       </p>
@@ -99,12 +101,9 @@ const projects: Project[] = [
     </div>
 
     <div class="text-center">
-      <a
-        href="#contato"
-        class="inline-block bg-navy-900 hover:bg-gold-600 text-white font-body font-bold text-lg px-10 py-5 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
-      >
+      <Button href="#contato" variant="secondary" size="md">
         Solicitar Orçamento Personalizado
-      </a>
+      </Button>
     </div>
   </div>
 </section>
