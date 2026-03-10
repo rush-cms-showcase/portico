@@ -6,7 +6,6 @@ import Footer from '@/components/layout/footer.astro'
 import WhatsAppButton from '@/components/ui/whatsapp-button.astro'
 
 const SITE_URL = 'https://porticoreformas.com.br'
-const defaultOgImage = `${SITE_URL}/banner.webp`
 
 interface Props {
 	title: string
@@ -19,19 +18,20 @@ interface Props {
 const { 
 	title, 
 	description, 
-	image = defaultOgImage, 
+	image = '/banner.webp', 
 	type = 'website',
 	schema
 } = Astro.props
 
 const canonical = new URL(Astro.url.pathname, Astro.site || SITE_URL).href
+const finalImage = image.startsWith('http') ? image : new URL(image, Astro.site || SITE_URL).href
 
 // Default schema if none provided
 const defaultSchema = JSON.stringify({
 	"@context": "https://schema.org",
 	"@type": "LocalBusiness",
 	"name": "Pórtico Reformas",
-	"image": defaultOgImage,
+	"image": finalImage,
 	"url": SITE_URL,
 	"address": {
 		"@type": "PostalAddress",
@@ -58,13 +58,13 @@ const finalSchema = schema || defaultSchema
 		<meta property="og:site_name" content="Pórtico Reformas" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={image} />
+		<meta property="og:image" content={finalImage} />
 
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={canonical} />
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={image} />
+		<meta property="twitter:image" content={finalImage} />
 
 		<link rel="canonical" href={canonical} />
 
