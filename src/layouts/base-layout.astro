@@ -1,59 +1,110 @@
 ---
-import { ViewTransitions } from 'astro:transitions'
+import { ClientRouter } from 'astro:transitions'
 import '@/styles/app.css'
 import Header from '@/components/layout/header.astro'
 import Footer from '@/components/layout/footer.astro'
+import WhatsAppButton from '@/components/ui/whatsapp-button.astro'
+
+const SITE_URL = 'https://porticoreformas.com.br'
+const defaultOgImage = `${SITE_URL}/banner.webp`
 
 interface Props {
-  title: string
-  description: string
+	title: string
+	description: string
+	image?: string
+	type?: 'website' | 'article'
+	schema?: string
 }
 
-const { title, description} = Astro.props
+const { 
+	title, 
+	description, 
+	image = defaultOgImage, 
+	type = 'website',
+	schema
+} = Astro.props
+
+const canonical = new URL(Astro.url.pathname, Astro.site || SITE_URL).href
+
+// Default schema if none provided
+const defaultSchema = JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "LocalBusiness",
+	"name": "Pórtico Reformas",
+	"image": defaultOgImage,
+	"url": SITE_URL,
+	"address": {
+		"@type": "PostalAddress",
+		"addressLocality": "Porto Alegre",
+		"addressRegion": "RS",
+		"addressCountry": "BR"
+	}
+})
+
+const finalSchema = schema || defaultSchema
 ---
 
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <meta name="keywords" content="reforma residencial, Porto Alegre, reforma com garantia, orçamento fixo, prazo garantido" />
-    <title>{title}</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="description" content={description} />
+		<title>{title}</title>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://porticoreformas.com.br/" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://porticoreformas.com.br/logo.svg" />
+		<meta property="og:type" content={type} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:site_name" content="Pórtico Reformas" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://porticoreformas.com.br/" />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="https://porticoreformas.com.br/logo.svg" />
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonical} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={image} />
 
-    <link rel="canonical" href="https://porticoreformas.com.br/" />
+		<link rel="canonical" href={canonical} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <link rel="preload" as="image" href="/images/hero-bg.webp" fetchpriority="high" />
-    
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
+		<!-- JSON-LD Schema -->
+		<script type="application/ld+json" set:html={finalSchema} />
 
-    <ViewTransitions />
-  </head>
-  <body class="font-body text-charcoal antialiased">
-    <Header />
-    <main>
-      <slot />
-    </main>
-    <Footer />
-  </body>
+		<!-- Google Analytics -->
+		{import.meta.env.GA_TAG && (
+			<>
+				<script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.GA_TAG}`} is:inline></script>
+				<script define:vars={{ gaTag: import.meta.env.GA_TAG }}>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', gaTag);
+				</script>
+			</>
+		)}
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<link rel="preload" as="image" href="/images/hero-bg.webp" fetchpriority="high" />
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;600;700&family=Nunito+Sans:wght@400;600;700&display=swap"
+			rel="stylesheet"
+		/>
+
+		<ClientRouter />
+	</head>
+	<body class="font-body text-charcoal antialiased">
+		<Header />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+		<WhatsAppButton />
+		<script>
+			import 'iconify-icon'
+		</script>
+	</body>
 </html>
