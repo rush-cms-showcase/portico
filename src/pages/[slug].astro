@@ -2,8 +2,23 @@
 import BaseLayout from '@/layouts/base-layout.astro'
 import CtaSection from '@/components/sections/cta-section.astro'
 import { useTranslations } from '@/lib/i18n'
-import { getEntryBySlug } from '@/lib/rush'
+import { getCollection } from '@/lib/rush'
 
+export async function getStaticPaths() {
+  try {
+    const res = await getCollection('pages', { per_page: 100 })
+    const pages = res.data ?? res
+    return pages.map((page: any) => ({
+      params: { slug: page.slug?.pt_BR || page.slug || '' },
+      props: { entry: page },
+    }))
+  } catch (error) {
+    console.error('Erro ao buscar pages em [slug].astro', error)
+    return []
+  }
+}
+
+const { entry } = Astro.props
 const t = useTranslations('pt_BR')
 
 function renderRichText(node: any): string {
@@ -56,23 +71,13 @@ function renderRichText(node: any): string {
   }
 }
 
-let content = ''
-let entryTitle = 'Sobre Nós'
-let fetchFailed = false
-
-try {
-  const res = await getEntryBySlug('pages', 'sobre-nos')
-  const entry = (res as any).data ?? res
-  entryTitle = entry.title || 'Sobre Nós'
-  content = renderRichText(entry.data?.content || entry.content || '')
-} catch {
-  fetchFailed = true
-}
+const entryTitle = entry.title?.pt_BR || entry.title || 'Página'
+const content = renderRichText(entry.data?.content || entry.content || '')
 ---
 
 <BaseLayout
   title={`${entryTitle} - ${t.site.title}`}
-  description="Conheça a história da Pórtico Reformas, nossa missão de transformar espaços com inteligência e planejamento em Porto Alegre."
+  description={`Confira a página ${entryTitle} em Pórtico Reformas`}
 >
   <section class="relative py-32 sm:py-40 bg-white overflow-hidden">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,7 +86,7 @@ try {
           <div class="inline-block mb-6">
             <div class="flex items-center gap-3 bg-navy-900/5 border border-navy-900/10 px-4 py-2 rounded-sm">
               <div class="w-1 h-8 bg-gold-600"></div>
-              <span class="font-body text-sm text-navy-900 font-semibold tracking-widest uppercase">Nossa História</span>
+              <span class="font-body text-sm text-navy-900 font-semibold tracking-widest uppercase">{entryTitle}</span>
             </div>
           </div>
           <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold text-navy mb-8">
@@ -89,21 +94,7 @@ try {
           </h1>
         </div>
 
-        {fetchFailed ? (
-          <div class="prose prose-lg max-w-none">
-            <div class="bg-stone-50 border-l-4 border-gold-600 p-8 lg:p-10 rounded-r-xl mb-12">
-              <h2 class="font-heading text-3xl font-semibold text-navy mt-0 mb-4">Nossa Jornada</h2>
-              <p class="font-body text-lg text-charcoal leading-relaxed mb-4">
-                Fundada há mais de 20 anos por Júlio, a Pórtico nasceu de uma frustração: ver reformas que começavam com entusiasmo e terminavam em caos, estresse e orçamentos estourados.
-              </p>
-              <p class="font-body text-lg text-charcoal leading-relaxed m-0">
-                Desde então, desenvolvemos o <a href="#" class="text-gold-600 font-bold hover:underline">Método Pórtico 4P™</a> — um sistema blindado por contrato que transforma reformas caóticas em projetos previsíveis.
-              </p>
-            </div>
-          </div>
-        ) : (
-          <div class="prose prose-lg max-w-none" set:html={content} />
-        )}
+        <div class="prose prose-lg max-w-none" set:html={content} />
       </div>
     </div>
   </section>
