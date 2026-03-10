@@ -25,10 +25,11 @@ export const rushConfig: RushSiteConfig = {
     },
 
     routes: {
-        '/': Number(import.meta.env.RUSH_ROUTE_ROOT_ID),
-        '/eventos': Number(import.meta.env.RUSH_ROUTE_EVENTS_ID),
-        '/blog': Number(import.meta.env.RUSH_ROUTE_BLOG_ID),
-        '/servicos': Number(import.meta.env.RUSH_ROUTE_SERVICES_ID),
+        '/': 12,
+        '/servicos': 13,
+        '/blog': 11,
+        '/sobre-nos': 12,
+        '/metodo': 12,
     },
 
     defaults: {
