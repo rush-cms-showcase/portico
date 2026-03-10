@@ -44,6 +44,8 @@ function renderRichText(node: any): string {
     case 'orderedList': return `<ol class="list-decimal pl-6 mb-6 space-y-2 font-body text-charcoal">${renderRichText(node.content)}</ol>`
     case 'listItem': return `<li class="leading-relaxed">${renderRichText(node.content)}</li>`
     case 'blockquote': return `<blockquote class="border-l-4 border-gold-600 pl-6 italic text-charcoal/80 my-8 font-body text-lg">${renderRichText(node.content)}</blockquote>`
+    case 'image': return `<figure class="my-8"><img src="${node.attrs?.src}" alt="${node.attrs?.alt || ''}" title="${node.attrs?.title || ''}" class="rounded-2xl w-full object-cover bg-stone-100" />${node.attrs?.title ? `<figcaption class="text-center text-sm text-charcoal/50 mt-2">${node.attrs.title}</figcaption>` : ''}</figure>`
+    case 'hardBreak': return '<br />'
     case 'customBlock':
       if (node.attrs?.id === 'youtube_embed') {
         const { url, caption } = node.attrs.config || {}
