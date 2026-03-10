@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/base-layout.astro'
+import PageHeader from '@/components/sections/page-header.astro'
+import ContactSection from '@/components/sections/contact-section.astro'
+import { useTranslations } from '@/lib/i18n'
+
+const t = useTranslations('pt_BR')
+const whatsapp = import.meta.env.PUBLIC_WHATSAPP
+const instagram = import.meta.env.PUBLIC_INSTAGRAM
+const facebook = import.meta.env.PUBLIC_FACEBOOK
+const email = import.meta.env.PUBLIC_EMAIL
+---
+
+<BaseLayout
+  title={`Contato - ${t.site.title}`}
+  description="Entre em contato com a Pórtico Reformas. Agende um diagnóstico gratuito pelo WhatsApp, e-mail ou formulário."
+>
+  <PageHeader
+    badge="Fale Conosco"
+    title={t.contact.title}
+    description="Escolha como prefere falar com a gente"
+  />
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-2xl">
+      <ContactSection />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,82 +1,84 @@
 ---
 import BaseLayout from '@/layouts/base-layout.astro'
+import PageHeader from '@/components/sections/page-header.astro'
+import CtaSection from '@/components/sections/cta-section.astro'
 import { useTranslations } from '@/lib/i18n'
+import { getCollection } from '@/lib/rush'
 
 const t = useTranslations('pt_BR')
 
-const services = [
-  {
-    title: 'Reforma Residencial Completa',
-    description: 'Transformação total do seu imóvel com planejamento funcional e entrega garantida.',
-    icon: 'mdi:home-city',
-  },
-  {
-    title: 'Ampliação e Redistribuição',
-    description: 'Otimização de espaços e criação de novos ambientes pensados para sua rotina.',
-    icon: 'mdi:floor-plan',
-  },
-  {
-    title: 'Acabamento Premium',
-    description: 'Revestimentos, pisos e acabamentos de alta qualidade com execução impecável.',
-    icon: 'mdi:palette',
-  },
-  {
-    title: 'Consultoria de Projeto',
-    description: 'Diagnóstico funcional e planejamento inteligente antes de qualquer obra.',
-    icon: 'mdi:lightbulb-on',
-  },
-]
+let services: any[] = []
+try {
+  const res = await getCollection('servicos')
+  services = res.data ?? []
+} catch {
+  services = []
+}
 ---
 
 <BaseLayout
   title={`${t.services.title} - ${t.site.title}`}
   description={t.services.description}
 >
-  <section class="py-20 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-semibold text-navy mb-6">
-          {t.services.title}
-        </h1>
-        <p class="font-body text-lg text-charcoal max-w-3xl mx-auto">
-          {t.services.description}
-        </p>
-      </div>
+  <PageHeader
+    badge="Soluções Completas"
+    title={t.services.title}
+    description={t.services.description}
+  />
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-        {services.map((service) => (
-          <div class="group bg-white border border-charcoal-200 rounded-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
-              <iconify-icon icon={service.icon} class="text-4xl text-gold"></iconify-icon>
+  <section class="py-24 sm:py-32 bg-charcoal-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(201,169,97,0.06),transparent_50%)]"></div>
+
+    <div class="container relative mx-auto px-4 sm:px-6 lg:px-8">
+      {services.length === 0 ? (
+        <p class="font-body text-center text-charcoal-300">{t.services.noServices}</p>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-6xl mx-auto">
+          {services.map((service, i) => (
+            <div class="group relative bg-linear-to-br from-charcoal-800 to-charcoal-900 border border-charcoal-700 hover:border-gold-600/50 rounded-2xl p-8 lg:p-10 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-600/10 hover:-translate-y-1">
+              <div class="relative z-10">
+                <div class="mb-4">
+                  <span class="inline-flex items-center gap-1.5 bg-gold-600/10 border border-gold-600/20 rounded-full px-3 py-1 text-xs text-gold-500 font-semibold font-body uppercase tracking-wide">
+                    Serviço 0{i + 1}
+                  </span>
+                </div>
+                <h2 class="font-heading text-2xl lg:text-3xl font-bold text-white mb-3 group-hover:text-gold-500 transition-colors">
+                  {service.title}
+                </h2>
+                {service.excerpt && (
+                  <p class="font-body text-base text-charcoal-200 leading-relaxed mb-6">
+                    {service.excerpt}
+                  </p>
+                )}
+                <div class="flex flex-wrap gap-3">
+                  <a
+                    href={`/servicos/${service.slug}`}
+                    class="inline-flex items-center gap-2 bg-gold-600/10 hover:bg-gold-600/20 border border-gold-600/30 hover:border-gold-600/50 rounded-full px-5 py-2.5 font-heading font-semibold text-sm text-gold-500 transition-all group/link"
+                  >
+                    Ver Serviço
+                    <iconify-icon
+                      icon="mdi:arrow-right"
+                      class="transform group-hover/link:translate-x-1 transition-transform"
+                    />
+                  </a>
+                  <a
+                    href="/contato"
+                    class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full px-5 py-2.5 font-heading font-semibold text-sm text-white/70 hover:text-white transition-all"
+                  >
+                    Solicitar Orçamento
+                  </a>
+                </div>
+              </div>
             </div>
-            
-            <h2 class="font-heading text-xl font-semibold text-navy mb-3">
-              {service.title}
-            </h2>
-            
-            <p class="font-body text-charcoal leading-relaxed">
-              {service.description}
-            </p>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   </section>
 
-  <section class="py-20 bg-stone-50">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="font-heading text-3xl font-semibold text-navy mb-6">
-        {t.services.ctaTitle}
-      </h2>
-      <p class="font-body text-lg text-charcoal mb-8 max-w-2xl mx-auto">
-        {t.services.ctaDescription}
-      </p>
-      <a
-        href="#contato"
-        class="inline-block bg-gold hover:bg-navy transition-colors duration-300 text-white font-body font-bold text-lg px-8 py-4 rounded-lg shadow-lg"
-      >
-        {t.buttons.requestQuote}
-      </a>
-    </div>
-  </section>
+  <CtaSection
+    title={t.services.ctaTitle}
+    description={t.services.ctaDescription}
+    variant="dark"
+  />
 </BaseLayout>

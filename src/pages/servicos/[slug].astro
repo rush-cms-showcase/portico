@@ -1,0 +1,139 @@
+---
+import BaseLayout from '@/layouts/base-layout.astro'
+import CtaSection from '@/components/sections/cta-section.astro'
+import { useTranslations } from '@/lib/i18n'
+import { getCollection, getEntryBySlug } from '@/lib/rush'
+
+export async function getStaticPaths() {
+  try {
+    const res = await getCollection('servicos')
+    return (res.data ?? []).map((s: any) => ({
+      params: { slug: s.slug },
+      props: { serviceData: s },
+    }))
+  } catch {
+    return []
+  }
+}
+
+const t = useTranslations('pt_BR')
+const { slug } = Astro.params
+let service: any = Astro.props.serviceData
+
+function renderRichText(node: any): string {
+  if (!node) return ''
+  if (typeof node === 'string') return node
+  if (Array.isArray(node)) return node.map(renderRichText).join('')
+  switch (node.type) {
+    case 'doc': return renderRichText(node.content)
+    case 'paragraph': return `<p class="font-body text-lg text-charcoal leading-relaxed mb-4">${renderRichText(node.content)}</p>`
+    case 'text': {
+      let text = node.text || ''
+      ;(node.marks || []).forEach((m: any) => {
+        if (m.type === 'bold') text = `<strong class="font-bold text-navy">${text}</strong>`
+        if (m.type === 'italic') text = `<em>${text}</em>`
+        if (m.type === 'link') text = `<a href="${m.attrs.href}" class="text-gold-600 hover:underline" target="_blank" rel="noopener noreferrer">${text}</a>`
+      })
+      return text
+    }
+    case 'heading': {
+      const l = node.attrs?.level || 2
+      const s: Record<number, string> = { 1: 'text-4xl', 2: 'text-3xl', 3: 'text-2xl', 4: 'text-xl' }
+      return `<h${l} class="${s[l] || 'text-lg'} font-heading font-bold text-navy mt-8 mb-4">${renderRichText(node.content)}</h${l}>`
+    }
+    case 'bulletList': return `<ul class="list-disc pl-6 mb-6 space-y-2 font-body text-charcoal">${renderRichText(node.content)}</ul>`
+    case 'orderedList': return `<ol class="list-decimal pl-6 mb-6 space-y-2 font-body text-charcoal">${renderRichText(node.content)}</ol>`
+    case 'listItem': return `<li class="leading-relaxed">${renderRichText(node.content)}</li>`
+    case 'blockquote': return `<blockquote class="border-l-4 border-gold-600 pl-6 italic text-charcoal/80 my-8 font-body text-lg">${renderRichText(node.content)}</blockquote>`
+    case 'horizontalRule': return '<hr class="my-8 border-stone-200" />'
+    default: return node.content ? renderRichText(node.content) : ''
+  }
+}
+
+const content = renderRichText(service?.data?.content || service?.content || '')
+const whatsapp = import.meta.env.PUBLIC_WHATSAPP
+
+const serviceSchema = JSON.stringify({
+  "@context": "https://schema.org/",
+  "@type": "Service",
+  "name": service?.title,
+  "description": service?.excerpt || t.services.description,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Pórtico Reformas"
+  }
+})
+---
+
+<BaseLayout
+  title={`${service?.title || 'Serviço'} - ${t.site.title}`}
+  description={service?.excerpt || t.services.description}
+  schema={serviceSchema}
+>
+  <section class="relative pt-40 pb-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <div class="mb-6">
+        <a href="/servicos" class="inline-flex items-center gap-2 font-body text-sm text-charcoal/50 hover:text-gold-600 transition-colors">
+          <iconify-icon icon="mdi:arrow-left" />
+          {t.buttons.backToServices}
+        </a>
+      </div>
+
+      <div class="mb-12">
+        <span class="inline-flex items-center gap-1.5 bg-gold-600/10 border border-gold-600/20 rounded-full px-3 py-1 text-xs text-gold-600 font-semibold font-body uppercase tracking-wide mb-4">
+          Serviço
+        </span>
+        <h1 class="font-heading text-5xl sm:text-6xl font-bold text-navy mb-6">
+          {service?.title}
+        </h1>
+        {service?.excerpt && (
+          <p class="font-body text-xl text-charcoal/70 leading-relaxed">
+            {service.excerpt}
+          </p>
+        )}
+      </div>
+
+      {content && (
+        <div class="prose prose-lg max-w-none mb-16" set:html={content} />
+      )}
+
+      <div class="bg-stone-50 border border-stone-200 rounded-2xl p-8 lg:p-10">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-1 h-8 bg-gold-600 rounded-full"></div>
+          <span class="font-body text-sm font-semibold text-navy/60 uppercase tracking-wide">
+            {t.services.interested} {service?.title}?
+          </span>
+        </div>
+        <h2 class="font-heading text-2xl font-bold text-navy mb-6">
+          Solicite um orçamento personalizado
+        </h2>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="/contato"
+            class="inline-flex items-center justify-center gap-2 bg-navy-900 hover:bg-gold-600 transition-colors text-white font-body font-bold px-8 py-4 rounded-lg"
+          >
+            <iconify-icon icon="mdi:email-outline" />
+            Solicitar pelo Formulário
+          </a>
+          {whatsapp && (
+            <a
+              href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(`Olá! Tenho interesse no serviço de ${service?.title}. Poderia me dar mais informações?`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20b558] transition-colors text-white font-body font-bold px-8 py-4 rounded-lg"
+            >
+              <iconify-icon icon="mdi:whatsapp" />
+              Chamar no WhatsApp
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    title="Pronto para começar sua reforma?"
+    description="Entre em contato e receba um orçamento personalizado para o seu projeto"
+    variant="dark"
+  />
+</BaseLayout>
