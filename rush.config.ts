@@ -29,7 +29,6 @@ export const rushConfig: RushSiteConfig = {
         '/servicos': 13,
         '/blog': 11,
         '/sobre-nos': 12,
-        '/metodo': 12,
     },
 
     defaults: {
