@@ -1,28 +1,49 @@
 ---
+import { getCollection, getNav } from '@/lib/rush'
+import { mapMenuItem } from '@/lib/nav'
+import { rushConfig } from '../../../rush.config'
+import { useTranslations } from '@/lib/i18n'
+
+const t = useTranslations('pt_BR')
 const currentYear = new Date().getFullYear()
 
-const footerLinks = {
-  company: [
-    { label: 'Sobre Nós', href: '/sobre' },
-    { label: 'Método 4P', href: '/metodo' },
-    { label: 'Depoimentos', href: '/#depoimentos' },
-  ],
-  services: [
-    { label: 'Reforma Residencial', href: '/servicos' },
-    { label: 'Ampliação', href: '/servicos' },
-    { label: 'Acabamento Premium', href: '/servicos' },
-    { label: 'Consultoria', href: '/servicos' },
-  ],
-  contact: [
-    { icon: 'mdi:phone', label: '(51) 99999-9999', href: 'tel:+5551999999999' },
-    { icon: 'mdi:email', label: 'contato@porticoreformas.com.br', href: 'mailto:contato@porticoreformas.com.br' },
-    { icon: 'mdi:map-marker', label: 'Porto Alegre, RS', href: '#' },
-  ],
-  social: [
-    { icon: 'mdi:instagram', label: 'Instagram', href: 'https://instagram.com/porticoreformas' },
-    { icon: 'mdi:facebook', label: 'Facebook', href: 'https://facebook.com/porticoreformas' },
-    { icon: 'mdi:whatsapp', label: 'WhatsApp', href: 'https://wa.me/5551999999999' },
-  ],
+const whatsapp = import.meta.env.PUBLIC_WHATSAPP
+const instagram = import.meta.env.PUBLIC_INSTAGRAM
+const facebook = import.meta.env.PUBLIC_FACEBOOK
+const email = import.meta.env.PUBLIC_EMAIL
+const location = import.meta.env.LOCATION || 'Porto Alegre, RS'
+
+const waHref = `https://wa.me/${whatsapp}`
+const phoneFmt = whatsapp
+  ? `+${whatsapp}`.replace(/^\+55(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3')
+  : null
+
+let services: any[] = []
+try {
+  const res = await getCollection('servicos')
+  services = res.data ?? []
+} catch {
+  services = []
+}
+
+const navId = rushConfig.locales.pt_BR.navs?.footer || rushConfig.locales.pt_BR.navs?.main || ''
+const staticLinks = [
+  { label: 'Sobre Nós', href: '/sobre-nos' },
+  { label: 'Método 4P', href: '/metodo' },
+]
+
+let companyLinks = staticLinks
+try {
+  const res = await getNav(navId)
+  const items = res.data?.items ?? []
+  if (items.length > 0) {
+    companyLinks = items.map((item: any) => {
+      const mapped = mapMenuItem(item)
+      return { label: mapped.title, href: mapped.url }
+    })
+  }
+} catch {
+  companyLinks = staticLinks
 }
 ---
 
@@ -30,16 +51,20 @@ const footerLinks = {
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       <div>
-        <img src="/logo.svg" alt="Pórtico Reformas" class="h-12 w-auto mb-4 brightness-0 invert" />
+        <img
+          src="/portico-logo.svg"
+          alt="Pórtico Reformas"
+          class="h-12 w-auto mb-4 brightness-0 invert"
+        />
         <p class="font-body text-charcoal-300 text-sm leading-relaxed">
-          Transformando espaços com inteligência e planejamento há mais de 20 anos em Porto Alegre.
+          {t.footer.description}
         </p>
       </div>
 
       <div>
         <h3 class="font-heading text-lg font-semibold mb-4">Empresa</h3>
         <ul class="space-y-2">
-          {footerLinks.company.map((link) => (
+          {companyLinks.map((link) => (
             <li>
               <a
                 href={link.href}
@@ -55,54 +80,101 @@ const footerLinks = {
       <div>
         <h3 class="font-heading text-lg font-semibold mb-4">Serviços</h3>
         <ul class="space-y-2">
-          {footerLinks.services.map((link) => (
+          {services.length > 0 ? services.map((s) => (
             <li>
               <a
-                href={link.href}
+                href={`/servicos/${s.slug}`}
                 class="font-body text-charcoal-300 hover:text-gold transition-colors duration-200 text-sm"
               >
-                {link.label}
+                {s.title}
               </a>
             </li>
-          ))}
+          )) : (
+            <li>
+              <a href="/servicos" class="font-body text-charcoal-300 hover:text-gold transition-colors duration-200 text-sm">
+                Ver Serviços
+              </a>
+            </li>
+          )}
         </ul>
       </div>
 
       <div>
         <h3 class="font-heading text-lg font-semibold mb-4">Contato</h3>
         <ul class="space-y-3">
-          {footerLinks.contact.map((item) => (
+          {phoneFmt && (
             <li>
               <a
-                href={item.href}
+                href={waHref}
+                target="_blank"
+                rel="noopener noreferrer"
                 class="font-body text-charcoal-300 hover:text-gold transition-colors duration-200 text-sm flex items-start"
               >
-                <iconify-icon icon={item.icon} class="text-xl mr-2 flex-shrink-0 mt-0.5"></iconify-icon>
-                <span>{item.label}</span>
+                <iconify-icon icon="mdi:whatsapp" class="text-xl mr-2 shrink-0 mt-0.5" />
+                <span>{phoneFmt}</span>
               </a>
             </li>
-          ))}
+          )}
+          {email && (
+            <li>
+              <a
+                href={`mailto:${email}`}
+                class="font-body text-charcoal-300 hover:text-gold transition-colors duration-200 text-sm flex items-start"
+              >
+                <iconify-icon icon="mdi:email" class="text-xl mr-2 shrink-0 mt-0.5" />
+                <span>{email}</span>
+              </a>
+            </li>
+          )}
+          <li>
+            <span class="font-body text-charcoal-300 text-sm flex items-start">
+              <iconify-icon icon="mdi:map-marker" class="text-xl mr-2 shrink-0 mt-0.5" />
+              <span>{location}</span>
+            </span>
+          </li>
         </ul>
 
         <div class="flex space-x-4 mt-6">
-          {footerLinks.social.map((social) => (
+          {instagram && (
             <a
-              href={social.href}
+              href={instagram}
               target="_blank"
               rel="noopener noreferrer"
               class="w-10 h-10 bg-charcoal-800 hover:bg-gold rounded-full flex items-center justify-center transition-colors duration-200"
-              aria-label={social.label}
+              aria-label="Instagram"
             >
-              <iconify-icon icon={social.icon} class="text-xl"></iconify-icon>
+              <iconify-icon icon="mdi:instagram" class="text-xl" />
             </a>
-          ))}
+          )}
+          {facebook && (
+            <a
+              href={facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 bg-charcoal-800 hover:bg-gold rounded-full flex items-center justify-center transition-colors duration-200"
+              aria-label="Facebook"
+            >
+              <iconify-icon icon="mdi:facebook" class="text-xl" />
+            </a>
+          )}
+          {whatsapp && (
+            <a
+              href={waHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 bg-charcoal-800 hover:bg-gold rounded-full flex items-center justify-center transition-colors duration-200"
+              aria-label="WhatsApp"
+            >
+              <iconify-icon icon="mdi:whatsapp" class="text-xl" />
+            </a>
+          )}
         </div>
       </div>
     </div>
 
     <div class="border-t border-charcoal-700 mt-8 pt-8 text-center">
       <p class="font-body text-charcoal-400 text-sm">
-        © {currentYear} Pórtico Reformas. Todos os direitos reservados.
+        © {currentYear} Pórtico Reformas. {t.footer.copyright}.
       </p>
     </div>
   </div>
