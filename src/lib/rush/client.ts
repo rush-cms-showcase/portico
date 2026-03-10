@@ -1,47 +1,45 @@
-import type { CmsEntry, NavItem } from '@/types/rush'
-import { rushConfig } from '../../../rush.config'
+const BASE_URL = import.meta.env.RUSH_API_URL
+const TOKEN = import.meta.env.RUSH_API_TOKEN
+const SLUG = import.meta.env.RUSH_SLUG
 
-const RUSH_API_URL = import.meta.env.RUSH_API_URL
-const RUSH_API_TOKEN = import.meta.env.RUSH_API_TOKEN
-
-interface FetchOptions {
-  method?: string
-  body?: unknown
-}
-
-async function rushFetch<T>(endpoint: string, options: FetchOptions = {}): Promise<T> {
-  const url = `${RUSH_API_URL}${endpoint}`
-  
+async function rushFetch<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+  const url = `${BASE_URL}/${SLUG}${endpoint}`
   const response = await fetch(url, {
-    method: options.method || 'GET',
+    ...options,
     headers: {
+      Authorization: `Bearer ${TOKEN}`,
+      Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${RUSH_API_TOKEN}`,
-      'Accept': 'application/json',
+      ...(options.headers as Record<string, string> || {}),
     },
-    body: options.body ? JSON.stringify(options.body) : undefined,
   })
-
   if (!response.ok) {
-    throw new Error(`Rush API error: ${response.status} ${response.statusText}`)
+    throw new Error(`Rush API error: ${response.status} ${response.statusText} — ${url}`)
   }
-
   return response.json()
 }
 
-export async function getEntry(routeId: number, locale: string = rushConfig.defaultLocale): Promise<CmsEntry> {
-  return rushFetch<CmsEntry>(`/entries/${routeId}?locale=${locale}`)
+export async function getCollection<T = any>(
+  collectionSlug: string,
+  params: Record<string, string | number> = {}
+): Promise<{ data: T[]; meta: { current_page: number; last_page: number; total?: number } }> {
+  const qs = new URLSearchParams(
+    Object.fromEntries(Object.entries(params).map(([k, v]) => [k, String(v)]))
+  ).toString()
+  return rushFetch(`/collections/${collectionSlug}/entries${qs ? `?${qs}` : ''}`)
 }
 
-export async function getNav(navId: string, locale: string = rushConfig.defaultLocale): Promise<NavItem[]> {
-  return rushFetch<NavItem[]>(`/navs/${navId}?locale=${locale}`)
+export async function getEntryBySlug<T = any>(
+  collectionSlug: string,
+  entrySlug: string
+): Promise<{ data: T }> {
+  return rushFetch(`/collections/${collectionSlug}/entries/${entrySlug}`)
 }
 
-export async function getEntries(routeId: number, locale: string = rushConfig.defaultLocale, page: number = 1): Promise<{ data: CmsEntry[], meta: { total: number, per_page: number, current_page: number } }> {
-  const perPage = rushConfig.defaults.perPage
-  return rushFetch(`/routes/${routeId}/entries?locale=${locale}&page=${page}&per_page=${perPage}`)
+export async function getNav(key: string): Promise<{ data: { items: any[] } }> {
+  return rushFetch(`/navigations/${key}`)
 }
 
-export async function getEntryBySlug(slug: string, locale: string = rushConfig.defaultLocale): Promise<CmsEntry> {
-  return rushFetch<CmsEntry>(`/entries/slug/${slug}?locale=${locale}`)
+export async function getForm(key: string): Promise<{ data: any }> {
+  return rushFetch(`/forms/${key}`)
 }
