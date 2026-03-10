@@ -1,0 +1,100 @@
+---
+import BaseLayout from '@/layouts/base-layout.astro'
+import PageHeader from '@/components/sections/page-header.astro'
+import CtaSection from '@/components/sections/cta-section.astro'
+import { useTranslations } from '@/lib/i18n'
+import { getCollection } from '@/lib/rush'
+
+const t = useTranslations('pt_BR')
+const pageSize = 9
+
+let blogPosts: any[] = []
+let meta = { current_page: 1, last_page: 1 }
+
+try {
+  const res = await getCollection('blog', { per_page: pageSize })
+  blogPosts = res.data ?? []
+  meta = res.meta ?? meta
+} catch {
+  blogPosts = []
+}
+
+function formatDate(dateStr: string): string {
+  if (!dateStr) return ''
+  return new Date(dateStr).toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  })
+}
+---
+
+<BaseLayout
+  title={`Blog - ${t.site.title}`}
+  description="Artigos, dicas e novidades sobre reforma residencial e construção inteligente."
+>
+  <PageHeader
+    badge="Blog"
+    title="Artigos & Dicas"
+    description="Conteúdo sobre reforma residencial, construção inteligente e planejamento de espaços."
+  />
+
+  <section class="py-20 bg-stone-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+      {blogPosts.length === 0 ? (
+        <div class="text-center py-20">
+          <iconify-icon icon="mdi:newspaper-variant-outline" class="text-6xl text-charcoal/20 mb-4" />
+          <p class="font-body text-charcoal/50 text-lg">Nenhum post publicado ainda.</p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogPosts.map((post) => (
+            <article class="group bg-white rounded-2xl overflow-hidden border border-stone-200 hover:border-gold-600/30 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              {post.featured_image?.url && (
+                <div class="aspect-video overflow-hidden bg-stone-100">
+                  <img
+                    src={post.featured_image.url}
+                    alt={post.featured_image.alt || post.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              <div class="p-6">
+                {post.published_at && (
+                  <time class="font-body text-xs text-charcoal/40 uppercase tracking-wide">
+                    {formatDate(post.published_at)}
+                  </time>
+                )}
+                <h2 class="font-heading text-xl font-bold text-navy mt-2 mb-3 group-hover:text-gold-600 transition-colors line-clamp-2">
+                  {post.title}
+                </h2>
+                {post.excerpt && (
+                  <p class="font-body text-sm text-charcoal/70 leading-relaxed mb-4 line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                )}
+                <a
+                  href={`/blog/${post.slug}`}
+                  class="inline-flex items-center gap-2 font-body text-sm font-semibold text-gold-600 hover:text-navy transition-colors group/link"
+                >
+                  Ler mais
+                  <iconify-icon
+                    icon="mdi:arrow-right"
+                    class="transform group-hover/link:translate-x-1 transition-transform"
+                  />
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CtaSection
+    title="Pronto para transformar seu espaço?"
+    description="Entre em contato e vamos começar o planejamento da sua reforma"
+    variant="dark"
+  />
+</BaseLayout>
