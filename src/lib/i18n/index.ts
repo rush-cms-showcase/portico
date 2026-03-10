@@ -2,7 +2,7 @@ export const translations = {
 	pt_BR: {
 		site: {
 			title: 'Pórtico Reformas',
-			description: 'Reforma residencial em Porto Alegre com prazo e orçamento garantidos',
+			description: 'Reforma residencial em Porto Alegre e região com prazo e orçamento garantidos',
 		},
 		nav: {
 			home: 'Home',
@@ -22,7 +22,7 @@ export const translations = {
 			hero: {
 				headline: 'Antes de reformar, a gente entende como você vive',
 				subheadline:
-					'A sua reforma em Porto Alegre com prazo e orçamento garantidos em contrato',
+					'A sua reforma em Porto Alegre e região com prazo e orçamento garantidos em contrato',
 			},
 		},
 		services: {
@@ -51,7 +51,7 @@ export const translations = {
 			company: 'Empresa',
 			copyright: 'Todos os direitos reservados',
 			description:
-				'Transformando espaços com inteligência e planejamento há mais de 20 anos em Porto Alegre.',
+				'Transformando espaços com inteligência e planejamento há mais de 20 anos em Porto Alegre e região.',
 		},
 	},
 }
