@@ -63,6 +63,40 @@ function renderRichText(node: any): string {
         if (!videoId) return ''
         return `<div class="my-8 rounded-2xl overflow-hidden aspect-video bg-stone-100"><iframe src="https://www.youtube.com/embed/${videoId}" title="${caption || ''}" class="w-full h-full" frameborder="0" allowfullscreen></iframe></div>${caption ? `<p class="text-center text-sm text-charcoal/50 font-body mt-2">${caption}</p>` : ''}`
       }
+      if (node.attrs?.id === 'custom_metodo') {
+        const { abreviation, title, subtitle, text, tags } = node.attrs.config || {}
+        const parsedTags = typeof tags === 'string' ? tags.split(',').map((t) => t.trim()).filter(Boolean) : []
+        
+        return `
+          <div class="group relative my-8">
+            <div class="relative bg-stone-50 border-l-4 border-gold-600 p-8 lg:p-10 hover:border-gold-500 hover:shadow-lg transition-all duration-300">
+              <div class="flex items-start gap-6">
+                <div class="shrink-0">
+                  <div class="relative w-16 h-16">
+                    <div class="absolute inset-0 bg-gold-600/10 transform rotate-45"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <span class="font-heading text-2xl font-black text-gold-600 relative z-10">${abreviation || ''}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h2 class="font-heading text-2xl lg:text-3xl font-bold text-navy mb-1 group-hover:text-gold-600 transition-colors">${title || ''}</h2>
+                  <p class="font-body text-sm text-gold-600 font-semibold mb-4 uppercase tracking-wide">${subtitle || ''}</p>
+                  <p class="font-body text-base text-charcoal leading-relaxed mb-6 m-0">${text || ''}</p>
+                  <div class="flex flex-wrap gap-2">
+                    ${parsedTags.map((t: string) => `
+                      <span class="inline-flex items-center gap-1.5 bg-navy-900/5 border border-navy-900/10 px-3 py-1 rounded-sm text-xs text-charcoal font-medium">
+                        <iconify-icon icon="mdi:check" class="text-gold-600"></iconify-icon>
+                        ${t}
+                      </span>
+                    `).join('')}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      }
       return ''
     case 'horizontalRule':
       return '<hr class="my-10 border-stone-200" />'
