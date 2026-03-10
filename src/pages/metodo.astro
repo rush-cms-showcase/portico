@@ -1,169 +1,150 @@
 ---
 import BaseLayout from '@/layouts/base-layout.astro'
+import PageHeader from '@/components/sections/page-header.astro'
+import CtaSection from '@/components/sections/cta-section.astro'
 import { useTranslations } from '@/lib/i18n'
+import { getEntryBySlug } from '@/lib/rush'
+import { methods as staticMethods } from '@/lib/data/methods'
 
 const t = useTranslations('pt_BR')
+
+interface MetodoCard {
+  abreviation: string
+  title: string
+  subtitle: string
+  text: string
+  tags: string
+}
+
+function parseTagsToFeatures(tags: string): string[] {
+  return tags.split(',').map((t: string) => t.trim()).filter(Boolean)
+}
+
+let cards: MetodoCard[] = []
+let useFallback = false
+
+try {
+  const res = await getEntryBySlug('pages', 'metodologia')
+  const entry = (res as any).data ?? res
+  const docContent = entry.data?.content?.content ?? []
+  cards = docContent
+    .filter((node: any) => node.type === 'customBlock' && node.attrs?.id === 'custom_metodo')
+    .map((node: any) => node.attrs.config as MetodoCard)
+  if (cards.length === 0) useFallback = true
+} catch {
+  useFallback = true
+}
 ---
 
 <BaseLayout
   title={`Método Pórtico 4P - ${t.site.title}`}
   description="Conheça o Método Pórtico 4P: Planejamento Cirúrgico, Previsibilidade Total, Proteção Contratual e Prestação de Contas. Inteligência aplicada à construção."
 >
-  <article class="py-20">
+  <PageHeader
+    badge="Metodologia Exclusiva"
+    title="Método Pórtico 4P™"
+    description="O único sistema de reforma que garante prazo, preço e qualidade em contrato."
+  />
+
+  <section class="py-24 bg-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-      <div class="text-center mb-16">
-        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-semibold text-navy mb-6">
-          Método Pórtico 4P™
-        </h1>
-        <p class="font-body text-xl text-charcoal max-w-3xl mx-auto">
-          Inteligência Aplicada à Construção
+      <div class="space-y-8">
+        {useFallback ? (
+          staticMethods.map((method) => (
+            <div class="group relative">
+              <div class="relative bg-stone-50 border-l-4 border-gold-600 p-8 lg:p-10 hover:border-gold-500 hover:shadow-lg transition-all duration-300">
+                <div class="flex items-start gap-6">
+                  <div class="shrink-0">
+                    <div class="relative w-16 h-16">
+                      <div class="absolute inset-0 bg-gold-600/10 transform rotate-45" />
+                      <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="font-heading text-2xl font-black text-gold-600 relative z-10">
+                          {method.letter}{method.number}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h2 class="font-heading text-2xl lg:text-3xl font-bold text-navy mb-1 group-hover:text-gold-600 transition-colors">
+                      {method.title}
+                    </h2>
+                    <p class="font-body text-sm text-gold-600 font-semibold mb-4 uppercase tracking-wide">
+                      {method.subtitle}
+                    </p>
+                    <p class="font-body text-base text-charcoal leading-relaxed mb-6">
+                      {method.description}
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                      {method.features.map((f) => (
+                        <span class="inline-flex items-center gap-1.5 bg-navy-900/5 border border-navy-900/10 px-3 py-1 rounded-sm text-xs text-charcoal font-medium">
+                          <iconify-icon icon="mdi:check" class="text-gold-600" />
+                          {f}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          cards.map((card) => (
+            <div class="group relative">
+              <div class="relative bg-stone-50 border-l-4 border-gold-600 p-8 lg:p-10 hover:border-gold-500 hover:shadow-lg transition-all duration-300">
+                <div class="flex items-start gap-6">
+                  <div class="shrink-0">
+                    <div class="relative w-16 h-16">
+                      <div class="absolute inset-0 bg-gold-600/10 transform rotate-45" />
+                      <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="font-heading text-2xl font-black text-gold-600 relative z-10">
+                          {card.abreviation}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h2 class="font-heading text-2xl lg:text-3xl font-bold text-navy mb-1 group-hover:text-gold-600 transition-colors">
+                      {card.title}
+                    </h2>
+                    <p class="font-body text-sm text-gold-600 font-semibold mb-4 uppercase tracking-wide">
+                      {card.subtitle}
+                    </p>
+                    <p class="font-body text-base text-charcoal leading-relaxed mb-6">
+                      {card.text}
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                      {parseTagsToFeatures(card.tags).map((f) => (
+                        <span class="inline-flex items-center gap-1.5 bg-navy-900/5 border border-navy-900/10 px-3 py-1 rounded-sm text-xs text-charcoal font-medium">
+                          <iconify-icon icon="mdi:check" class="text-gold-600" />
+                          {f}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+
+      <div class="relative mt-16 text-center py-12 px-8 border border-stone-200 rounded-2xl">
+        <div class="flex items-center justify-center gap-4 mb-6">
+          <div class="h-px w-16 bg-gold-600"></div>
+          <iconify-icon icon="mdi:seal-variant" class="text-gold-600 text-3xl"></iconify-icon>
+          <div class="h-px w-16 bg-gold-600"></div>
+        </div>
+        <p class="font-heading text-2xl lg:text-3xl text-navy font-light italic leading-relaxed">
+          "Não fazemos reforma.<br />
+          Fazemos <span class="font-bold not-italic text-gold-600">transformação inteligente</span> de espaços."
         </p>
       </div>
-
-      <div class="space-y-16">
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-          <div class="md:w-1/4 flex-shrink-0">
-            <div class="w-20 h-20 bg-gold text-white rounded-full flex items-center justify-center font-heading text-3xl font-bold shadow-lg">
-              1
-            </div>
-          </div>
-          <div class="md:w-3/4">
-            <h2 class="font-heading text-3xl font-semibold text-navy mb-4">
-              Planejamento Cirúrgico
-            </h2>
-            <p class="font-body text-lg text-charcoal leading-relaxed mb-4">
-              Diagnóstico funcional da sua rotina ANTES de fazer o orçamento.
-            </p>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
-                <span class="font-body text-charcoal">Entrevista detalhada: como você usa cada cômodo?</span>
-              </li>
-              <li class="flex items-start">
-                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
-                <span class="font-body text-charcoal">Mapeamento de fluxos (ex: rotina matinal, preparo de refeições)</span>
-              </li>
-              <li class="flex items-start">
-                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
-                <span class="font-body text-charcoal">Design baseado em comportamento, não só estética</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-          <div class="md:w-1/4 flex-shrink-0">
-            <div class="w-20 h-20 bg-gold text-white rounded-full flex items-center justify-center font-heading text-3xl font-bold shadow-lg">
-              2
-            </div>
-          </div>
-          <div class="md:w-3/4">
-            <h2 class="font-heading text-3xl font-semibold text-navy mb-4">
-              Previsibilidade Total
-            </h2>
-            <p class="font-body text-lg text-charcoal leading-relaxed mb-4">
-              Cronograma realista com datas fixas de entrega.
-            </p>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
-                <span class="font-body text-charcoal">Planejamento reverso: do fim para o começo</span>
-              </li>
-              <li class="flex items-start">
-                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
-                <span class="font-body text-charcoal">Margem de segurança, não otimismo ingênuo</span>
-              </li>
-              <li class="flex items-start">
-                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
-                <span class="font-body text-charcoal">Atualizações semanais de status</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-          <div class="md:w-1/4 flex-shrink-0">
-            <div class="w-20 h-20 bg-gold text-white rounded-full flex items-center justify-center font-heading text-3xl font-bold shadow-lg">
-              3
-            </div>
-          </div>
-          <div class="md:w-3/4">
-            <h2 class="font-heading text-3xl font-semibold text-navy mb-4">
-              Proteção Contratual
-            </h2>
-            <p class="font-body text-lg text-charcoal leading-relaxed mb-4">
-              Orçamento travado e multa por atraso — o risco é nosso.
-            </p>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
-                <span class="font-body text-charcoal">Contrato detalhado com todas as etapas</span>
-              </li>
-              <li class="flex items-start">
-                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
-                <span class="font-body text-charcoal">Cláusula de penalidade por não-cumprimento</span>
-              </li>
-              <li class="flex items-start">
-                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
-                <span class="font-body text-charcoal">Seguro do projeto incluído</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-          <div class="md:w-1/4 flex-shrink-0">
-            <div class="w-20 h-20 bg-gold text-white rounded-full flex items-center justify-center font-heading text-3xl font-bold shadow-lg">
-              4
-            </div>
-          </div>
-          <div class="md:w-3/4">
-            <h2 class="font-heading text-3xl font-semibold text-navy mb-4">
-              Prestação de Contas
-            </h2>
-            <p class="font-body text-lg text-charcoal leading-relaxed mb-4">
-              Relatórios semanais detalhados no seu WhatsApp.
-            </p>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
-                <span class="font-body text-charcoal">Fotos de progresso toda sexta-feira</span>
-              </li>
-              <li class="flex items-start">
-                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
-                <span class="font-body text-charcoal">Checklist de etapas concluídas</span>
-              </li>
-              <li class="flex items-start">
-                <iconify-icon icon="mdi:check-circle" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-0.5"></iconify-icon>
-                <span class="font-body text-charcoal">Próximos passos da semana seguinte</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-16 bg-stone-50 p-8 rounded-lg text-center">
-        <p class="font-body text-xl text-charcoal italic">
-          "Não fazemos reforma. Fazemos transformação inteligente de espaços."
-        </p>
-      </div>
-    </div>
-  </article>
-
-  <section class="py-20 bg-navy text-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="font-heading text-3xl font-semibold mb-6">
-        Pronto para aplicar o Método 4P no seu projeto?
-      </h2>
-      <p class="font-body text-lg mb-8 max-w-2xl mx-auto text-white/90">
-        Vamos começar com um diagnóstico funcional gratuito
-      </p>
-      <a
-        href="#contato"
-        class="inline-block bg-gold hover:bg-white hover:text-navy transition-colors duration-300 text-white font-body font-bold text-lg px-8 py-4 rounded-lg shadow-lg"
-      >
-        {t.buttons.requestQuote}
-      </a>
     </div>
   </section>
+
+  <CtaSection
+    title="Pronto para aplicar o Método 4P no seu projeto?"
+    description="Vamos começar com um diagnóstico funcional gratuito"
+    variant="dark"
+  />
 </BaseLayout>

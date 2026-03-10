@@ -1,0 +1,116 @@
+---
+import BaseLayout from '@/layouts/base-layout.astro'
+import CtaSection from '@/components/sections/cta-section.astro'
+import { useTranslations } from '@/lib/i18n'
+import { getEntryBySlug } from '@/lib/rush'
+
+const t = useTranslations('pt_BR')
+
+function renderRichText(node: any): string {
+  if (!node) return ''
+  if (typeof node === 'string') return node
+  if (Array.isArray(node)) return node.map(renderRichText).join('')
+
+  switch (node.type) {
+    case 'doc':
+      return renderRichText(node.content)
+    case 'paragraph':
+      return `<p class="font-body text-lg text-charcoal leading-relaxed mb-4">${renderRichText(node.content)}</p>`
+    case 'text': {
+      let text = node.text || ''
+      if (node.marks) {
+        node.marks.forEach((m: any) => {
+          if (m.type === 'bold') text = `<strong class="font-bold text-navy">${text}</strong>`
+          if (m.type === 'italic') text = `<em class="italic">${text}</em>`
+          if (m.type === 'link') text = `<a href="${m.attrs.href}" class="text-gold-600 hover:underline" target="_blank" rel="noopener noreferrer">${text}</a>`
+          if (m.type === 'underline') text = `<u>${text}</u>`
+        })
+      }
+      return text
+    }
+    case 'heading': {
+      const level = node.attrs?.level || 2
+      const sizes: Record<number, string> = { 1: 'text-4xl', 2: 'text-3xl', 3: 'text-2xl', 4: 'text-xl' }
+      return `<h${level} class="${sizes[level] || 'text-lg'} font-heading font-semibold text-navy mt-10 mb-4">${renderRichText(node.content)}</h${level}>`
+    }
+    case 'bulletList':
+      return `<ul class="list-disc pl-6 mb-6 space-y-2 font-body text-charcoal">${renderRichText(node.content)}</ul>`
+    case 'orderedList':
+      return `<ol class="list-decimal pl-6 mb-6 space-y-2 font-body text-charcoal">${renderRichText(node.content)}</ol>`
+    case 'listItem':
+      return `<li class="leading-relaxed">${renderRichText(node.content)}</li>`
+    case 'blockquote':
+      return `<blockquote class="border-l-4 border-gold-600 pl-6 italic text-charcoal/80 my-8 font-body text-lg">${renderRichText(node.content)}</blockquote>`
+    case 'customBlock':
+      if (node.attrs?.id === 'youtube_embed') {
+        const { url, caption } = node.attrs.config || {}
+        const videoId = url?.match(/(?:v=|youtu\.be\/)([^&?]+)/)?.[1]
+        if (!videoId) return ''
+        return `<div class="my-8 rounded-2xl overflow-hidden aspect-video bg-stone-100"><iframe src="https://www.youtube.com/embed/${videoId}" title="${caption || ''}" class="w-full h-full" frameborder="0" allowfullscreen></iframe></div>${caption ? `<p class="text-center text-sm text-charcoal/50 font-body mt-2">${caption}</p>` : ''}`
+      }
+      return ''
+    case 'horizontalRule':
+      return '<hr class="my-10 border-stone-200" />'
+    default:
+      return node.content ? renderRichText(node.content) : ''
+  }
+}
+
+let content = ''
+let entryTitle = 'Sobre Nós'
+let fetchFailed = false
+
+try {
+  const res = await getEntryBySlug('pages', 'sobre-nos')
+  const entry = (res as any).data ?? res
+  entryTitle = entry.title || 'Sobre Nós'
+  content = renderRichText(entry.data?.content || entry.content || '')
+} catch {
+  fetchFailed = true
+}
+---
+
+<BaseLayout
+  title={`${entryTitle} - ${t.site.title}`}
+  description="Conheça a história da Pórtico Reformas, nossa missão de transformar espaços com inteligência e planejamento em Porto Alegre."
+>
+  <section class="relative py-32 sm:py-40 bg-white overflow-hidden">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <div class="inline-block mb-6">
+            <div class="flex items-center gap-3 bg-navy-900/5 border border-navy-900/10 px-4 py-2 rounded-sm">
+              <div class="w-1 h-8 bg-gold-600"></div>
+              <span class="font-body text-sm text-navy-900 font-semibold tracking-widest uppercase">Nossa História</span>
+            </div>
+          </div>
+          <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold text-navy mb-8">
+            {entryTitle}
+          </h1>
+        </div>
+
+        {fetchFailed ? (
+          <div class="prose prose-lg max-w-none">
+            <div class="bg-stone-50 border-l-4 border-gold-600 p-8 lg:p-10 rounded-r-xl mb-12">
+              <h2 class="font-heading text-3xl font-semibold text-navy mt-0 mb-4">Nossa Jornada</h2>
+              <p class="font-body text-lg text-charcoal leading-relaxed mb-4">
+                Fundada há mais de 20 anos por Júlio, a Pórtico nasceu de uma frustração: ver reformas que começavam com entusiasmo e terminavam em caos, estresse e orçamentos estourados.
+              </p>
+              <p class="font-body text-lg text-charcoal leading-relaxed m-0">
+                Desde então, desenvolvemos o <a href="/metodo" class="text-gold-600 font-bold hover:underline">Método Pórtico 4P™</a> — um sistema blindado por contrato que transforma reformas caóticas em projetos previsíveis.
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div class="prose prose-lg max-w-none" set:html={content} />
+        )}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    title="Quer fazer parte da nossa história?"
+    description="Entre em contato e vamos começar a transformação do seu espaço"
+    variant="dark"
+  />
+</BaseLayout>
