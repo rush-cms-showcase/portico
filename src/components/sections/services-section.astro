@@ -1,80 +1,129 @@
 ---
+import { getCollection } from '@/lib/rush'
+import { services as staticServices } from '@/lib/data/services'
+
 interface Props {
-  title?: string
+	title?: string
+	showHeader?: boolean
 }
 
-const {
-  title = 'Nossos Serviços',
-} = Astro.props
+const { title = 'Nossos Serviços', showHeader = true } = Astro.props
 
-const services = [
-  {
-    icon: 'mdi:home-city',
-    title: 'Reforma Residencial Completa',
-    description: 'Transformação total do seu imóvel com planejamento funcional e entrega garantida.',
-  },
-  {
-    icon: 'mdi:floor-plan',
-    title: 'Ampliação e Redistribuição',
-    description: 'Otimização de espaços e criação de novos ambientes pensados para sua rotina.',
-  },
-  {
-    icon: 'mdi:palette',
-    title: 'Acabamento Premium',
-    description: 'Revestimentos, pisos e acabamentos de alta qualidade com execução impecável.',
-  },
-  {
-    icon: 'mdi:lightbulb-on',
-    title: 'Consultoria de Projeto',
-    description: 'Diagnóstico funcional e planejamento inteligente antes de qualquer obra.',
-  },
-]
+const whatsapp = import.meta.env.PUBLIC_WHATSAPP
+
+let services: any[] = []
+let isDynamic = false
+
+try {
+	const res = await getCollection('servicos')
+	if (res.data && res.data.length > 0) {
+		services = res.data
+		isDynamic = true
+	}
+} catch {
+}
+
+if (!isDynamic) {
+	services = staticServices.map((s) => ({
+		title: s.title,
+		excerpt: s.description,
+		slug: s.title.toLowerCase().replace(/\s+/g, '-'),
+		data: { features: s.features },
+		popular: s.popular,
+		badge: s.badge,
+	}))
+}
 ---
 
-<section class="py-28 bg-stone-50">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-navy mb-4">
-        {title}
-      </h2>
-      <p class="font-body text-lg text-charcoal max-w-3xl mx-auto">
-        Soluções completas para transformar seu imóvel em Porto Alegre
-      </p>
-    </div>
+<section class="py-24 sm:py-32 lg:py-40 bg-charcoal-900 text-white relative overflow-hidden">
+	<div
+		class="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(201,169,97,0.06),transparent_50%)]"
+	>
+	</div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto">
-      {services.map((service, index) => (
-        <div class={`group bg-white rounded-2xl p-12 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-stone-100 hover:border-navy-200 relative overflow-hidden animate-fade-in-up delay-${index * 100}`}>
-          <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
-            <iconify-icon icon={service.icon} class="text-9xl text-navy"></iconify-icon>
-          </div>
-          
-          <div class="relative z-10">
-            <div class="w-16 h-16 bg-navy-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-navy group-hover:rotate-6 transition-all duration-500">
-              <iconify-icon icon={service.icon} class="text-4xl text-navy group-hover:text-white transition-colors duration-500"></iconify-icon>
-            </div>
-            
-            <h3 class="font-heading text-xl font-bold text-navy-900 mb-4 group-hover:text-navy transition-colors duration-300">
-              {service.title}
-            </h3>
-            
-            <p class="font-body text-charcoal text-base leading-relaxed mb-6">
-              {service.description}
-            </p>
-  
-            <a href="/servicos" class="inline-flex items-center font-heading font-semibold text-sm text-navy hover:text-gold transition-colors group/link">
-              Saiba mais
-              <iconify-icon icon="mdi:arrow-right" class="ml-2 transform group-hover/link:translate-x-1 transition-transform"></iconify-icon>
-            </a>
-          </div>
-        </div>
-      ))}
-    </div>
+	<div class="container relative mx-auto px-4 sm:px-6 lg:px-8">
+		{showHeader && (
+			<div class="text-center mb-16 sm:mb-20">
+				<div
+					class="inline-flex items-center gap-2 bg-gold-600/10 border border-gold-600/20 rounded-full px-4 py-2 mb-6"
+				>
+					<span class="font-body text-sm text-gold-500 font-semibold tracking-wide uppercase"
+						>Soluções Completas</span
+					>
+				</div>
 
-    <div class="text-center mt-12">
-      <a href="/servicos" class="inline-block bg-navy hover:bg-navy-700 transition-all duration-300 text-white font-heading font-bold text-lg px-10 py-4 rounded-full shadow-xl hover:shadow-2xl hover:-translate-y-1">
-        Ver Todos os Serviços
-      </a>
-    </div>
-  </div>
+				<h2
+					class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
+				>
+					{title}
+				</h2>
+			</div>
+		)}
+
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-6xl mx-auto mb-12">
+			{
+				services.map((service) => (
+					<div
+						class={`group relative bg-linear-to-br from-charcoal-800 to-charcoal-900 border ${service.popular ? 'border-gold-600/50 shadow-2xl shadow-gold-600/10' : 'border-charcoal-700'} hover:border-gold-600/50 rounded-2xl p-8 lg:p-10 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-600/10 hover:-translate-y-1`}
+					>
+						{service.popular && (
+							<div class="absolute -top-3 left-1/2 -translate-x-1/2">
+								<div class="bg-linear-to-r from-gold-600 to-gold-700 text-white text-xs font-bold px-4 py-1.5 rounded-md uppercase shadow-lg shadow-gold-600/30 flex items-center gap-1">
+									{service.badge || 'Mais Procurado'}
+								</div>
+							</div>
+						)}
+
+						<div class="relative z-10">
+							<h3 class="font-heading text-2xl lg:text-3xl font-bold text-white mb-3 group-hover:text-gold-500 transition-colors">
+								{service.title}
+							</h3>
+
+							<p class="font-body text-base text-charcoal-200 leading-relaxed mb-6">
+								{service.excerpt || ''}
+							</p>
+
+							<div class="flex flex-wrap gap-3">
+								{isDynamic ? (
+									<a
+										href={`/servicos/${service.slug}`}
+										class="inline-flex items-center gap-2 bg-gold-600/10 hover:bg-gold-600/20 border border-gold-600/30 hover:border-gold-600/50 rounded-full px-5 py-2.5 font-heading font-semibold text-sm text-gold-500 transition-all group/link"
+									>
+										Saiba Mais
+										<iconify-icon
+											icon="mdi:arrow-right"
+											class="transform group-hover/link:translate-x-1 transition-transform"
+										/>
+									</a>
+								) : (
+									<a
+										href="/servicos"
+										class="inline-flex items-center gap-2 bg-gold-600/10 hover:bg-gold-600/20 border border-gold-600/30 hover:border-gold-600/50 rounded-full px-5 py-2.5 font-heading font-semibold text-sm text-gold-500 transition-all group/link"
+									>
+										Saiba Mais
+										<iconify-icon
+											icon="mdi:arrow-right"
+											class="transform group-hover/link:translate-x-1 transition-transform"
+										/>
+									</a>
+								)}
+								{whatsapp && (
+									<a
+										href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(`Olá! Tenho interesse no serviço de ${service.title}. Poderia me dar mais informações?`)}`}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="inline-flex items-center gap-2 bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/30 hover:border-[#25D366]/50 rounded-full px-5 py-2.5 font-heading font-semibold text-sm text-[#25D366] transition-all"
+									>
+										<iconify-icon icon="mdi:whatsapp" class="text-base" />
+										Solicitar Orçamento
+									</a>
+								)}
+							</div>
+						</div>
+					</div>
+				))
+			}
+		</div>
+
+	</div>
 </section>

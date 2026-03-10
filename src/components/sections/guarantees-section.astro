@@ -1,76 +1,155 @@
 ---
 interface Props {
-  title?: string
+	title?: string
 }
 
-const {
-  title = 'Garantias Institucionais',
-} = Astro.props
+const { title = 'Garantias Institucionais' } = Astro.props
 
 const guarantees = [
-  {
-    icon: 'mdi:calendar-check',
-    title: 'Prazo Garantido',
-    description: 'Entregamos na data combinada ou pagamos multa contratual. Sem desculpas, sem "imprevistos".',
-    badge: 'Multa por atraso',
-  },
-  {
-    icon: 'mdi:lock',
-    title: 'Orçamento Travado',
-    description: 'Preço do contrato é o preço final. Sem surpresas. Aumento de material? Problema nosso, não seu.',
-    badge: 'Preço fixo',
-  },
-  {
-    icon: 'mdi:home-heart',
-    title: 'Projeto Organizado',
-    description: 'Respeito à sua casa e vizinhos. Limpeza diária obrigatória. Horários respeitados. Aviso prévio de barulho.',
-    badge: 'Respeito total',
-  },
-  {
-    icon: 'mdi:shield',
-    title: 'Suporte Pós-Obra',
-    description: 'Garantia estrutural de 2 anos. Não sumimos após entregar. Suporte técnico incluído no contrato.',
-    badge: '2 anos',
-  },
+	{
+		icon: 'mdi:calendar-check',
+		title: 'Prazo Garantido',
+		description:
+			'Entregamos na data combinada ou pagamos multa contratual. Sem desculpas, sem "imprevistos".',
+		badge: 'Multa por atraso',
+		stat: '100%',
+		statLabel: 'No prazo',
+	},
+	{
+		icon: 'mdi:lock',
+		title: 'Orçamento Travado',
+		description:
+			'Preço do contrato é o preço final. Sem surpresas. Aumento de material? Problema nosso, não seu.',
+		badge: 'Preço fixo',
+		stat: '0',
+		statLabel: 'Adicionais',
+	},
+	{
+		icon: 'mdi:home-heart',
+		title: 'Projeto Organizado',
+		description:
+			'Respeito à sua casa e vizinhos. Limpeza diária obrigatória. Horários respeitados. Aviso prévio de barulho.',
+		badge: 'Respeito total',
+		stat: '5.0',
+		statLabel: 'Satisfação',
+	},
+	{
+		icon: 'mdi:shield-check',
+		title: 'Suporte Pós-Obra',
+		description:
+			'Garantia estrutural de 2 anos. Não sumimos após entregar. Suporte técnico incluído no contrato.',
+		badge: '2 anos',
+		stat: '24/7',
+		statLabel: 'Suporte',
+	},
 ]
 ---
 
-<section class="py-20 bg-navy text-white">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold mb-4">
-        {title}
-      </h2>
-      <p class="font-body text-lg text-white/90 max-w-3xl mx-auto">
-        Promessas não negociáveis que aparecem em TODAS as comunicações
-      </p>
-    </div>
+<section class="py-24 sm:py-32 lg:py-40 bg-navy-600 text-white relative overflow-hidden">
+	<div
+		class="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(201,169,97,0.08),transparent_60%)]"
+	>
+	</div>
+	<div
+		class="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(201,169,97,0.06),transparent_60%)]"
+	>
+	</div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-      {guarantees.map((guarantee) => (
-        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 hover:bg-white/20 transition-all duration-300">
-          <div class="flex justify-between items-start mb-4">
-            <iconify-icon icon={guarantee.icon} class="text-5xl text-gold"></iconify-icon>
-            <span class="bg-gold text-white text-xs font-bold px-3 py-1 rounded-full">
-              {guarantee.badge}
-            </span>
-          </div>
-          
-          <h3 class="font-heading text-xl font-semibold mb-3">
-            {guarantee.title}
-          </h3>
-          
-          <p class="font-body text-white/80 text-sm leading-relaxed">
-            {guarantee.description}
-          </p>
-        </div>
-      ))}
-    </div>
+	<div class="container relative mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="text-center mb-16 sm:mb-20">
+			<div
+				class="inline-flex items-center gap-2 bg-gold-600/20 border border-gold-600/30 rounded-full px-5 py-2 mb-6"
+			>
+				<iconify-icon icon="mdi:shield-star" class="text-gold-500 text-xl"></iconify-icon>
+				<span class="font-body text-sm text-gold-400 font-semibold tracking-wide uppercase"
+					>Proteção Contratual</span
+				>
+			</div>
 
-    <div class="text-center mt-12">
-      <p class="font-body text-lg italic text-white/90">
-        Essas garantias são a base da nossa confiança
-      </p>
-    </div>
-  </div>
+			<h2
+				class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
+			>
+				{title}
+			</h2>
+			<p class="font-body text-xl text-navy-100 max-w-3xl mx-auto leading-relaxed">
+				Promessas não negociáveis que aparecem em <span class="text-gold-500 font-semibold"
+					>TODAS</span
+				> as comunicações
+			</p>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-6xl mx-auto mb-16">
+			{
+				guarantees.map((guarantee, index) => (
+					<div
+						class="group relative bg-linear-to-br from-navy-700 to-navy-800 border-2 border-navy-500 hover:border-gold-600/50 rounded-2xl p-8 lg:p-10 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-600/20 hover:-translate-y-1"
+						style={`animation-delay: ${index * 100}ms`}
+					>
+						<div class="flex items-start justify-between mb-6">
+							<div class="w-16 h-16 bg-gold-600/10 border border-gold-600/30 rounded-2xl flex items-center justify-center group-hover:bg-gold-600/20 group-hover:rotate-6 transition-all duration-500">
+								<iconify-icon icon={guarantee.icon} class="text-4xl text-gold-500" />
+							</div>
+							<span class="bg-gold-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
+								{guarantee.badge}
+							</span>
+						</div>
+
+						<h3 class="font-heading text-2xl lg:text-3xl font-bold text-white mb-4 group-hover:text-gold-500 transition-colors">
+							{guarantee.title}
+						</h3>
+
+						<p class="font-body text-base text-navy-100 leading-relaxed mb-6">
+							{guarantee.description}
+						</p>
+
+						<div class="flex items-end gap-2 pt-4 border-t border-navy-600">
+							<p class="font-heading text-4xl font-bold text-gold-500">{guarantee.stat}</p>
+							<p class="font-body text-sm text-navy-200 mb-1">{guarantee.statLabel}</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+
+		<div class="max-w-4xl mx-auto">
+			<div class="bg-linear-to-br from-gold-600/20 to-transparent border-2 border-gold-600/30 rounded-2xl p-10 text-center backdrop-blur-sm">
+				<div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-6">
+					<div class="flex items-center gap-3">
+						<div class="w-14 h-14 bg-gold-600/20 border border-gold-600/40 rounded-full flex items-center justify-center">
+							<iconify-icon icon="mdi:trophy-award" class="text-3xl text-gold-500"
+							></iconify-icon>
+						</div>
+						<div class="text-left">
+							<p class="font-heading text-3xl font-bold text-white">150+</p>
+							<p class="font-body text-sm text-navy-200">Obras entregues</p>
+						</div>
+					</div>
+
+					<div class="h-12 w-px bg-gold-600/30 hidden sm:block"></div>
+
+					<div class="flex items-center gap-3">
+						<div class="w-14 h-14 bg-gold-600/20 border border-gold-600/40 rounded-full flex items-center justify-center">
+							<iconify-icon icon="mdi:check-decagram" class="text-3xl text-gold-500"
+							></iconify-icon>
+						</div>
+						<div class="text-left">
+							<p class="font-heading text-3xl font-bold text-white">100%</p>
+							<p class="font-body text-sm text-navy-200">No prazo contratado</p>
+						</div>
+					</div>
+				</div>
+
+				<p class="font-heading text-xl lg:text-2xl text-white italic leading-relaxed">
+					"Essas garantias são a base da nossa <span class="text-gold-500 not-italic font-bold"
+						>confiança mútua</span
+					>"
+				</p>
+
+				<div class="flex items-center justify-center gap-2 text-navy-200 text-sm mt-4">
+					<iconify-icon icon="mdi:seal-variant" class="text-gold-500 text-lg"></iconify-icon>
+					<span>Certificado de Garantia emitido em toda obra</span>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>

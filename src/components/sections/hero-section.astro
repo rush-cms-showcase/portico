@@ -1,98 +1,109 @@
 ---
-import Button from '../atoms/button.astro'
-import Heading from '../atoms/heading.astro'
-
 interface Props {
-  headline?: string
-  subheadline?: string
+	headline?: string
+	subheadline?: string
 }
 
 const {
-  headline = 'Transformamos espaços. Criamos legados.',
-  subheadline = 'Reformas residenciais de alto padrão em Porto Alegre com design autoral e execução impecável',
+	headline = 'Transformamos espaços. Criamos legados.',
+	subheadline =
+		'Reformas residenciais de alto padrão em Porto Alegre e Região de RS com design autoral e execução impecável',
 } = Astro.props
 
-const handleCTAClick = () => {
-  document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })
-}
+const whatsapp = import.meta.env.PUBLIC_WHATSAPP
+const waHref = whatsapp
+	? `https://wa.me/${whatsapp}?text=${encodeURIComponent('Olá! Gostaria de falar com vocês.')}`
+	: null
+
+const stats = [
+	{ icon: 'mdi:check-circle', value: '150+', label: 'Reformas entregues' },
+	{ icon: 'mdi:star', value: '99%', label: 'Satisfação' },
+	{ icon: 'mdi:calendar-check', value: '100%', label: 'No prazo' },
+]
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-  <div class="absolute inset-0 z-0">
-    <video
-      id="hero-video"
-      autoplay
-      muted
-      loop
-      playsinline
-      poster="/images/hero-bg.webp"
-      class="w-full h-full object-cover hidden md:block"
-    >
-      <source src="/videos/hero.mp4" type="video/mp4" />
-      <source src="/videos/hero.webm" type="video/webm" />
-    </video>
-    
-    <img
-      src="/images/hero-bg.webp"
-      alt="Reforma moderna e profissional"
-      class="w-full h-full object-cover aspect-video md:hidden"
-      loading="eager"
-      fetchpriority="high"
-    />
-    
-    <div class="absolute inset-0 bg-gradient-to-r from-navy-900/85 via-navy-800/75 to-navy-900/35"></div>
-  </div>
+<section class="relative min-h-screen flex items-center overflow-hidden">
+	<div class="absolute inset-0">
+		<img src="/images/hero-bg.webp" alt="" class="w-full h-full object-cover" fetchpriority="high" />
+		<div class="absolute inset-0 bg-navy-900/75"></div>
+	</div>
 
-  <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-    <Heading level={1} class="text-white mb-6 leading-tight max-w-5xl mx-auto animate-fade-in-up">
-      {headline}
-    </Heading>
+	<div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-0">
+		<div class="hidden lg:block absolute right-0 -top-32 h-[200vh] w-1/2 bg-linear-to-t from-navy-600/60 to-navy-900/90 backdrop-blur-sm rotate-4"></div>
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-0 items-end min-h-screen lg:min-h-0 lg:h-screen">
 
-    <p class="font-body text-lg sm:text-xl lg:text-2xl text-navy-100 mb-10 max-w-3xl mx-auto animate-fade-in-up delay-100">
-      {subheadline}
-    </p>
+			<div class="flex flex-col justify-center py-24 lg:py-32">
+				<h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+					{headline}
+				</h1>
 
-    <div class="animate-fade-in-up delay-200">
-      <Button href="#contato" variant="primary" size="md">
-        Falar com um Especialista Agora
-      </Button>
-    </div>
-  </div>
+				<p class="font-body text-lg text-navy-100 mb-10 max-w-lg leading-relaxed">
+					{subheadline}
+				</p>
 
-  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-    <a href="#razoes" class="block text-white/50 hover:text-white transition-colors p-2">
-      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-      </svg>
-    </a>
-  </div>
+				<div class="flex flex-wrap gap-6 mb-10">
+					{
+						stats.map((stat) => (
+							<div class="flex items-center gap-3">
+								<div class="w-10 h-10 bg-gold-600/20 border border-gold-600/40 rounded-full flex items-center justify-center shrink-0">
+									<iconify-icon icon={stat.icon} class="text-xl text-gold-500" />
+								</div>
+								<div>
+									<p class="font-heading text-xl font-bold text-white leading-none">{stat.value}</p>
+									<p class="font-body text-xs text-navy-300 mt-0.5">{stat.label}</p>
+								</div>
+							</div>
+						))
+					}
+				</div>
+
+				<div class="flex flex-wrap items-center gap-4">
+					<a
+						href="/contato"
+						class="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-gold-600 to-gold-700 px-8 py-4 font-heading font-bold text-base text-white shadow-2xl shadow-gold-600/30 hover:shadow-gold-600/50 transition-shadow"
+					>
+						Agende Diagnóstico Gratuito
+						<iconify-icon icon="mdi:arrow-right" class="text-lg"></iconify-icon>
+					</a>
+					{waHref && (
+						<a
+							href={waHref}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center gap-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 px-6 py-4 font-heading font-semibold text-base text-white transition-all backdrop-blur-sm"
+						>
+							<iconify-icon icon="mdi:whatsapp" class="text-[#25D366] text-xl"></iconify-icon>
+							Fale comigo
+						</a>
+					)}
+				</div>
+			</div>
+
+			<div class="hidden lg:flex items-end justify-center h-screen relative">
+				<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+					<div class="w-[500px] h-[700px] bg-gold-500/10 rounded-full blur-3xl translate-y-16"></div>
+				</div>
+				<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-8 w-[280px] h-[400px] bg-gold-400/8 rounded-full blur-2xl pointer-events-none"></div>
+				<img
+					src="/images/julio-hero.png"
+					alt="Júlio — fundador da Pórtico Reformas, especialista em reformas residenciais de alto padrão em Porto Alegre"
+					class="relative z-10 max-h-[80vh] w-auto object-contain object-bottom"
+					loading="eager"
+					fetchpriority="high"
+				/>
+				<div class="absolute bottom-12 right-0 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-5 py-4 z-20">
+					<p class="font-heading text-sm font-bold text-white">Júlio</p>
+					<p class="font-body text-xs text-navy-300">Fundador & Estrategista</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden lg:block">
+		<a href="#razoes" class="block text-white/40 hover:text-white/80 transition-colors p-2">
+			<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"></path>
+			</svg>
+		</a>
+	</div>
 </section>
-
-<script>
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault()
-      const targetId = anchor.getAttribute('href')?.substring(1)
-      if (targetId) {
-        const target = document.getElementById(targetId)
-        target?.scrollIntoView({ behavior: 'smooth' })
-      }
-    })
-  })
-
-  const video = document.getElementById('hero-video') as HTMLVideoElement
-  
-  if (video) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {})
-        } else {
-          video.pause()
-        }
-      })
-    }, { threshold: 0.25 })
-
-    observer.observe(video)
-  }
-</script>

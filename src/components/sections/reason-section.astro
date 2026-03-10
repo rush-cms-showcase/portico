@@ -1,49 +1,45 @@
 ---
-import Heading from '../atoms/heading.astro'
-import Card from '../molecules/card.astro'
-
 interface Props {
-  title?: string
+	title?: string
 }
 
-const {
-  title = 'Por que escolher a Pórtico?',
-} = Astro.props
+const { title = 'Por que escolher a Pórtico?' } = Astro.props
 
 const reasons = [
-  {
-    icon: 'mdi:shield-check',
-    title: 'Sem Caos',
-    description: 'Projeto organizado com cronograma realista. Sua casa não vira uma zona de guerra.',
-  },
-  {
-    icon: 'mdi:cash-lock',
-    title: 'Orçamento Garantido',
-    description: 'Preço do contrato é o preço final. Nada de surpresas ou custos extras escondidos.',
-  },
-  {
-    icon: 'mdi:calendar-check',
-    title: 'Prazo Garantido',
-    description: 'Entregamos na data combinada ou pagamos multa. Nada de promessas vazias.',
-  },
+	{
+		title: 'Sem Caos',
+		description:
+			'Projeto organizado com cronograma realista. Sua casa não vira uma zona de guerra.',
+	},
+	{
+		title: 'Orçamento Garantido',
+		description:
+			'Preço do contrato é o preço final. Nada de surpresas ou custos extras escondidos.',
+	},
+	{
+		title: 'Prazo Garantido',
+		description: 'Entregamos na data combinada ou pagamos multa. Nada de promessas vazias.',
+	},
 ]
 ---
 
 <section id="razoes" class="py-20 bg-white">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <Heading level={2} class="text-navy text-center mb-12">
-      {title}
-    </Heading>
+	<div class="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="flex items-center justify-center flex-col gap-4 lg:gap-8">
+			<h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-navy text-center">
+				{title}
+			</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-      {reasons.map((reason) => (
-        <Card icon={reason.icon} title={reason.title} padding="lg">
-          <p class="font-body text-center leading-relaxed">
-            {reason.description}
-          </p>
-        </Card>
-      ))}
-    </div>
-  </div>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				{
+					reasons.map((reason) => (
+						<div class="bg-stone-50 border border-stone-200 rounded-lg p-8 text-center">
+							<h3 class="font-heading text-xl font-bold text-navy mb-3">{reason.title}</h3>
+							<p class="font-body text-charcoal leading-relaxed">{reason.description}</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</div>
 </section>
-

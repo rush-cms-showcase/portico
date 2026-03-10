@@ -1,73 +1,119 @@
 ---
 interface Props {
-  title?: string
+	title?: string
 }
 
-const {
-  title = 'A Pórtico É Perfeita Para Você Se Busca:',
-} = Astro.props
+const { title = 'A Pórtico É Perfeita Para Você Se Busca:' } = Astro.props
 ---
 
 <section class="py-20 bg-white">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-navy text-center mb-12">
-      {title}
-    </h2>
+	<div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+		<h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-navy text-center mb-16">
+			{title}
+		</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-      <div class="space-y-4">
-        <h3 class="font-heading text-2xl font-semibold text-green-600 mb-6 flex items-center">
-          <iconify-icon icon="mdi:check-circle" class="text-3xl mr-3"></iconify-icon>
-          Somos PERFEITOS para você
-        </h3>
-        
-        <ul class="space-y-4">
-          <li class="flex items-start">
-            <iconify-icon icon="mdi:check" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-1"></iconify-icon>
-            <span class="font-body text-charcoal">Segurança e planejamento detalhado</span>
-          </li>
-          <li class="flex items-start">
-            <iconify-icon icon="mdi:check" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-1"></iconify-icon>
-            <span class="font-body text-charcoal">Valorização do imóvel a longo prazo</span>
-          </li>
-          <li class="flex items-start">
-            <iconify-icon icon="mdi:check" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-1"></iconify-icon>
-            <span class="font-body text-charcoal">Paz de espírito e processos organizados</span>
-          </li>
-          <li class="flex items-start">
-            <iconify-icon icon="mdi:check" class="text-2xl text-green-600 mr-3 flex-shrink-0 mt-1"></iconify-icon>
-            <span class="font-body text-charcoal">Transparência e prestação de contas</span>
-          </li>
-        </ul>
-      </div>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+			<div class="relative pl-8 border-l-4 border-green-600">
+				<h3 class="font-heading text-2xl font-semibold text-green-600 mb-6">
+					Somos PERFEITOS para você
+				</h3>
 
-      <div class="space-y-4">
-        <h3 class="font-heading text-2xl font-semibold text-red-600 mb-6 flex items-center">
-          <iconify-icon icon="mdi:close-circle" class="text-3xl mr-3"></iconify-icon>
-          NÃO somos para você
-        </h3>
-        
-        <ul class="space-y-4">
-          <li class="flex items-start">
-            <iconify-icon icon="mdi:close" class="text-2xl text-red-600 mr-3 flex-shrink-0 mt-1"></iconify-icon>
-            <span class="font-body text-charcoal">Apenas o menor preço (sem critério técnico)</span>
-          </li>
-          <li class="flex items-start">
-            <iconify-icon icon="mdi:close" class="text-2xl text-red-600 mr-3 flex-shrink-0 mt-1"></iconify-icon>
-            <span class="font-body text-charcoal">Rapidez sem planejamento</span>
-          </li>
-          <li class="flex items-start">
-            <iconify-icon icon="mdi:close" class="text-2xl text-red-600 mr-3 flex-shrink-0 mt-1"></iconify-icon>
-            <span class="font-body text-charcoal">Odeia processos e prefere "ir fazendo"</span>
-          </li>
-        </ul>
-      </div>
-    </div>
+				<ul class="space-y-4">
+					<li class="flex items-start gap-3">
+						<div class="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+							<svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path
+									fill-rule="evenodd"
+									d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+									clip-rule="evenodd"></path>
+							</svg>
+						</div>
+						<span class="font-body text-lg text-charcoal">Segurança e planejamento detalhado</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<div class="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+							<svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path
+									fill-rule="evenodd"
+									d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+									clip-rule="evenodd"></path>
+							</svg>
+						</div>
+						<span class="font-body text-lg text-charcoal">Valorização do imóvel a longo prazo</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<div class="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+							<svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path
+									fill-rule="evenodd"
+									d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+									clip-rule="evenodd"></path>
+							</svg>
+						</div>
+						<span class="font-body text-lg text-charcoal">Paz de espírito e processos organizados</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<div class="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+							<svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path
+									fill-rule="evenodd"
+									d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+									clip-rule="evenodd"></path>
+							</svg>
+						</div>
+						<span class="font-body text-lg text-charcoal">Transparência e prestação de contas</span>
+					</li>
+				</ul>
+			</div>
 
-    <div class="bg-stone-50 border-l-4 border-navy p-6 rounded-r-lg text-center">
-      <p class="font-body text-lg text-charcoal italic">
-        "E está tudo bem se não for para você. Preferimos o cliente certo ao cliente errado."
-      </p>
-    </div>
-  </div>
+			<div class="relative pl-8 border-l-4 border-red-600">
+				<h3 class="font-heading text-2xl font-semibold text-red-600 mb-6">
+					NÃO somos para você
+				</h3>
+
+				<ul class="space-y-4">
+					<li class="flex items-start gap-3">
+						<div class="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+							<svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path
+									fill-rule="evenodd"
+									d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+									clip-rule="evenodd"></path>
+							</svg>
+						</div>
+						<span class="font-body text-lg text-charcoal">Apenas o menor preço (sem critério técnico)</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<div class="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+							<svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path
+									fill-rule="evenodd"
+									d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+									clip-rule="evenodd"></path>
+							</svg>
+						</div>
+						<span class="font-body text-lg text-charcoal">Rapidez sem planejamento</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<div class="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+							<svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path
+									fill-rule="evenodd"
+									d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+									clip-rule="evenodd"></path>
+							</svg>
+						</div>
+						<span class="font-body text-lg text-charcoal">Odeia processos e prefere "ir fazendo"</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="bg-stone-50 border-l-4 border-navy p-8 rounded-r-lg text-center mt-12">
+			<p class="font-body text-xl text-charcoal italic leading-relaxed">
+				"E está tudo bem se não for para você. Preferimos o cliente certo ao cliente
+				errado."
+			</p>
+		</div>
+	</div>
 </section>

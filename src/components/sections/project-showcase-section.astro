@@ -1,109 +1,68 @@
 ---
-import ProjectCard from '../ui/project-card.astro'
-import Heading from '../atoms/heading.astro'
-import Button from '../atoms/button.astro'
-
-interface Project {
-  title: string
-  location: string
-  before: string
-  after: string
-  metadata: {
-    area: string
-    duration: string
-    investment: string
-  }
-  testimonial?: {
-    text: string
-    author: string
-  }
+interface Props {
+	title?: string
 }
 
-const projects: Project[] = [
-  {
-    title: 'Apartamento Moderno',
-    location: 'Moinhos de Vento, Porto Alegre',
-    before: '/images/projects/apt-before.png',
-    after: '/images/projects/apt-after.png',
-    metadata: {
-      area: '120m²',
-      duration: '60 dias',
-      investment: 'R$ 180-220k',
-    },
-    testimonial: {
-      text: 'Transformaram completamente nosso apartamento. A atenção aos detalhes e o acabamento premium superaram nossas expectativas.',
-      author: 'Renata M.',
-    },
-  },
-  {
-    title: 'Cozinha Gourmet',
-    location: 'Bela Vista, Porto Alegre',
-    before: '/images/projects/kitchen-before.png',
-    after: '/images/projects/kitchen-after.png',
-    metadata: {
-      area: '28m²',
-      duration: '45 dias',
-      investment: 'R$ 95-140k',
-    },
-    testimonial: {
-      text: 'Nossa cozinha se tornou o coração da casa. Design impecável e praticidade máxima.',
-      author: 'Eduardo P.',
-    },
-  },
-  {
-    title: 'Banheiro Spa',
-    location: 'Auxiliadora, Porto Alegre',
-    before: '/images/projects/bathroom-before.png',
-    after: '/images/projects/bathroom-after.png',
-    metadata: {
-      area: '15m²',
-      duration: '30 dias',
-      investment: 'R$ 60-85k',
-    },
-    testimonial: {
-      text: 'Sensação de spa cinco estrelas todos os dias. Valeu cada investimento.',
-      author: 'Mariana S.',
-    },
-  },
-  {
-    title: 'Sala de Estar Premium',
-    location: 'Petrópolis, Porto Alegre',
-    before: '/images/projects/living-before.png',
-    after: '/images/projects/living-after.png',
-    metadata: {
-      area: '45m²',
-      duration: '40 dias',
-      investment: 'R$ 110-165k',
-    },
-    testimonial: {
-      text: 'Elegância e sofisticação em cada detalhe. Recebemos elogios de todos que visitam.',
-      author: 'Carlos R.',
-    },
-  },
+const { title = 'Portfolio de Transformações' } = Astro.props
+
+const projects: { title: string; image: string }[] = [
+	{
+		title: 'Cozinha Gourmet',
+		image: '/images/portfolio-01.png',
+	},
+	{
+		title: 'Sala de Estar',
+		image: '/images/portfolio-02.png',
+	},
+	{
+		title: 'Apartamento Completo',
+		image: '/images/portfolio-03.png',
+	},
+	{
+		title: 'Área Externa',
+		image: '/images/portfolio-04.png',
+	},
 ]
 ---
 
 <section id="projetos" class="py-24 bg-stone-100">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16 max-w-3xl mx-auto">
-      <Heading level={2} class="text-navy-900 mb-6">
-        Portfolio de Transformações
-      </Heading>
-      <p class="font-body text-lg sm:text-xl text-charcoal-700 leading-relaxed">
-        Cada projeto reflete nosso compromisso com a excelência. Conheça algumas das residências que transformamos em verdadeiras obras de arte.
-      </p>
-    </div>
+	<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="text-center mb-16 max-w-5xl mx-auto">
+			<h2 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-gold-500 mb-2">
+				{title}
+			</h2>
+			<p class="font-body text-lg sm:text-xl text-charcoal-700 leading-relaxed">
+				Cada projeto reflete nosso compromisso com a excelência
+			</p>
+		</div>
+	</div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
-      {projects.map((project) => (
-        <ProjectCard {...project} />
-      ))}
-    </div>
+	<div class="w-full px-4 sm:px-6 lg:px-8">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+			{
+				projects.map((project) => (
+					<div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+						<img
+							src={project.image}
+							alt={project.title}
+							class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+						/>
+						<div class="absolute inset-0 bg-linear-to-t from-navy-900/90 via-navy-900/50 to-transparent" />
+						<div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+							<h3 class="font-heading text-xl font-bold mb-1">{project.title}</h3>
+						</div>
+					</div>
+				))
+			}
+		</div>
 
-    <div class="text-center">
-      <Button href="#contato" variant="secondary" size="md">
-        Solicitar Orçamento Personalizado
-      </Button>
-    </div>
-  </div>
+		<div class="text-center mt-12">
+			<a
+				href="/contato"
+				class="inline-block bg-navy-900 hover:bg-navy-700 transition-colors text-white font-heading font-bold text-lg px-10 py-4 rounded-full shadow-xl"
+			>
+				Solicitar Orçamento Personalizado
+			</a>
+		</div>
+	</div>
 </section>

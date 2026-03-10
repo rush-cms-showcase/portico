@@ -1,0 +1,37 @@
+---
+interface Props {
+	title: string
+	description: string
+	cta?: string
+	href?: string
+	variant?: 'light' | 'dark'
+}
+
+const {
+	title,
+	description,
+	cta = 'Solicitar Orçamento',
+	href = '/contato',
+	variant = 'light',
+} = Astro.props
+
+const bgClass = variant === 'dark' ? 'bg-navy-900 text-white' : 'bg-white text-navy'
+const descClass = variant === 'dark' ? 'text-navy-100' : 'text-charcoal'
+---
+
+<section class={`py-24 ${bgClass}`}>
+	<div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+		<h2 class="font-heading text-3xl sm:text-4xl font-bold mb-6">
+			{title}
+		</h2>
+		<p class={`font-body text-lg mb-8 max-w-2xl mx-auto ${descClass}`}>
+			{description}
+		</p>
+		<a
+			href={href}
+			class="inline-block bg-gold-600 hover:bg-gold-700 transition-colors text-white font-heading font-bold text-lg px-10 py-4 rounded-full shadow-xl hover:shadow-2xl"
+		>
+			{cta}
+		</a>
+	</div>
+</section>
