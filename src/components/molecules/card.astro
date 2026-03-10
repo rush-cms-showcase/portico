@@ -2,53 +2,64 @@
 import Icon from '../atoms/icon.astro'
 
 interface Props {
-  variant?: 'default' | 'glass' | 'elevated'
-  padding?: 'sm' | 'md' | 'lg'
-  hover?: 'lift' | 'glow' | 'none'
-  icon?: string
-  title?: string
-  class?: string
+	variant?: 'default' | 'glass' | 'elevated'
+	padding?: 'sm' | 'md' | 'lg'
+	hover?: 'lift' | 'glow' | 'none'
+	icon?: string
+	title?: string
+	class?: string
 }
 
-const { variant = 'default', padding = 'md', hover = 'lift', icon, title, class: className = '' } = Astro.props
+const {
+	variant = 'default',
+	padding = 'md',
+	hover = 'lift',
+	icon,
+	title,
+	class: className = '',
+} = Astro.props
 
 const variantClasses = {
-  default: 'bg-white border border-charcoal-200',
-  glass: 'bg-white/50 backdrop-blur-sm border border-white/20',
-  elevated: 'bg-white shadow-lg',
+	default: 'bg-white border border-charcoal-200',
+	glass: 'bg-white/50 backdrop-blur-sm border border-white/20',
+	elevated: 'bg-white shadow-lg',
 }
 
 const paddingClasses = {
-  sm: 'p-6',
-  md: 'p-8',
-  lg: 'p-12',
+	sm: 'p-6',
+	md: 'p-8',
+	lg: 'p-12',
 }
 
 const hoverClasses = {
-  lift: 'hover:shadow-xl hover:-translate-y-1 transition-all duration-300',
-  glow: 'hover:shadow-2xl hover:shadow-gold/20 transition-shadow duration-300',
-  none: '',
+	lift: 'hover:shadow-xl hover:-translate-y-1 transition-all duration-300',
+	glow: 'hover:shadow-2xl hover:shadow-gold/20 transition-shadow duration-300',
+	none: '',
 }
 
 const baseClasses = 'rounded-lg'
 ---
 
-<div class={`${baseClasses} ${variantClasses[variant]} ${paddingClasses[padding]} ${hoverClasses[hover]} ${className}`}>
-  {icon && (
-    <div class="flex justify-center mb-6">
-      <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center">
-        <Icon icon={icon} size="md" color="text-gold" />
-      </div>
-    </div>
-  )}
-  
-  {title && (
-    <h3 class="font-heading text-xl font-semibold text-navy text-center mb-4">
-      {title}
-    </h3>
-  )}
-  
-  <div class="text-charcoal">
-    <slot />
-  </div>
+<div
+	class={`${baseClasses} ${variantClasses[variant]} ${paddingClasses[padding]} ${hoverClasses[hover]} ${className}`}
+>
+	{
+		icon && (
+			<div class="flex justify-center mb-6">
+				<div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center">
+					<Icon icon={icon} size="md" color="text-gold" />
+				</div>
+			</div>
+		)
+	}
+
+	{
+		title && (
+			<h3 class="font-heading text-xl font-semibold text-navy text-center mb-4">{title}</h3>
+		)
+	}
+
+	<div class="text-charcoal">
+		<slot />
+	</div>
 </div>

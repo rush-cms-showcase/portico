@@ -1,22 +1,18 @@
 ---
 interface Props {
-  icon: string
-  size?: 'sm' | 'md' | 'lg' | 'xl'
-  color?: string
+	icon: string
+	size?: 'sm' | 'md' | 'lg' | 'xl'
+	color?: string
 }
 
 const { icon, size = 'md', color = 'currentColor' } = Astro.props
 
 const sizeClasses = {
-  sm: 'text-2xl',
-  md: 'text-4xl',
-  lg: 'text-5xl',
-  xl: 'text-6xl',
+	sm: 'text-2xl',
+	md: 'text-4xl',
+	lg: 'text-5xl',
+	xl: 'text-6xl',
 }
 ---
 
 <iconify-icon icon={icon} class={`${sizeClasses[size]} ${color}`}></iconify-icon>
-
-<script>
-  import 'iconify-icon'
-</script>
