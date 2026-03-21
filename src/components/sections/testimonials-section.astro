@@ -1,0 +1,74 @@
+---
+interface Testimonial {
+	name: string
+	stars: number
+	text: string
+}
+
+const testimonials: Testimonial[] = [
+	{
+		name: 'Paulo Vieira',
+		stars: 5,
+		text: 'Escolhi com base nas avaliações, e é fantástico. Contato inicial, contratação, execução, supervisão, retornos imediatos, tudo perfeito. Em 45 dias reformaram uma casa que estava 3 anos fechada e sofreu com a enchente. Podem confiar no Julio e equipe, vão fazer (bem feito) o que for combinado.',
+	},
+	{
+		name: 'César Coser',
+		stars: 5,
+		text: 'A empresa se destaca pela sua organização e eficiência. O Julio demonstra um compromisso constante em oferecer um atendimento de excelência, sempre buscando as soluções mais adequadas para os clientes. Mesmo diante de eventuais desafios, que são raros neste setor, a empresa se mostra preparada e ágil na resolução. Recomendo fortemente pelos serviços de alta qualidade e pela dedicação em superar as expectativas dos clientes.',
+	},
+	{
+		name: 'Sabrina',
+		stars: 5,
+		text: 'Eu fiquei extremamente satisfeita com a reforma que fiz em minha casa com a empresa Pórtico. Assessoria nota 10 do Julio Leite, profissional exímio e muito comprometido com tudo, esteve presente e acompanhando a obra o tempo todo e atendeu sempre as minhas necessidades. Me senti muito segura por ter contratado a Portico para estar dentro da minha casa! Empresa extremamente séria e o principal, de confiança! Obrigada pelo trabalho maravilhoso de vcs!!',
+	},
+	{
+		name: 'Alex Weber Reger',
+		stars: 5,
+		text: 'Ótimo atendimento, informação clara, dentro do prazo estabelecido. Pode ter certeza que o Julio da (Pórtico) vai tirar o teu projeto do papel e te entregar em mãos.',
+	},
+	{
+		name: 'Ariane Winter',
+		stars: 5,
+		text: 'Atendimento excelente e pessoalizado! O Julio é um é excelente profissional, entende de tudo e está sempre disposto a escutar os clientes. Super recomendo e indico!',
+	},
+	{
+		name: 'Luciana Boff',
+		stars: 5,
+		text: 'Empresa organizada e eficiente. O Julio esta sempre preocupado em atender o cliente da melhor forma e buscar as melhores soluções, mesmo quando surgem problemas, o que é raro neste ramo.',
+	},
+]
+---
+
+<section class="py-20 bg-white">
+	<div class="w-full px-4 sm:px-6 lg:px-8">
+		<div class="text-center mb-16">
+			<h2 class="font-heading text-3xl md:text-4xl font-bold text-navy mb-4">
+				O que dizem nossos clientes
+			</h2>
+			<p class="font-body text-charcoal/60 text-lg max-w-2xl mx-auto">
+				Avaliações reais de quem confiou na Pórtico para transformar seus lares.
+			</p>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+			{
+				testimonials.map((testimonial) => (
+					<div class="bg-stone-50 border border-stone-200 rounded-2xl p-8 flex flex-col h-full">
+						<div class="flex items-center gap-1 mb-4">
+							{Array.from({ length: testimonial.stars }).map(() => (
+								<iconify-icon icon="mdi:star" class="text-gold-500 text-xl" />
+							))}
+						</div>
+						<p class="font-body text-charcoal/80 leading-relaxed mb-6 grow italic">
+							"{testimonial.text}"
+						</p>
+						<div class="flex items-center gap-3 mt-auto">
+							<p class="font-heading font-bold text-navy">{testimonial.name}</p>
+							<iconify-icon icon="logos:google-icon" class="ml-auto text-xl" />
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
