@@ -77,11 +77,16 @@ const finalSchema = schema || defaultSchema
 				<script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.GA_TAG}`} is:inline></script>
 				<script define:vars={{ gaTag: import.meta.env.GA_TAG }}>
 					window.dataLayer = window.dataLayer || [];
-					function gtag(){dataLayer.push(arguments);}
+					window.gtag = function(){ window.dataLayer.push(arguments); }
 					gtag('js', new Date());
 					gtag('config', gaTag);
 				</script>
 			</>
+		)}
+		{import.meta.env.GADS_TAG && (
+			<script is:inline define:vars={{ gadsTag: import.meta.env.GADS_TAG }}>
+				gtag('config', gadsTag);
+			</script>
 		)}
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -106,5 +111,17 @@ const finalSchema = schema || defaultSchema
 		<script>
 			import 'iconify-icon'
 		</script>
+		{import.meta.env.GADS_WHATSAPP_CLICK_TRACKER_ID && (
+			<script is:inline define:vars={{ gadsWhatsappClickTrackerId: import.meta.env.GADS_WHATSAPP_CLICK_TRACKER_ID }}>
+				document.addEventListener('click', function(e) {
+					const link = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+					if (!link) return;
+					gtag('event', 'conversion', {
+						'send_to': gadsWhatsappClickTrackerId,
+						'event_callback': function() {}
+					});
+				});
+			</script>
+		)}
 	</body>
 </html>
