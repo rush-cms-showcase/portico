@@ -11,8 +11,9 @@ const {
 } = Astro.props
 
 const whatsapp = import.meta.env.PUBLIC_WHATSAPP
+const heroText = import.meta.env.PUBLIC_WHATSAPP_HERO_TEXT || 'Olá! Gostaria de falar com vocês.'
 const waHref = whatsapp
-	? `https://wa.me/${whatsapp}?text=${encodeURIComponent('Olá! Gostaria de falar com vocês.')}`
+	? `https://wa.me/${whatsapp}?text=${encodeURIComponent(heroText)}`
 	: null
 
 const stats = [

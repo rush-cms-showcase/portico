@@ -117,7 +117,7 @@ const serviceSchema = JSON.stringify({
           </a>
           {whatsapp && (
             <a
-              href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(`Olá! Tenho interesse no serviço de ${service?.title}. Poderia me dar mais informações?`)}`}
+              href={`https://wa.me/${whatsapp}?text=${encodeURIComponent((import.meta.env.PUBLIC_WHATSAPP_SERVICE_TEXT || 'Olá! Tenho interesse no serviço de {service}. Poderia me dar mais informações?').replace('{service}', service?.title))}`}
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20b558] transition-colors text-white font-body font-bold px-8 py-4 rounded-lg"

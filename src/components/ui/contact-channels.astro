@@ -4,7 +4,8 @@ const instagram = import.meta.env.PUBLIC_INSTAGRAM
 const facebook = import.meta.env.PUBLIC_FACEBOOK
 const email = import.meta.env.PUBLIC_EMAIL
 
-const waMessage = encodeURIComponent('Olá! Gostaria de agendar um diagnóstico gratuito.')
+const btnText = import.meta.env.PUBLIC_WHATSAPP_BTN_TEXT || 'Olá! Gostaria de agendar um diagnóstico gratuito.'
+const waMessage = encodeURIComponent(btnText)
 
 const channels = [
 	whatsapp && {
