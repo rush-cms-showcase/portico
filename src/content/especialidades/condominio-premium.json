@@ -1,46 +1,112 @@
 {
-  "title": "Condomínio Premium",
-  "slogan": "Gestão e manutenção predial com excelência.",
-  "description": "Preservação de patrimônio e valorização imobiliária para torres residenciais. Assumimos a orquestração completa com responsabilidade técnica firmada por parceiros e execução silenciosa.",
-  "og_banner": {
-    "badge": "Torres Residenciais",
-    "title": "Condomínios",
-    "subtitle": "Excelência em retrofits e manutenção sem dor de cabeça para o síndico."
+  "page": {
+    "title": "Condomínio Premium",
+    "slogan": "Gestão e manutenção predial com excelência.",
+    "description": "Preservação de patrimônio e valorização imobiliária para condomínios residenciais. Assumimos a orquestração completa com responsabilidade técnica firmada por parceiros e execução silenciosa.",
+    "og_banner": {
+      "badge": "Especialidade Pórtico",
+      "title": "Manutenção de Condomínios",
+      "subtitle": "Excelência em retrofits e manutenção sem dor de cabeça para o síndico."
+    }
   },
   "content": [
     {
       "_type": "hero",
       "data": {
         "badge": "Condomínios Selecionados",
-        "headline": "A excelência que a sua torre exige, com a tranquilidade que a sua gestão precisa.",
-        "subheadline": "Assumimos a orquestração integral do seu retrofit ou manutenção. Da aprovação técnica por parceiros credenciados (ART/RRT) ao acabamento final, blindamos a sua administração de passivos e operamos com máximo rigor para não alterar a rotina dos moradores.",
-        "cta_text": "Agendar Avaliação Predial",
-        "cta_link": "https://wa.me/555184156220?text=Olá!+Gostaria+de+agendar+uma+avaliação+para+o+meu+condomínio",
+        "headline": "A excelência que o seu condomínio exige, com a tranquilidade que a sua gestão precisa.",
+        "subheadline": "Assumimos a orquestração integral da manutenção predial, da aprovação técnica até o acabamento final. Blindamos a sua administração de passivos e operamos com máximo rigor para não alterar a rotina dos moradores.",
+        "cta_text": "Consultar valores",
+        "cta_link": "https://wa.me/555184156220?text=Olá!+Gostaria+de+consultar+valores+para+o+meu+condomínio",
         "background_image": "/images/especialidades/condominio-premium.webp"
       }
     },
     {
-      "_type": "features",
+      "_type": "pain_points",
       "data": {
-        "title": "Blindagem Total Para a Sua Gestão",
-        "subtitle": "Sabemos o nível de exigência de moradores seletos. Desenhamos um formato de operação que protege o síndico de qualquer passivo ou aborrecimento.",
+        "section_badge": "Gestão Blindada",
+        "section_title": "Blindagem Total Para a Sua Gestão",
         "items": [
           {
-            "icon": "shield-check",
+            "icon": "mdi:shield-check-outline",
             "title": "Responsabilidade Legal Assegurada",
             "description": "Nossa rede de especialistas habilitados emite as Anotações de Responsabilidade Técnica (ART/RRT) requeridas. Entregamos a documentação completa e centralizamos o risco."
           },
           {
-            "icon": "volume-off",
+            "icon": "mdi:volume-variant-off",
             "title": "Intervenções Limpas e Discretas",
             "description": "Controle estrito sobre resíduos, tráfego de profissionais isolado e respeito total aos horários da convenção condominial. O conforto do morador é inegociável."
           },
           {
-            "icon": "chart-line-up",
+            "icon": "mdi:chart-line-up",
             "title": "Revitalização e Valorização",
             "description": "Intervenções que elevam imediatamente a cotação do metro quadrado. Halls de entrada contemporâneos, áreas de lazer requintadas e fachadas imponentes."
           }
         ]
+      }
+    },
+    {
+      "_type": "services",
+      "data": {
+        "section_badge": "Nossas Soluções",
+        "section_title": "Intervenções Prediais de Alta Complexidade",
+        "section_subtitle": "Um único parceiro para gerenciar e executar as melhorias que o seu condomínio exige.",
+        "services": [
+          {
+            "title": "Retrofit de Fachadas e Áreas Comuns",
+            "description": "Modernização estética e estrutural de halls de entrada, salões de festas e portarias, sempre alinhada às expectativas de alto requinte dos condôminos."
+          },
+          {
+            "title": "Manutenção Estrutural Preventiva",
+            "description": "Inspeção e correção de infiltrações, rede elétrica e hidráulica antes que se tornem urgências dispendiosas, protegendo o fundo de reserva do condomínio."
+          },
+          {
+            "title": "Gestão de Responsabilidade Técnica",
+            "description": "Atuamos como orquestradores: acionamos engenheiros e arquitetos parceiros para assinar todas as ARTs/RRTs necessárias, removendo o risco legal do síndico."
+          },
+          {
+            "title": "Projetos de Acessibilidade",
+            "description": "Adequação inteligente e discreta de rampas e acessos para moradores de mobilidade reduzida, unindo conformidade legal à estética do prédio."
+          }
+        ]
+      }
+    },
+    {
+      "_type": "methodology",
+      "data": {
+        "section_badge": "Nosso Método",
+        "section_title": "Metodologia Pórtico 4P™",
+        "items": [
+          {
+            "step": "P1",
+            "title": "Planejamento Estratégico",
+            "description": "Análise minuciosa do regimento interno e da planta do prédio. Desenhamos a logística para que a movimentação de materiais e equipe não interfira na circulação dos moradores."
+          },
+          {
+            "step": "P2",
+            "title": "Previsibilidade Orçamentária",
+            "description": "Escopo fechado e blindado. Substituímos surpresas financeiras por um planejamento rigoroso que respeita as aprovações da assembleia e o conselho fiscal."
+          },
+          {
+            "step": "P3",
+            "title": "Proteção Legal e Executiva",
+            "description": "Garantia formal com entrega de todas as anotações técnicas e seguros pertinentes através de nossos parceiros habilitados. Sem dores de cabeça para a gestão."
+          },
+          {
+            "step": "P4",
+            "title": "Prestação de Contas",
+            "description": "Entrega de relatórios de progresso transparentes para serem apresentados aos conselheiros e condôminos, comprovando a seriedade e o valor do investimento."
+          }
+        ]
+      }
+    },
+    {
+      "_type": "cta",
+      "data": {
+        "headline": "Pronto para modernizar e proteger o seu condomínio?",
+        "subheadline": "Deixe a orquestração complexa com a Pórtico e garanta a valorização patrimonial que os seus moradores esperam.",
+        "button_text": "Agendar Reunião com o Conselho",
+        "button_link": "/contato"
       }
     }
   ]
