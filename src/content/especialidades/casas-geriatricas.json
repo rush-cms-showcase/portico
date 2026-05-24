@@ -1,6 +1,6 @@
 {
   "page": {
-    "title": "Manutenção Predial Contínua para Casas Geriátricas | Pórtico",
+    "title": "Manutenção Predial Contínua para Casas Geriátricas - Pórtico",
     "description": "Soluções de manutenção preventiva e adequação às normas sanitárias para clínicas geriátricas de alto padrão em Porto Alegre. Operação silenciosa e segura.",
     "tags": [
       "manutenção predial clínica geriátrica",
@@ -9,7 +9,7 @@
       "normas anvisa asilo"
     ],
     "slogan": "Segurança e conformidade contínuas. Sem interromper o cuidado e a paz dos seus residentes.",
-    "image": "/images/especialidades/banner.jpg"
+    "image": "/images/especialidades/casas-geriatricas/banner.jpg"
   },
   "content": [
     {
@@ -19,7 +19,7 @@
         "subheadline": "Garantimos a excelência estrutural e a adequação sanitária do seu espaço através de contratos contínuos. Intervenções precisas, seguras e com zero impacto na rotina dos seus hóspedes.",
         "cta_text": "Agendar Reunião",
         "cta_link": "https://wa.me/555184156220?text=Olá!+Tenho+uma+Casa+Geriátrica+e+gostaria+de+mais+informações+sobre+os+serviços",
-        "background_image": "/images/especialidades/hero-bg.webp"
+        "background_image": "/images/especialidades/casas-geriatricas/hero-bg.webp"
       }
     },
     {

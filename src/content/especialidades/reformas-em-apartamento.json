@@ -1,0 +1,120 @@
+{
+  "page": {
+    "title": "Reforma de Apartamentos em Porto Alegre - Pórtico",
+    "description": "Reformas de apartamentos premium sem dor de cabeça com condomínio e vizinhos. Gestão completa, ART/RRT, e entrega de alta qualidade no prazo.",
+    "tags": [
+      "reforma de apartamento porto alegre",
+      "reforma luxo",
+      "arquitetura de interiores",
+      "aprovação de reforma condomínio",
+      "engenharia para apartamentos",
+      "reforma sem estresse"
+    ],
+    "slogan": "O novo apartamento novo, sem o estresse da obra.",
+    "image": "/images/especialidades/reformas-em-apartamento/banner.jpg"
+  },
+  "content": [
+    {
+      "_type": "hero",
+      "data": {
+        "headline": "Reforma de Apartamento Sem Atritos com o Condomínio",
+        "subheadline": "Nós assumimos 100% da responsabilidade perante o síndico. Entregamos seu apartamento de alto padrão no prazo, com aprovação técnica (ART/RRT) e proteção total nas áreas comuns.",
+        "cta_text": "Agendar Reunião Técnica",
+        "cta_link": "https://wa.me/555184156220?text=Olá!+Gostaria+de+orçar+uma+reforma+para+meu+apartamento",
+        "background_image": "/images/especialidades/reformas-em-apartamento/hero-bg.webp"
+      }
+    },
+    {
+      "_type": "pain_points",
+      "data": {
+        "section_badge": "Por que obras em apartamento falham?",
+        "section_title": "As regras são rígidas. Sua obra não pode ser amadora.",
+        "items": [
+          {
+            "icon": "mdi:file-document-alert",
+            "title": "Burocracia e Embargos",
+            "description": "Falta de ART, RRT ou cronogramas que não respeitam o regimento interno resultam em obras embargadas pelo síndico na primeira semana."
+          },
+          {
+            "icon": "mdi:account-alert",
+            "title": "Atritos com Vizinhos",
+            "description": "Barulho fora de hora, sujeira nos elevadores e corredores manchados destroem a sua relação com os novos vizinhos antes mesmo da mudança."
+          },
+          {
+            "icon": "mdi:clock-alert",
+            "title": "Logística Impossível",
+            "description": "Falta de espaço para estocar materiais e caçambas de entulho mal posicionadas paralisam o avanço cronológico de equipes desorganizadas."
+          }
+        ]
+      }
+    },
+    {
+      "_type": "services",
+      "data": {
+        "section_badge": "A Solução Pórtico",
+        "section_title": "Engenharia de Interiores e Gestão Completa",
+        "section_subtitle": "Cuidamos de toda a logística e execução para que você foque apenas em escolher os móveis.",
+        "services": [
+          {
+            "badge": "Aprovação",
+            "title": "Gestão Documental (ART/RRT)",
+            "description": "Elaboração de laudos, aprovação do projeto junto à administração do prédio e emissão de todas as responsabilidades técnicas necessárias."
+          },
+          {
+            "badge": "Logística",
+            "title": "Proteção e Limpeza Extrema",
+            "description": "Isolamento acústico onde possível, forração de pisos de hall e elevadores de serviço diariamente, mantendo a ordem na área comum."
+          },
+          {
+            "badge": "Execução",
+            "title": "Acabamento de Fino Trato",
+            "description": "Mão de obra hiper-especializada para porcelanatos de grandes formatos, rebaixos de gesso, iluminação embutida e infraestrutura de climatização."
+          },
+          {
+            "badge": "Gestão",
+            "title": "Sincronia de Fornecedores",
+            "description": "Coordenamos a entrada e saída da marcenaria, marmoraria e vidraçaria, para que nenhuma equipe atropele a outra."
+          }
+        ]
+      }
+    },
+    {
+      "_type": "methodology",
+      "data": {
+        "section_badge": "O Diferencial",
+        "section_title": "Metodologia Pórtico 4P™",
+        "items": [
+          {
+            "step": "P1",
+            "title": "Planejamento Cirúrgico",
+            "description": "Lemos o regimento interno do seu condomínio antes do primeiro martelo bater. O cronograma é desenhado respeitando horários de silêncio rigorosamente."
+          },
+          {
+            "step": "P2",
+            "title": "Previsibilidade",
+            "description": "Com as plantas em mãos, definimos o prazo de entrega. Você sabe exatamente quando poderá agendar o caminhão de mudança."
+          },
+          {
+            "step": "P3",
+            "title": "Proteção Contratual",
+            "description": "Qualquer dano a áreas comuns (elevador, hall, corredores) durante nossa operação é coberto pelo nosso seguro de obra. Zero dor de cabeça para você."
+          },
+          {
+            "step": "P4",
+            "title": "Prestação de Contas",
+            "description": "Relatórios fotográficos diários no seu WhatsApp mostrando o avanço do seu apartamento limpo e os fornecedores trabalhando."
+          }
+        ]
+      }
+    },
+    {
+      "_type": "cta",
+      "data": {
+        "headline": "Pronto para morar no apartamento dos seus sonhos?",
+        "subheadline": "Fale com nossa equipe de engenharia e receba um diagnóstico preciso para a sua reforma.",
+        "button_text": "Agendar Reunião Técnica",
+        "button_link": "https://wa.me/555184156220?text=Olá!+Gostaria+de+orçar+uma+reforma+para+meu+apartamento"
+      }
+    }
+  ]
+}
