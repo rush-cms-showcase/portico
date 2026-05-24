@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/base-layout.astro';
+import BlockRenderer from '../../components/blocks/block-renderer.astro';
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const especialidades = await getCollection('especialidades');
+  
+  return especialidades.map((entry: CollectionEntry<'especialidades'>) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { page, content } = entry.data;
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  image={page.image}
+>
+  <main>
+    <BlockRenderer blocks={content} />
+  </main>
+</BaseLayout>

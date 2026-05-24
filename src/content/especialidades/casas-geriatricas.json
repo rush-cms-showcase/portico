@@ -1,0 +1,114 @@
+{
+  "page": {
+    "title": "Manutenção Predial Contínua para Casas Geriátricas | Pórtico",
+    "description": "Soluções de manutenção preventiva e adequação às normas sanitárias para clínicas geriátricas de alto padrão em Porto Alegre. Operação silenciosa e segura.",
+    "tags": [
+      "manutenção predial clínica geriátrica",
+      "adequação acessibilidade idosos",
+      "reforma sem interrupção",
+      "normas anvisa asilo"
+    ],
+    "slogan": "Segurança e conformidade contínuas. Sem interromper o cuidado e a paz dos seus residentes.",
+    "image": "/images/especialidades/banner.jpg"
+  },
+  "content": [
+    {
+      "_type": "hero",
+      "data": {
+        "headline": "Transformação e Manutenção Inteligente para Casas Geriátricas",
+        "subheadline": "Garantimos a excelência estrutural e a adequação sanitária do seu espaço através de contratos contínuos. Intervenções precisas, seguras e com zero impacto na rotina dos seus hóspedes.",
+        "cta_text": "Agendar Reunião",
+        "cta_link": "https://wa.me/555184156220?text=Olá!+Tenho+uma+Casa+Geriátrica+e+gostaria+de+mais+informações+sobre+os+serviços",
+        "background_image": "/images/especialidades/hero-bg.webp"
+      }
+    },
+    {
+      "_type": "pain_points",
+      "data": {
+        "section_badge": "Feito para o seu negócio",
+        "section_title": "O cuidado não pode parar. A infraestrutura também não.",
+        "items": [
+          {
+            "icon": "mdi:shield-check-outline",
+            "title": "Adequação Regulatória (Anvisa/Bombeiros)",
+            "description": "Mantemos seu espaço 100% adequado às exigências da RDC 502 e normas de acessibilidade (NBR 9050), evitando multas e interdições."
+          },
+          {
+            "icon": "mdi:volume-variant-off",
+            "title": "Operação Invisível e Silenciosa",
+            "description": "Protocolos rígidos de controle de ruído, poeira e circulação de equipe. O bem-estar e o descanso dos residentes são nossa prioridade zero."
+          },
+          {
+            "icon": "mdi:clock-fast",
+            "title": "SLA de Atendimento Rápido",
+            "description": "Em ambientes de saúde, emergências estruturais não podem esperar. Contratos mensais garantem prioridade absoluta na resolução de problemas."
+          }
+        ]
+      }
+    },
+    {
+      "_type": "services",
+      "data": {
+        "section_badge": "Nossas Soluções",
+        "section_title": "Nossos Serviços Contínuos",
+        "section_subtitle": "Um único parceiro para gerenciar toda a complexidade do seu edifício.",
+        "services": [
+          {
+            "title": "Manutenção Preventiva Mensal",
+            "description": "Inspeção e correção de elétrica, hidráulica e climatização antes que virem problemas maiores. Redução drástica de custos emergenciais."
+          },
+          {
+            "title": "Adequação de Acessibilidade",
+            "description": "Instalação de barras de apoio, rampas ergonômicas, pisos antiderrapantes e alargamento de vãos, executados por alas, sem isolar o prédio."
+          },
+          {
+            "title": "Revitalização Estética",
+            "description": "Pinturas com tintas sem cheiro/antibacterianas e atualizações de acabamento para manter o padrão premium do seu residencial sempre em alta."
+          },
+          {
+            "title": "Gestão de Fornecedores Especializados",
+            "description": "Centralize a gestão de terceiros (gases medicinais, geradores) com o nosso corpo de especialidade técnica."
+          }
+        ]
+      }
+    },
+    {
+      "_type": "methodology",
+      "data": {
+        "section_badge": "Nosso Método",
+        "section_title": "Metodologia Pórtico 4P™",
+        "items": [
+          {
+            "step": "P1",
+            "title": "Planejamento Cirúrgico",
+            "description": "Mapeamento minucioso de toda a infraestrutura ANTES de qualquer intervenção. Entendemos a rotina médica e os horários de descanso dos seus residentes para projetar um cronograma de manutenção de impacto zero."
+          },
+          {
+            "step": "P2",
+            "title": "Previsibilidade",
+            "description": "Em ambientes de saúde, interrupções não são opção. Trabalhamos com planejamento reverso e margem de segurança técnica, garantindo manutenções silenciosas que jamais interferem na paz da sua casa."
+          },
+          {
+            "step": "P3",
+            "title": "Proteção Contratual",
+            "description": "Adequações normativas (Anvisa/RDC) e manutenções com orçamento 100% travado. Você troca a imprevisibilidade de manutenções avulsas por uma linha de custo fixa, blindando o fluxo de caixa do seu negócio."
+          },
+          {
+            "step": "P4",
+            "title": "Prestação de Contas",
+            "description": "Atestados de conformidade, planos preventivos e relatórios fotográficos detalhados entregues direto à diretoria. A comprovação e a tranquilidade de que seu residencial mantém o mais alto padrão de segurança."
+          }
+        ]
+      }
+    },
+    {
+      "_type": "cta",
+      "data": {
+        "headline": "Pronto para terceirizar a gestão física do seu residencial?",
+        "subheadline": "Deixe a parte difícil com a Pórtico e concentre sua energia no que realmente importa: a qualidade de vida e a saúde dos seus residentes.",
+        "button_text": "Agendar Reunião Comercial",
+        "button_link": "/contato"
+      }
+    }
+  ]
+}

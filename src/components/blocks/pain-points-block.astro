@@ -1,0 +1,36 @@
+---
+import SectionContainer from '../sections/container.astro';
+import SectionHeader from '../sections/section-header.astro';
+
+interface Props {
+  data: {
+    section_badge?: string;
+    section_title: string;
+    items: {
+      icon: string;
+      title: string;
+      description: string;
+    }[];
+  };
+}
+
+const { data } = Astro.props;
+---
+
+<section class="bg-white py-24 sm:py-32">
+  <SectionContainer>
+    <SectionHeader badge={data.section_badge || ""} title={data.section_title} />
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mt-16">
+      {data.items.map((item) => (
+        <div class="group bg-stone-50 rounded-2xl p-8 border border-stone-200 hover:border-gold-600/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+          <div class="w-14 h-14 bg-navy-900 text-gold-500 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-navy-900/10 group-hover:scale-110 transition-transform">
+            <iconify-icon icon={item.icon} class="text-3xl"></iconify-icon>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-navy-900 mb-4">{item.title}</h3>
+          <p class="font-body text-charcoal/70 leading-relaxed">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </SectionContainer>
+</section>

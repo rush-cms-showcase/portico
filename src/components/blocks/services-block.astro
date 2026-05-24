@@ -1,0 +1,61 @@
+---
+import SectionContainer from '../sections/container.astro';
+
+interface Props {
+  data: {
+    section_badge?: string;
+    section_title: string;
+    section_subtitle: string;
+    services: {
+      badge?: string;
+      title: string;
+      description: string;
+    }[];
+  };
+}
+
+const { data } = Astro.props;
+---
+
+<section class="py-24 sm:py-32 bg-charcoal-900 text-white relative overflow-hidden">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(201,169,97,0.06),transparent_50%)]"></div>
+
+  <SectionContainer class="relative z-10">
+    <div class="max-w-3xl mb-16">
+      {data.section_badge && (
+        <div class="inline-flex items-center gap-3 mb-4">
+          <div class="w-1 h-6 bg-gold-600"></div>
+          <span class="font-body text-sm text-gold-600 font-semibold tracking-widest uppercase">
+            {data.section_badge}
+          </span>
+        </div>
+      )}
+      <h2 class="font-heading text-3xl sm:text-4xl font-bold text-white mb-4">
+        {data.section_title}
+      </h2>
+      <p class="font-body text-lg text-charcoal-200">
+        {data.section_subtitle}
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+      {data.services.map((service, i) => (
+        <div class="group relative bg-linear-to-br from-charcoal-800 to-charcoal-900 border border-charcoal-700 hover:border-gold-600/50 rounded-2xl p-8 lg:p-10 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-600/10 hover:-translate-y-1">
+          {service.badge && (
+            <div class="mb-4">
+              <span class="inline-flex items-center gap-1.5 bg-gold-600/10 border border-gold-600/20 rounded-full px-3 py-1 text-xs text-gold-500 font-semibold font-body uppercase tracking-wide">
+                {service.badge}
+              </span>
+            </div>
+          )}
+          <h3 class="font-heading text-2xl font-bold text-white mb-4 group-hover:text-gold-500 transition-colors">
+            {service.title}
+          </h3>
+          <p class="font-body text-charcoal-200 leading-relaxed">
+            {service.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </SectionContainer>
+</section>

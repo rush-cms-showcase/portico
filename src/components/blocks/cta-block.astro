@@ -1,0 +1,22 @@
+---
+import CtaSection from '../sections/cta-section.astro';
+
+interface Props {
+  data: {
+    headline: string;
+    subheadline: string;
+    button_text: string;
+    button_link: string;
+  };
+}
+
+const { data } = Astro.props;
+---
+
+<CtaSection
+  title={data.headline}
+  description={data.subheadline}
+  cta={data.button_text}
+  href={data.button_link}
+  variant="dark"
+/>
