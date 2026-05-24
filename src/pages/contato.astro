@@ -13,12 +13,12 @@ const email = import.meta.env.PUBLIC_EMAIL
 
 <BaseLayout
   title={`Contato - ${t.site.title}`}
-  description="Entre em contato com a Pórtico Reformas. Agende um diagnóstico gratuito pelo WhatsApp, e-mail ou formulário."
+  description={t.contact.seoDescription}
 >
   <PageHeader
-    badge="Fale Conosco"
+    badge={t.contact.headerBadge}
     title={t.contact.title}
-    description="Escolha como prefere falar com a gente"
+    description={t.contact.headerDescription}
   />
 
   <section class="py-20 bg-white">

@@ -31,12 +31,12 @@ function formatDate(dateStr: string): string {
 
 <BaseLayout
   title={`Blog - ${t.site.title}`}
-  description="Artigos, dicas e novidades sobre reforma residencial e construção inteligente."
+  description={t.blog.seoDescription}
 >
   <PageHeader
-    badge="Blog"
-    title="Artigos & Dicas"
-    description="Conteúdo sobre reforma residencial, construção inteligente e planejamento de espaços."
+    badge={t.blog.headerBadge}
+    title={t.blog.headerTitle}
+    description={t.blog.headerDescription}
   />
 
   <section class="py-20 bg-stone-50">
@@ -44,7 +44,7 @@ function formatDate(dateStr: string): string {
       {blogPosts.length === 0 ? (
         <div class="text-center py-20">
           <iconify-icon icon="mdi:newspaper-variant-outline" class="text-6xl text-charcoal/20 mb-4" />
-          <p class="font-body text-charcoal/50 text-lg">Nenhum post publicado ainda.</p>
+          <p class="font-body text-charcoal/50 text-lg">{t.blog.noPosts}</p>
         </div>
       ) : (
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -78,7 +78,7 @@ function formatDate(dateStr: string): string {
                   href={`/blog/${post.slug}`}
                   class="inline-flex items-center gap-2 font-body text-sm font-semibold text-gold-600 hover:text-navy transition-colors group/link"
                 >
-                  Ler mais
+                  {t.blog.readMore}
                   <iconify-icon
                     icon="mdi:arrow-right"
                     class="transform group-hover/link:translate-x-1 transition-transform"
@@ -93,8 +93,8 @@ function formatDate(dateStr: string): string {
   </section>
 
   <CtaSection
-    title="Pronto para transformar seu espaço?"
-    description="Entre em contato e vamos começar o planejamento da sua reforma"
+    title={t.blog.ctaTitle}
+    description={t.blog.ctaDescription}
     variant="dark"
   />
 </BaseLayout>
