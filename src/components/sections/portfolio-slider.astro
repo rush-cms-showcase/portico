@@ -1,0 +1,103 @@
+---
+import fs from 'node:fs'
+import path from 'node:path'
+import sizeOf from 'image-size'
+import Icon from '@/components/ui/icon.astro'
+
+const folder = 'public/images/portfolio/apartamento-completo-estrutural'
+const files = fs.readdirSync(path.resolve(folder)).filter(f => f.endsWith('.webp'))
+
+const images = files.map(file => {
+  const filePath = path.resolve(folder, file)
+  const buffer = fs.readFileSync(filePath)
+  const dimensions = sizeOf(buffer)
+  return {
+    src: `/images/portfolio/apartamento-completo-estrutural/${file}`,
+    width: dimensions.width,
+    height: dimensions.height,
+  }
+})
+---
+
+<div class="relative w-full group py-8">
+  <div class="pswp-gallery flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-4 sm:gap-6 px-4 sm:px-8 pb-8" id="portfolio-slider-container">
+    {images.map((img) => (
+      <div class="snap-center shrink-0 w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[30vw] aspect-[4/5] relative overflow-hidden rounded-lg shadow-xl border border-navy-100">
+        <a 
+          href={img.src} 
+          data-pswp-width={img.width} 
+          data-pswp-height={img.height} 
+          target="_blank"
+          class="block w-full h-full cursor-zoom-in outline-none focus-visible:ring-2 focus-visible:ring-gold-500"
+        >
+          <img 
+            src={img.src} 
+            alt="Projeto de Interiores" 
+            width={img.width}
+            height={img.height}
+            loading="lazy" 
+            class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+          />
+        </a>
+      </div>
+    ))}
+  </div>
+
+  <button id="slider-prev" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/90 backdrop-blur text-navy-900 hover:text-gold-600 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all disabled:opacity-0 focus:opacity-100 outline-none focus-visible:ring-2 focus-visible:ring-gold-500 z-10" aria-label="Anterior">
+    <Icon icon="lucide:chevron-left" size="sm" />
+  </button>
+  <button id="slider-next" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/90 backdrop-blur text-navy-900 hover:text-gold-600 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all disabled:opacity-0 focus:opacity-100 outline-none focus-visible:ring-2 focus-visible:ring-gold-500 z-10" aria-label="Próximo">
+    <Icon icon="lucide:chevron-right" size="sm" />
+  </button>
+</div>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+  }
+  .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+  }
+</style>
+
+<script>
+  const initSlider = () => {
+    const container = document.getElementById('portfolio-slider-container');
+    const prevBtn = document.getElementById('slider-prev') as HTMLButtonElement;
+    const nextBtn = document.getElementById('slider-next') as HTMLButtonElement;
+
+    if (!container || !prevBtn || !nextBtn) return;
+
+    const scrollAmount = () => {
+      const item = container.querySelector('.snap-center');
+      if (item) {
+        // Gap is variable, roughly gap-6 is 24px
+        return item.clientWidth + 24;
+      }
+      return 300;
+    };
+
+    const updateButtons = () => {
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      prevBtn.disabled = container.scrollLeft <= 10;
+      nextBtn.disabled = container.scrollLeft >= maxScroll - 10;
+    };
+
+    prevBtn.addEventListener('click', () => {
+      container.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      container.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+    });
+
+    container.addEventListener('scroll', updateButtons, { passive: true });
+    
+    // Slight delay to ensure layout is complete
+    setTimeout(updateButtons, 50);
+    window.addEventListener('resize', updateButtons, { passive: true });
+  };
+
+  document.addEventListener('astro:page-load', initSlider);
+</script>

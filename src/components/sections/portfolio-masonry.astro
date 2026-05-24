@@ -1,0 +1,43 @@
+---
+import fs from 'node:fs'
+import path from 'node:path'
+import sizeOf from 'image-size'
+
+const folder = 'public/images/portfolio/global'
+const files = fs.readdirSync(path.resolve(folder)).filter(f => f.endsWith('.webp'))
+
+const images = files.map(file => {
+  const filePath = path.resolve(folder, file)
+  const buffer = fs.readFileSync(filePath)
+  const dimensions = sizeOf(buffer)
+  return {
+    src: `/images/portfolio/global/${file}`,
+    width: dimensions.width,
+    height: dimensions.height,
+  }
+})
+---
+
+<div class="pswp-gallery columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6 px-4 sm:px-8 py-8">
+  {images.map((img) => (
+    <div class="break-inside-avoid relative group overflow-hidden shadow-md border border-navy-100 hover:shadow-xl transition-all duration-300">
+      <a 
+        href={img.src} 
+        data-pswp-width={img.width} 
+        data-pswp-height={img.height} 
+        target="_blank"
+        class="block w-full h-full cursor-zoom-in outline-none focus-visible:ring-2 focus-visible:ring-gold-500"
+      >
+        <img 
+          src={img.src} 
+          alt="Projeto Pártico" 
+          width={img.width}
+          height={img.height}
+          loading="lazy" 
+          class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105" 
+        />
+        <div class="absolute inset-0 bg-navy-900/0 group-hover:bg-navy-900/10 transition-colors duration-300 pointer-events-none"></div>
+      </a>
+    </div>
+  ))}
+</div>
