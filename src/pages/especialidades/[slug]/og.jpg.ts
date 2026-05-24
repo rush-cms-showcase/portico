@@ -65,14 +65,17 @@ export const GET: APIRoute = async ({ props }) => {
         </div>
 
         <div style="display: flex; flex-direction: column; max-width: 850px;">
-          <div style="color: #e2e2e2; font-size: 32px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; font-weight: 700;">
+          <div style="color: #e2e2e2; font-size: 32px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; font-weight: 700; text-decoration: underline;">
             ${badgeText}
           </div>
           <div style="color: #eab308; font-size: 72px; font-family: 'Lexend Deca'; font-weight: 700; line-height: 1.1; display: flex;">
             ${titleText}
           </div>
-          <div style="font-size: 36px; color: #d4d4d8; margin-top: 32px; line-height: 1.4; display: flex;">
+          <div style="font-size: 36px; color: #d4d4d8; margin-top: 4px; line-height: 1.4; display: flex;">
             ${descriptionText}
+          </div>
+          <div style="width: 300px; text-align: center; border-radius: 2px; padding: 6px 16px; background-color: #eab308; color: #131313ff; font-weight: bold; font-size: 40px; margin-top: 20px; display: flex;">
+            SAIBA MAIS
           </div>
         </div>
 
