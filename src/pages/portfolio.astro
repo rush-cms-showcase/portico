@@ -1,0 +1,48 @@
+---
+import BaseLayout from '@/layouts/base-layout.astro'
+import PageHeader from '@/components/sections/page-header.astro'
+import PortfolioSlider from '@/components/sections/portfolio-slider.astro'
+import PortfolioMasonry from '@/components/sections/portfolio-masonry.astro'
+import PhotoswipeGallery from '@/components/ui/photoswipe-gallery.astro'
+import CtaSection from '@/components/sections/cta-section.astro'
+import SectionContainer from '@/components/sections/container.astro'
+import SectionHeader from '@/components/sections/section-header.astro'
+import { useTranslations } from '@/lib/i18n'
+
+const t = useTranslations('pt_BR')
+---
+
+<BaseLayout title={t.portfolio.title} description={t.portfolio.seoDescription}>
+  <PageHeader 
+    title={t.portfolio.headerTitle}
+    description={t.portfolio.headerDescription}
+  />
+  <main class="bg-gray-50 py-16 sm:py-24 space-y-16 sm:space-y-24">
+    <section>
+      <SectionContainer>
+        <SectionHeader 
+          badge={t.portfolio.featuredBadge}
+          title={t.portfolio.featuredTitle}
+          description={t.portfolio.featuredDescription}
+        />
+      </SectionContainer>
+      <PortfolioSlider />
+    </section>
+    <section>
+      <SectionContainer>
+        <SectionHeader 
+          badge={t.portfolio.galleryBadge}
+          title={t.portfolio.galleryTitle}
+          description={t.portfolio.galleryDescription}
+        />
+      </SectionContainer>
+      <PortfolioMasonry />
+    </section>
+  </main>
+  <CtaSection 
+    title={t.portfolio.ctaTitle}
+    description={t.portfolio.ctaDescription}
+    variant="dark"
+  />
+  <PhotoswipeGallery />
+</BaseLayout>
