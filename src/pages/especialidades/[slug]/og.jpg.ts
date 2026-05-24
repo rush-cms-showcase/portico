@@ -74,7 +74,7 @@ export const GET: APIRoute = async ({ props }) => {
           <div style="font-size: 36px; color: #d4d4d8; margin-top: 4px; line-height: 1.4; display: flex;">
             ${descriptionText}
           </div>
-          <div style="width: 300px; text-align: center; border-radius: 2px; padding: 6px 16px; background-color: #eab308; color: #131313ff; font-weight: bold; font-size: 40px; margin-top: 20px; display: flex;">
+          <div style="width: 300px; text-align: center; border-radius: 2px; padding: 6px 16px; background-color: #eab308; color: #131313ff; font-weight: bold; font-size: 40px; margin-top: 20px; display: flex; justify-content: center; align-items: center;">
             SAIBA MAIS
           </div>
         </div>
