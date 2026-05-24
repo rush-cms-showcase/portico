@@ -18,11 +18,14 @@ The rendering process occurs in the following steps:
    The `src/pages/especialidades/[slug].astro` file is the catch-all route. 
    It uses `getStaticPaths()` to read all JSONs from the directory and create a static URL (SSG) for each of them (e.g., `/especialidades/casas-geriatricas`).
 
-3. **The Orchestrator (Block Renderer)**
+3. **Dynamic Open Graph Images**
+   The architecture also includes a dynamic endpoint (`src/pages/especialidades/[slug]/og.jpg.ts`) which uses Satori and Resvg to automatically generate 1200x630 Open Graph banners for each Landing Page. It takes data directly from the `og_banner` object inside your JSON. The images are aggressively compressed via Sharp for maximum WhatsApp sharing compatibility.
+
+4. **The Orchestrator (Block Renderer)**
    Instead of hardcoding components in the dynamic route, the route only calls `src/components/blocks/block-renderer.astro`.
    The Orchestrator reads the `content` array from the JSON, iterates over it, and checks the `_type` key of each block. If it is `hero`, it calls the `HeroBlock`; if it is `services`, it calls the `ServicesBlock`, and so on.
 
-4. **Components (Wrappers)**
+5. **Components (Wrappers)**
    Each block (e.g., `hero-block.astro`) is just a wrapper. Its responsibility is to take the flexible data from the JSON and insert it into the already established premium design of the application (reusing Tailwind classes and the core system components, following the DRY pattern).
 
 ---
@@ -43,7 +46,12 @@ Zod ensures that your JSON strictly follows this interface:
     "title": "Page Meta Title",
     "description": "Meta Description for SEO",
     "tags": ["seo", "tags", "optional"],
-    "slogan": "Catchphrase (optional)"
+    "slogan": "Catchphrase (optional)",
+    "og_banner": {
+      "badge": "Optional Custom Badge for Social Sharing Image",
+      "title": "Short Title for Social Sharing Image",
+      "subtitle": "Short Subtitle for Social Sharing Image"
+    }
   },
   "content": [
     {
@@ -54,7 +62,7 @@ Zod ensures that your JSON strictly follows this interface:
         "subheadline": "Hero Subtitle",
         "cta_text": "Button Text",
         "cta_link": "#contact",
-        "background_image": "/images/especialidades/hero-bg.webp"
+        "background_image": "/images/especialidades/slug-da-pagina.webp"
       }
     },
     {
