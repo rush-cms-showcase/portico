@@ -1,6 +1,6 @@
 ---
 const phone = import.meta.env.PUBLIC_WHATSAPP
-const btnText = import.meta.env.PUBLIC_WHATSAPP_BTN_TEXT || 'Olá! Gostaria de agendar um diagnóstico gratuito.'
+const btnText = import.meta.env.PUBLIC_WHATSAPP_BTN_TEXT || 'Olá! Gostaria de agendar um diagnóstico com a Pórtico.'
 const message = encodeURIComponent(btnText)
 const href = `https://wa.me/${phone}?text=${message}`
 ---

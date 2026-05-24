@@ -44,7 +44,7 @@ export const translations = {
 		},
 		contact: {
 			title: 'Entre em Contato',
-			seoDescription: 'Entre em contato com a Pórtico Reformas. Agende um diagnóstico gratuito pelo WhatsApp, e-mail ou formulário.',
+			seoDescription: 'Entre em contato com a Pórtico Reformas. Agende um diagnóstico pelo WhatsApp, e-mail ou formulário.',
 			headerBadge: 'Fale Conosco',
 			headerDescription: 'Escolha como prefere falar com a gente',
 			name: 'Nome completo',
