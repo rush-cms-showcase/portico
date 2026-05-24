@@ -1,0 +1,35 @@
+---
+---
+<script>
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+  import 'photoswipe/style.css';
+
+  let lightboxes: PhotoSwipeLightbox[] = [];
+
+  const initPhotoSwipe = () => {
+    // Destroy previous instances to avoid leaks on view transitions
+    lightboxes.forEach(lb => lb.destroy());
+    lightboxes = [];
+
+    const galleries = document.querySelectorAll('.pswp-gallery');
+    galleries.forEach((gallery) => {
+      const lightbox = new PhotoSwipeLightbox({
+        gallery: gallery as HTMLElement,
+        children: 'a',
+        pswpModule: () => import('photoswipe'),
+        paddingFn: () => {
+          return {
+            top: 30,
+            bottom: 30,
+            left: 20,
+            right: 20
+          };
+        }
+      });
+      lightbox.init();
+      lightboxes.push(lightbox);
+    });
+  };
+
+  document.addEventListener('astro:page-load', initPhotoSwipe);
+</script>
