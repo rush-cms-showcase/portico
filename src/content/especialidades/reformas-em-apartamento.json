@@ -11,7 +11,11 @@
       "reforma sem estresse"
     ],
     "slogan": "O novo apartamento novo, sem o estresse da obra.",
-    "image": "/images/especialidades/reformas-em-apartamento/banner.jpg"
+    "og_banner": {
+      "badge": "Especialidade Pórtico",
+      "title": "Reforma de Apartamento Premium",
+      "subtitle": "Gestão completa, sem atritos com síndico e vizinhos."
+    }
   },
   "content": [
     {

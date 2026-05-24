@@ -9,6 +9,11 @@ const especialidades = defineCollection({
       tags: z.array(z.string()).optional(),
       slogan: z.string().optional(),
       image: z.string().optional(),
+      og_banner: z.object({
+        badge: z.string().optional(),
+        title: z.string(),
+        subtitle: z.string()
+      }).optional(),
     }),
     content: z.array(
       z.object({

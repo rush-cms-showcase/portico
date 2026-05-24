@@ -20,7 +20,7 @@ const { page, content } = entry.data;
 <BaseLayout
   title={page.title}
   description={page.description}
-  image={page.image}
+  image={`/especialidades/${entry.id}/og.png`}
 >
   <main>
     <BlockRenderer blocks={content} />

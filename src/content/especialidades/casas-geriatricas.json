@@ -9,7 +9,11 @@
       "normas anvisa asilo"
     ],
     "slogan": "Segurança e conformidade contínuas. Sem interromper o cuidado e a paz dos seus residentes.",
-    "image": "/images/especialidades/casas-geriatricas/banner.jpg"
+    "og_banner": {
+      "badge": "Especialidade Pórtico",
+      "title": "Manutenção Predial para Casas Geriátricas",
+      "subtitle": "Operação silenciosa e segura, sem interrupções."
+    }
   },
   "content": [
     {
