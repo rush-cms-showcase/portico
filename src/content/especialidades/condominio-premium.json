@@ -72,35 +72,6 @@
       }
     },
     {
-      "_type": "methodology",
-      "data": {
-        "section_badge": "Nosso Método",
-        "section_title": "Metodologia Pórtico 4P™",
-        "items": [
-          {
-            "step": "P1",
-            "title": "Planejamento Estratégico",
-            "description": "Análise minuciosa do regimento interno e da planta do prédio. Desenhamos a logística para que a movimentação de materiais e equipe não interfira na circulação dos moradores."
-          },
-          {
-            "step": "P2",
-            "title": "Previsibilidade Orçamentária",
-            "description": "Escopo fechado e blindado. Substituímos surpresas financeiras por um planejamento rigoroso que respeita as aprovações da assembleia e o conselho fiscal."
-          },
-          {
-            "step": "P3",
-            "title": "Proteção Legal e Executiva",
-            "description": "Garantia formal com entrega de todas as anotações técnicas e seguros pertinentes através de nossos parceiros habilitados. Sem dores de cabeça para a gestão."
-          },
-          {
-            "step": "P4",
-            "title": "Prestação de Contas",
-            "description": "Entrega de relatórios de progresso transparentes para serem apresentados aos conselheiros e condôminos, comprovando a seriedade e o valor do investimento."
-          }
-        ]
-      }
-    },
-    {
       "_type": "cta",
       "data": {
         "headline": "Pronto para modernizar e proteger o seu condomínio?",

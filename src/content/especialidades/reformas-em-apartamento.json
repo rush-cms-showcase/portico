@@ -83,35 +83,6 @@
       }
     },
     {
-      "_type": "methodology",
-      "data": {
-        "section_badge": "O Diferencial",
-        "section_title": "Metodologia Pórtico 4P™",
-        "items": [
-          {
-            "step": "P1",
-            "title": "Planejamento Cirúrgico",
-            "description": "Lemos o regimento interno do seu condomínio antes do primeiro martelo bater. O cronograma é desenhado respeitando horários de silêncio rigorosamente."
-          },
-          {
-            "step": "P2",
-            "title": "Previsibilidade",
-            "description": "Com as plantas em mãos, definimos o prazo de entrega. Você sabe exatamente quando poderá agendar o caminhão de mudança."
-          },
-          {
-            "step": "P3",
-            "title": "Proteção Contratual",
-            "description": "Qualquer dano a áreas comuns (elevador, hall, corredores) durante nossa operação é coberto pelo nosso seguro de obra. Zero dor de cabeça para você."
-          },
-          {
-            "step": "P4",
-            "title": "Prestação de Contas",
-            "description": "Relatórios fotográficos diários no seu WhatsApp mostrando o avanço do seu apartamento limpo e os fornecedores trabalhando."
-          }
-        ]
-      }
-    },
-    {
       "_type": "cta",
       "data": {
         "headline": "Pronto para morar no apartamento dos seus sonhos?",

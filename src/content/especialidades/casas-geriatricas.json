@@ -77,35 +77,6 @@
       }
     },
     {
-      "_type": "methodology",
-      "data": {
-        "section_badge": "Nosso Método",
-        "section_title": "Metodologia Pórtico 4P™",
-        "items": [
-          {
-            "step": "P1",
-            "title": "Planejamento Cirúrgico",
-            "description": "Mapeamento minucioso de toda a infraestrutura ANTES de qualquer intervenção. Entendemos a rotina médica e os horários de descanso dos seus residentes para projetar um cronograma de manutenção de impacto zero."
-          },
-          {
-            "step": "P2",
-            "title": "Previsibilidade",
-            "description": "Em ambientes de saúde, interrupções não são opção. Trabalhamos com planejamento reverso e margem de segurança técnica, garantindo manutenções silenciosas que jamais interferem na paz da sua casa."
-          },
-          {
-            "step": "P3",
-            "title": "Proteção Contratual",
-            "description": "Adequações normativas (Anvisa/RDC) e manutenções com orçamento 100% travado. Você troca a imprevisibilidade de manutenções avulsas por uma linha de custo fixa, blindando o fluxo de caixa do seu negócio."
-          },
-          {
-            "step": "P4",
-            "title": "Prestação de Contas",
-            "description": "Atestados de conformidade, planos preventivos e relatórios fotográficos detalhados entregues direto à diretoria. A comprovação e a tranquilidade de que seu residencial mantém o mais alto padrão de segurança."
-          }
-        ]
-      }
-    },
-    {
       "_type": "cta",
       "data": {
         "headline": "Pronto para terceirizar a gestão física do seu residencial?",
